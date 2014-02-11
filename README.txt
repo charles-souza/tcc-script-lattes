@@ -1,5 +1,5 @@
-scriptLattes V8
------------------
+scriptLattes V8.09
+------------------
 
 SINOPSIS
 	scriptLattes.py <nome_arquivo_de_configuracao>
