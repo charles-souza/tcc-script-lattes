@@ -26,6 +26,7 @@
 import datetime
 import re
 import math
+import unicodedata
 from graficoDeInternacionalizacao import *
 from qualis import * # Qualis
 
@@ -38,7 +39,7 @@ class GeradorDePaginasWeb:
 
 	def __init__(self, grupo):
 		self.grupo = grupo
-		self.version = 'V8.08'
+		self.version = 'V8.09'
 		self.dir = self.grupo.obterParametro('global-diretorio_de_saida')
 		
 		if self.grupo.obterParametro('global-criar_paginas_jsp'):
@@ -60,7 +61,8 @@ class GeradorDePaginasWeb:
 		self.gerarPaginasDeProducoesBibliograficas()
 		self.gerarPaginasDeProducoesTecnicas()
 		self.gerarPaginasDeProducoesArtisticas()
-
+		self.gerarPaginasDePatentes()
+		
 		if self.grupo.obterParametro('relatorio-mostrar_orientacoes'):
 			self.gerarPaginasDeOrientacoes()
 
@@ -108,6 +110,7 @@ class GeradorDePaginasWeb:
 		s+='[ <a href=membros'+self.extensaoPagina+'>Membros</a> \
             | <a href=#producaoBibliografica>Produção bibliográfica</a> \
             | <a href=#producaoTecnica>Produção técnica</a> \
+            | <a href=#patenteRegistro>Patente e Registro</a> \
             | <a href=#producaoArtistica>Produção artística</a> '.decode("utf8")
 
 		if self.grupo.obterParametro('relatorio-mostrar_orientacoes'):
@@ -176,6 +179,17 @@ class GeradorDePaginasWeb:
 		if self.nPT>0:
 			s+= '<li> <a href="PT-0'+self.extensaoPagina+'">Total de produção técnica</a> '.decode("utf8")+'('+str(self.nPT)+')'
 		else:
+			s+= '<i>Nenhum item achado nos currículos Lattes</i>'.decode("utf8")
+
+
+		s+='</ul> <h3 id="patenteRegistro">Patente e Registro</h3> <ul>'.decode("utf8")
+		if self.nPR0>0:
+			s+= '<li> <a href="PR0-0'+self.extensaoPagina+'">Patente</a> '.decode("utf8")+'('+str(self.nPR0)+')'
+		if self.nPR1>0:
+			s+= '<li> <a href="PR1-0'+self.extensaoPagina+'">Programa de computador</a> '.decode("utf8")+'('+str(self.nPR1)+')'
+		if self.nPR2>0:
+			s+= '<li> <a href="PR2-0'+self.extensaoPagina+'">Desenho industrial</a> '.decode("utf8")+'('+str(self.nPR2)+')'
+		if self.nPR0 == 0 and self.nPR1 == 0 and self.nPR2 == 0:
 			s+= '<i>Nenhum item achado nos currículos Lattes</i>'.decode("utf8")
 
 
@@ -372,6 +386,21 @@ class GeradorDePaginasWeb:
 			self.nPA0 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaProducaoArtistica, "Produção artística/cultural", "PA0")
 		# Total de produções técnicas
 		self.nPA = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaPA, "Total de produção artística", "PA")
+
+
+	def gerarPaginasDePatentes(self):
+		self.nPR0 =0
+		self.nPR1 =0
+		self.nPR2 =0
+		self.nPR  =0
+
+		if self.grupo.obterParametro('relatorio-incluir_patente'):
+			self.nPR0 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaPatente, "Patente", "PR0")
+			self.nPR1 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaProgramaComputador, "Programa de computador", "PR1")
+			self.nPR2 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaDesenhoIndustrial, "Desenho industrial", "PR2")
+
+		# Total de produções técnicas
+		self.nPR = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaPR, "Total de patentes e registros", "PR")
 
 
 	def gerarPaginasDeOrientacoes(self):
@@ -694,16 +723,47 @@ class GeradorDePaginasWeb:
 			elemento += 1
 			bolsa = '('+membro.bolsaProdutividade+')' if not membro.bolsaProdutividade=='' else ''
 			rotulo=  membro.rotulo if not membro.rotulo=='[sem rotulo]' else ''
+			rotulo = rotulo.decode('iso-8859-1','replace')
+
+			if "-grp[" in rotulo:
+				multirotulos = rotulo.split("::")
+				rotulo = ""
+				for r in multirotulos:
+					grupoURL = "http://dgp.cnpq.br/buscaoperacional/detalhegrupo.jsp?grupo="+ re.search('\[(.*)\]', r.strip()).group(1) 
+					rotulo = rotulo + "<a href=" + grupoURL + ">" + r.strip() + "</a><br>"
+			
+
+			nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
+
+			#print " --------------------------------------------"
+			#print membro.nomeCompleto
+			#print type(membro.nomeCompleto)
+			#print " "
+			#nomeCompleto = membro.nomeCompleto.decode('utf8','replace')
+			#print nomeCompleto
+			#print type(nomeCompleto)
+			#print " --------------------------------------------"
+			#nomeCompleto = membro.nomeCompleto.decode('iso-8859-1','replace')
+			
+			#print str(elemento)
+			#print membro.foto
+			#print membro.url
+			#print nomeCompleto
+			#print rotulo
+			#print bolsa
+			#print membro.periodo
+			#print membro.atualizacaoCV
+
 			s+= '\n<tr> \
                      <td valign="center" height="40px">'+str(elemento)+'.</td> \
                      <td valign="top" height="40px"><img src="'+membro.foto+'" width="40px"></td> \
-                     <td><a href="'+membro.url+'">'+membro.nomeCompleto+'</a></td> \
+                     <td><a href="'+membro.url+'">'+nomeCompleto+'</a></td> \
                      <td class="centered"><font size=-1>'+rotulo+'</font></td> \
                      <td class="centered"><font size=-1>'+bolsa+'</font></td> \
                      <td class="centered"><font size=-1>'+membro.periodo+'</font></td> \
                      <td class="centered"><font size=-1>'+membro.atualizacaoCV+'</font></td> \
-                     <td class="centered"><a href="http://scholar.google.com.br/citations?view_op=search_authors&mauthors='+membro.nomeCompleto+'"><font size=-1>[ Cita&ccedil;&otilde;es em Google Acad&ecirc;mico | </font></a></td> \
-                     <td class="centered"><a href="http://academic.research.microsoft.com/Search?query=author:('+membro.nomeCompleto+')"><font size=-1>Cita&ccedil;&otilde;es em Microsoft Acad&ecirc;mico ]</font></a></td> \
+                     <td class="centered"><a href="http://scholar.google.com.br/citations?view_op=search_authors&mauthors='+nomeCompleto+'"><font size=-1>[ Cita&ccedil;&otilde;es em Google Acad&ecirc;mico | </font></a></td> \
+                     <td class="centered"><a href="http://academic.research.microsoft.com/Search?query=author:('+nomeCompleto+')"><font size=-1>Cita&ccedil;&otilde;es em Microsoft Acad&ecirc;mico ]</font></a></td> \
                  </tr>'
 		s+='\n</table>'
 		s+= self.paginaBottom()
@@ -773,7 +833,7 @@ class GeradorDePaginasWeb:
 
 	def salvarPagina(self, nome, conteudo):
 		file = open(self.dir+"/"+nome, 'w')
- 		file.write(conteudo.encode('utf8'))
+ 		file.write(conteudo.encode('utf8','replace'))
 		file.close()
 
 

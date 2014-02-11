@@ -68,7 +68,11 @@ class Grupo:
 	matrizTrabalhoTecnico = None
 	matrizOutroTipoDeProducaoTecnica = None
 	matrizProducaoArtistica = None
-
+	
+	matrizPatente = None
+	matrizProgramaComputador = None
+	matrizDesenhoIndustrial = None
+		
 	matrizDeAdjacencia = None
 	matrizDeFrequencia = None
 	matrizDeFrequenciaNormalizada = None
@@ -80,6 +84,7 @@ class Grupo:
 	vectorRank = None
 	nomes = None
 	rotulos = None
+	geolocalizacoes = None
 
 	qualis = None 
 	
@@ -134,7 +139,7 @@ class Grupo:
 				nome          = linhaDiv[1].strip() if len(linhaDiv)>1  else ''
 				periodo       = linhaDiv[2].strip() if len(linhaDiv)>2  else ''
 				rotulo        = linhaDiv[3].strip() if len(linhaDiv)>3 and not linhaDiv[3].strip()=='' else '[Sem rotulo]' 
-				rotulo        = rotulo.capitalize() 
+				# rotulo        = rotulo.capitalize() 
 
 				# atribuicao dos valores iniciais para cada membro
 				###if 'xml' in identificador.lower():
@@ -238,6 +243,14 @@ class Grupo:
 
 	def gerarPaginasWeb(self):
 		paginasWeb = GeradorDePaginasWeb(self)
+		
+		# Salvamos alguns dados para análise posterior (com outras ferramentas)
+		prefix = self.obterParametro('global-prefixo')+'-' if not self.obterParametro('global-prefixo')=='' else ''
+		self.geolocalizacoes = list([])
+		for membro in self.listaDeMembros:
+			self.geolocalizacoes.append(str(membro.enderecoProfissionalLat)+","+str(membro.enderecoProfissionalLon))
+		print self.geolocalizacoes
+		self.salvarListaTXT(self.geolocalizacoes, prefix+"listaDeGeolocalizacoes.txt")
 			
 
 	def compilarListasDeItems(self):
@@ -265,19 +278,32 @@ class Grupo:
 		self.salvarMatrizTXT(self.matrizDeAdjacencia, prefix+"matrizDeAdjacencia.txt")
 		self.salvarMatrizTXT(self.matrizDeFrequencia, prefix+"matrizDeFrequencia.txt")
 		self.salvarMatrizTXT(self.matrizDeFrequenciaNormalizada, prefix+"matrizDeFrequenciaNormalizada.txt")
-		self.salvarMatrizXML(self.matrizDeAdjacencia, prefix+"matrizDeAdjacencia.xml")
+		# self.salvarMatrizXML(self.matrizDeAdjacencia, prefix+"matrizDeAdjacencia.xml")
 	
-		# (2) listas de nomes e rótulos
+		# (2) listas de nomes, rótulos, ids
 		self.nomes = list([]) 
-		self.rotulos = list([]) 
+		self.rotulos = list([])
+		self.ids = list([])
 		for membro in self.listaDeMembros:
 			self.nomes.append(membro.nomeCompleto)
 			self.rotulos.append(membro.rotulo)
+			self.ids.append(membro.idLattes)
 		self.salvarListaTXT(self.nomes, prefix+"listaDeNomes.txt")
 		self.salvarListaTXT(self.rotulos, prefix+"listaDeRotulos.txt")
+		self.salvarListaTXT(self.ids, prefix+"listaDeIDs.txt")
 
 		# (3) medidas de authorRanks 
 		self.salvarListaTXT(self.vectorRank, prefix+"authorRank.txt")
+
+		# (4) lista unica de colaboradores (orientadores, ou qualquer outro tipo de parceiros...)
+		rawColaboradores = list([])
+		for membro in self.listaDeMembros:
+			for idColaborador in membro.listaIDLattesColaboradoresUnica:
+				rawColaboradores.append(idColaborador)
+		rawColaboradores = list(set(rawColaboradores))
+		self.salvarListaTXT(rawColaboradores, prefix+"colaboradores.txt")
+
+		
 
 
 	def identificarQualisEmPublicacoes(self):
@@ -402,6 +428,10 @@ class Grupo:
 		gBarra.criarGrafico(self.compilador.listaCompletaProcessoOuTecnica, 'PT3', 'Numero de producoes tecnicas')
 		gBarra.criarGrafico(self.compilador.listaCompletaTrabalhoTecnico, 'PT4', 'Numero de producoes tecnicas')
 		gBarra.criarGrafico(self.compilador.listaCompletaOutroTipoDeProducaoTecnica, 'PT5', 'Numero de producoes tecnicas')
+
+		gBarra.criarGrafico(self.compilador.listaCompletaPatente, 'PR0', 'Numero de patentes')
+		gBarra.criarGrafico(self.compilador.listaCompletaProgramaComputador, 'PR1', 'Numero de programa de computador')
+		gBarra.criarGrafico(self.compilador.listaCompletaDesenhoIndustrial, 'PR2', 'Numero de desenho industrial')
 
 		gBarra.criarGrafico(self.compilador.listaCompletaProducaoArtistica, 'PA0', 'Numero de producoes artisticas')
 
@@ -546,6 +576,10 @@ class Grupo:
 		self.listaDeParametros.append(['relatorio-incluir_trabalho_tecnico', 'sim'])
 		self.listaDeParametros.append(['relatorio-incluir_outro_tipo_de_producao_tecnica', 'sim'])
 
+		self.listaDeParametros.append(['relatorio-incluir_patente', 'sim'])
+		self.listaDeParametros.append(['relatorio-incluir_programa_computador', 'sim'])
+		self.listaDeParametros.append(['relatorio-incluir_desenho_industrial', 'sim'])
+				
 		self.listaDeParametros.append(['relatorio-incluir_producao_artistica', 'sim'])
 
 		self.listaDeParametros.append(['relatorio-mostrar_orientacoes', 'sim'])
@@ -594,6 +628,10 @@ class Grupo:
 		self.listaDeParametros.append(['grafo-incluir_trabalho_tecnico', 'sim'])
 		self.listaDeParametros.append(['grafo-incluir_outro_tipo_de_producao_tecnica', 'sim'])
 
+		self.listaDeParametros.append(['grafo-incluir_patente', 'sim'])
+		self.listaDeParametros.append(['grafo-incluir_programa_computador', 'sim'])
+		self.listaDeParametros.append(['grafo-incluir_desenho_industrial', 'sim'])
+				
 		self.listaDeParametros.append(['grafo-incluir_producao_artistica', 'sim'])
 		self.listaDeParametros.append(['grafo-incluir_grau_de_colaboracao', 'nao'])
 

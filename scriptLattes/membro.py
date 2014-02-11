@@ -93,6 +93,11 @@ class Membro:
 	listaTrabalhoTecnico = []
 	listaOutroTipoDeProducaoTecnica = []
 
+	# Patentes e registros
+	listaPatente = []
+	listaProgramaComputador = []
+	listaDesenhoIndustrial = []	
+	
 	# Produção artística/cultural
 	listaProducaoArtistica = []
 
@@ -212,7 +217,7 @@ class Membro:
 						arquivoH.close()
 						time.sleep(1)
 
-						if len(cvLattesHTML)<=1000:
+						if len(cvLattesHTML)<=2000:
 							print '[AVISO] O scriptLattes tentará baixar novamente o seguinte CV Lattes: ', self.url
 							time.sleep(30)
 							tentativa+=1
@@ -285,6 +290,11 @@ class Membro:
 		self.listaTrabalhoTecnico             = parser.listaTrabalhoTecnico
 		self.listaOutroTipoDeProducaoTecnica  = parser.listaOutroTipoDeProducaoTecnica
 
+		# Patentes e registros	
+		self.listaPatente          = parser.listaPatente
+		self.listaProgramaComputador = parser.listaProgramaComputador
+		self.listaDesenhoIndustrial = parser.listaDesenhoIndustrial
+				
 		# Produção artística
 		self.listaProducaoArtistica = parser.listaProducaoArtistica
 
@@ -332,6 +342,10 @@ class Membro:
 		self.listaTrabalhoTecnico                  = self.filtrarItems(self.listaTrabalhoTecnico)
 		self.listaOutroTipoDeProducaoTecnica       = self.filtrarItems(self.listaOutroTipoDeProducaoTecnica)
 
+		self.listaPatente			               = self.filtrarItems(self.listaPatente)
+		self.listaProgramaComputador               = self.filtrarItems(self.listaProgramaComputador)
+		self.listaDesenhoIndustrial	               = self.filtrarItems(self.listaDesenhoIndustrial)
+		
 		self.listaProducaoArtistica                = self.filtrarItems(self.listaProducaoArtistica)
 
 		self.listaOASupervisaoDePosDoutorado       = self.filtrarItems(self.listaOASupervisaoDePosDoutorado)
@@ -369,7 +383,7 @@ class Membro:
 		
 	def estaDentroDoPeriodo(self, objeto):
 		if objeto.__module__=='orientacaoEmAndamento':
-			objeto.ano = int(objeto.ano)
+			objeto.ano = int(objeto.ano) if objeto.ano else 0 # Caso
 			if objeto.ano > self.itemsAteOAno:
 				return 0
 			else:
@@ -425,7 +439,7 @@ class Membro:
 		s = ''
 		s+= '\nTY  - MEMBRO'
 		s+= '\nNOME  - '+self.nomeCompleto
-		s+= '\nSEXO  - '+self.sexo
+		#s+= '\nSEXO  - '+self.sexo
 		s+= '\nCITA  - '+self.nomeEmCitacoesBibliograficas
 		s+= '\nBOLS  - '+self.bolsaProdutividade
 		s+= '\nENDE  - '+self.enderecoProfissional
@@ -561,6 +575,18 @@ class Membro:
 				s += pub.__str__()
 
 			s += "\n"
+			for pub in self.listaPatente:
+				s += pub.__str__()
+
+			s += "\n"
+			for pub in self.listaProgramaComputador:
+				s += pub.__str__()
+
+			s += "\n"
+			for pub in self.listaDesenhoIndustrial:
+				s += pub.__str__()
+
+			s += "\n"
 			for pub in self.listaProducaoArtistica:
 				s += pub.__str__()
 		
@@ -582,6 +608,9 @@ class Membro:
 			s += "\n- Processos ou técnicas                       : " + str(len(self.listaProcessoOuTecnica))
 			s += "\n- Trabalhos técnicos                          : " + str(len(self.listaTrabalhoTecnico))
 			s += "\n- Demais tipos de produção técnica            : " + str(len(self.listaOutroTipoDeProducaoTecnica))
+			s += "\n- Patente                                     : " + str(len(self.listaPatente))
+			s += "\n- Programa de computador                      : " + str(len(self.listaProgramaComputador))
+			s += "\n- Desenho industrial                          : " + str(len(self.listaDesenhoIndustrial))									
 			s += "\n- Produção artística/cultural                 : " + str(len(self.listaProducaoArtistica))
 			s += "\n- Orientações em andamento"
 			s += "\n  . Supervições de pos doutorado              : " + str(len(self.listaOASupervisaoDePosDoutorado))

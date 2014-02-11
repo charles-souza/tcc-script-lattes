@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python 
 # encoding: utf-8
 #
 #
@@ -26,6 +26,8 @@ import sys
 import shutil
 import Levenshtein
 import os, errno
+import warnings
+warnings.filterwarnings('ignore')
 
 sys.path.append('scriptLattes')
 sys.path.append('scriptLattes/producoesBibliograficas/')
@@ -37,6 +39,7 @@ sys.path.append('scriptLattes/eventos/')
 sys.path.append('scriptLattes/charts/')
 sys.path.append('scriptLattes/internacionalizacao/')
 sys.path.append('scriptLattes/qualis/')
+sys.path.append('scriptLattes/patentesRegistros/')
 
 from grupo import *
 
@@ -63,7 +66,7 @@ if __name__ == "__main__":
 		novoGrupo.gerarMapaDeGeolocalizacao() # obrigatorio
 		novoGrupo.gerarPaginasWeb() # obrigatorio
 
-		novoGrupo.gerarXMLdeGrupo()
+		#novoGrupo.gerarXMLdeGrupo()
 		novoGrupo.gerarCSVdeQualisdeGrupo()
 		novoGrupo.gerarRISdeGrupo()
 
