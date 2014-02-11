@@ -97,10 +97,14 @@ class ArtigoEmPeriodico:
 				self.volume = partes[2].strip().rstrip(",")
 				partes = partes[0]
 
-			partes = partes.partition(". ")
-			#partes = partes.rpartition(". ")
-			self.titulo = partes[0].strip()
-			self.revista = partes[2].strip()
+			p1 = partes.partition(". ")
+			p2 = partes.rpartition(". ")
+			if len(p1[0])>len(p2[2]):
+				self.titulo = p2[0].strip()
+				self.revista = p2[2].strip()
+			else:
+				self.titulo = p1[0].strip()
+				self.revista = p1[2].strip()
 
 			self.chave = self.autores # chave de comparação entre os objetos
 

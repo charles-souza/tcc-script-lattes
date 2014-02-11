@@ -55,6 +55,21 @@ URL DO PROJETO
 =========================================================================================
 LOG
 
+
+Seg Ago 26 03:09:50 BRT 2013
+-- Algumas melhoras no parser (<x<)
+-- Armazenamento das geolocalizações
+
+Sex Jun 28 17:04:13 BRT 2013
+-- Um bug na criação do mapa de geolocalização foi consertado.
+
+Wed May 29 12:24:23 BRT 2013
+-- Criação do arquivo de colaboradores
+
+Qui Mai  2 22:03:37 BRT 2013
+-- A lista de Prêmios e títulos é avaliada de forma individual (i.e., não é
+   identificada coautoria na lista de Prêmios e títulos).
+
 Dom Abr 14 12:32:54 BRST 2013
 -- Foi corrigida a função de localização geográfica.
 

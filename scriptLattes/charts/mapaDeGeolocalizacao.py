@@ -76,16 +76,24 @@ class MapaDeGeolocalizacao:
    var map = new google.maps.Map(document.getElementById("map_canvas"), options); \n\
  \n'
       
-         	cvsProcessados = set([])
-      
-      
-         	if self.grupo.obterParametro('mapa-incluir_membros_do_grupo'):
-         		for membro in self.grupo.listaDeMembros:
-         			cvsProcessados.add(membro.idLattes)
-      
-         			membro.obterCoordenadasDeGeolocalizacao()
-         			if not membro.enderecoProfissionalLat=='0' and not membro.enderecoProfissionalLon=='0':
-         				self.mapa += '\n    setMarker0(map, '+membro.enderecoProfissionalLat+'+0.001*Math.random(), '+membro.enderecoProfissionalLon+'+0.001*Math.random(), "'+membro.nomeCompleto+'", "'+membro.enderecoProfissional+'", "'+membro.url+'", "'+membro.foto+'");'
+		cvsProcessados = set([])
+
+		if self.grupo.obterParametro('mapa-incluir_membros_do_grupo'):
+			for membro in self.grupo.listaDeMembros:
+				cvsProcessados.add(membro.idLattes)
+				membro.obterCoordenadasDeGeolocalizacao()
+				nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
+		 		if not membro.enderecoProfissionalLat=='0' and not membro.enderecoProfissionalLon=='0':
+					print "-------------------------------"
+					print nomeCompleto
+					print membro.enderecoProfissional
+					print membro.enderecoProfissionalLat
+					print membro.enderecoProfissionalLon
+					print membro.url
+					print membro.foto
+
+					enderecoProfissional = unicodedata.normalize('NFKD', membro.enderecoProfissional).encode('ASCII', 'ignore')
+					self.mapa += '\n    setMarker0(map, '+membro.enderecoProfissionalLat+'+0.001*Math.random(), '+membro.enderecoProfissionalLon+'+0.001*Math.random(), "'+nomeCompleto+'", "'+enderecoProfissional+'", "'+membro.url+'", "'+membro.foto+'");'
 
 
 		if self.grupo.obterParametro('mapa-incluir_alunos_de_pos_doutorado'):
@@ -98,10 +106,12 @@ class MapaDeGeolocalizacao:
 						membro = Membro('', idOrientando, '', '', '', '', '', self.grupo.diretorioCache)
 						membro.carregarDadosCVLattes()
 						membro.obterCoordenadasDeGeolocalizacao()
+						nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
 						if not membro.enderecoProfissionalLat=='0' and not membro.enderecoProfissionalLon=='0':
-							self.mapa += '\n    setMarker1(map, '+membro.enderecoProfissionalLat+'+0.001*Math.random(), '+membro.enderecoProfissionalLon+'+0.001*Math.random(), "'+membro.nomeCompleto+'","'+membro.enderecoProfissional+'","'+self.obterNomesDosOrientadores(aluno, self.grupo.listaDeMembros)+'","'+membro.url+'","'+membro.foto+'");'
+							enderecoProfissional = unicodedata.normalize('NFKD', membro.enderecoProfissional).encode('ASCII', 'ignore')
+							self.mapa += '\n    setMarker1(map, '+membro.enderecoProfissionalLat+'+0.001*Math.random(), '+membro.enderecoProfissionalLon+'+0.001*Math.random(), "'+nomeCompleto+'","'+enderecoProfissional+'","'+self.obterNomesDosOrientadores(aluno, self.grupo.listaDeMembros)+'","'+membro.url+'","'+membro.foto+'");'
 						cvsProcessados.add(idOrientando)
-						print "-Processando o CV do ex-posdoc: "+idOrientando+" "+membro.nomeCompleto.encode('utf8')
+						print "-Processando o CV do ex-posdoc: "+idOrientando+" "+nomeCompleto.encode('utf8')
 
 
 		if self.grupo.obterParametro('mapa-incluir_alunos_de_doutorado'):
@@ -114,10 +124,12 @@ class MapaDeGeolocalizacao:
 						membro = Membro('', idOrientando, '', '', '', '', '', self.grupo.diretorioCache)
 						membro.carregarDadosCVLattes()
 						membro.obterCoordenadasDeGeolocalizacao()
+						nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
 						if not membro.enderecoProfissionalLat=='0' and not membro.enderecoProfissionalLon=='0':
-							self.mapa += '\n    setMarker2(map, '+membro.enderecoProfissionalLat+'+0.001*Math.random(), '+membro.enderecoProfissionalLon+'+0.001*Math.random(), "'+membro.nomeCompleto+'","'+membro.enderecoProfissional+'","'+self.obterNomesDosOrientadores(aluno, self.grupo.listaDeMembros)+'","'+membro.url+'","'+membro.foto+'");'
+							enderecoProfissional = unicodedata.normalize('NFKD', membro.enderecoProfissional).encode('ASCII', 'ignore')
+							self.mapa += '\n    setMarker2(map, '+membro.enderecoProfissionalLat+'+0.001*Math.random(), '+membro.enderecoProfissionalLon+'+0.001*Math.random(), "'+nomeCompleto+'","'+enderecoProfissional+'","'+self.obterNomesDosOrientadores(aluno, self.grupo.listaDeMembros)+'","'+membro.url+'","'+membro.foto+'");'
 						cvsProcessados.add(idOrientando)
-						print "-Processando o CV do ex-aluno de doutorado: "+idOrientando+" "+membro.nomeCompleto.encode('utf8')
+						print "-Processando o CV do ex-aluno de doutorado: "+idOrientando+" "+nomeCompleto.encode('utf8')
 
 
 		if self.grupo.obterParametro('mapa-incluir_alunos_de_mestrado'):
@@ -130,10 +142,12 @@ class MapaDeGeolocalizacao:
 						membro = Membro('', idOrientando, '', '', '', '', '', self.grupo.diretorioCache)
 						membro.carregarDadosCVLattes()
 						membro.obterCoordenadasDeGeolocalizacao()
+						nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
 						if not membro.enderecoProfissionalLat=='0' and not membro.enderecoProfissionalLon=='0':
-							self.mapa += '\n    setMarker3(map, '+membro.enderecoProfissionalLat+'+0.001*Math.random(), '+membro.enderecoProfissionalLon+'+0.001*Math.random(), "'+membro.nomeCompleto+'","'+membro.enderecoProfissional+'","'+self.obterNomesDosOrientadores(aluno, self.grupo.listaDeMembros)+'","'+membro.url+'","'+membro.foto+'");'
+							enderecoProfissional = unicodedata.normalize('NFKD', membro.enderecoProfissional).encode('ASCII', 'ignore')
+							self.mapa += '\n    setMarker3(map, '+membro.enderecoProfissionalLat+'+0.001*Math.random(), '+membro.enderecoProfissionalLon+'+0.001*Math.random(), "'+nomeCompleto+'","'+enderecoProfissional+'","'+self.obterNomesDosOrientadores(aluno, self.grupo.listaDeMembros)+'","'+membro.url+'","'+membro.foto+'");'
 						cvsProcessados.add(idOrientando)
-						print "-Processando o CV do ex-aluno de mestrado: "+idOrientando+" "+membro.nomeCompleto.encode('utf8')
+						print "-Processando o CV do ex-aluno de mestrado: "+idOrientando+" "+nomeCompleto.encode('utf8')
 
 		self.mapa+= '\
   } \n\
@@ -143,6 +157,8 @@ class MapaDeGeolocalizacao:
 		#print "--------------------------------------------------------------------"
 		#print self.mapa.encode('utf8','replace')
 		#print "--------------------------------------------------------------------"
+		
+		self.mapa = re.sub("\'", '', self.mapa)
 		print "[MAPA DE GEOLOCALIZACAO CRIADO]"
 
 

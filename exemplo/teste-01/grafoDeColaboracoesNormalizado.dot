@@ -1,13 +1,5 @@
 strict digraph grafo3 {
-	graph [bb="0,0,202,146", id=grafo3, overlap=False];
+	graph [bb="0,0,154,18", id=grafo3, overlap=False];
 	node [label="\N", fontsize=8, shape=rectangle, style=filled];
-	0 [label="Roberto M. Cesar Junior [10]", URL="http://lattes.cnpq.br/2240951178648368", color="#003399", fontcolor="#FFFFFF", height="0.25", pos="134,137", width="1.8889"];
-	1 [label="Jesús P. Mena Chalco [11]", URL="http://lattes.cnpq.br/4727357182510680", color="#003399", fontcolor="#FFFFFF", height="0.25", pos="134,9", width="1.75"];
-	2 [label="Andréa Britto Mattos [2]", URL="http://lattes.cnpq.br/2837012019824386", color="#003399", fontcolor="#FFFFFF", height="0.25", pos="59,73", width="1.6389"];
-	0 -> 1 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.95", lp="143.5,73", penwidth="3.35", pos="e,134,18.122 134,127.79 134,106.39 134,53.03 134,25.703"];
-	0 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.05", lp="83.5,105", penwidth="0.65", pos="e,60.72,82.279 102.21,127.93 92.161,123.79 81.686,117.98 74,110 68.678,104.47 65.154,96.809 62.868,89.889"];
-	2 -> 1 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.75", lp="78.5,41", penwidth="2.75", pos="e,96.267,18.046 59.278,63.727 59.994,55.526 62.239,43.7 69,36 74.494,29.743 81.668,24.904 89.239,21.171"];
-	2 -> 0 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="113.5,105", penwidth="1.25", pos="e,124.05,127.7 70.791,82.068 77.403,87.226 85.752,93.862 93,100 101.46,107.16 110.64,115.4 118.17,122.29"];
-	1 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.14", lp="109.5,41", penwidth="0.92", pos="e,69.746,63.83 123.27,18.153 110.81,28.791 90.091,46.469 75.555,58.873"];
-	1 -> 0 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.86", lp="166.5,73", penwidth="3.08", pos="e,139.86,127.77 139.54,18.32 145.46,28.94 154.34,47.026 157,64 160.15,84.122 151.29,106.32 143.66,120.89"];
+	0 [label="Genival Fernandes de Freitas [0]", URL="http://lattes.cnpq.br/1304928249329716", color="#003399", fontcolor="#FFFFFF", height="0.25", pos="77,9", width="2.1389"];
 }
