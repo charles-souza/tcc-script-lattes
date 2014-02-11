@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>             
+<!--  An excerpt of an egocentric social network  -->             
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">             
+<graph edgedefault="undirected">             
+<!-- data schema -->             
+<key id="name" for="node" attr.name="name" attr.type="string"/>             
+<key id="nickname" for="node" attr.name="nickname" attr.type="string"/>             
+<key id="gender" for="node" attr.name="gender" attr.type="string"/>             
+<key id="image" for="node" attr.name="image" attr.type="string"/>             
+<key id="link" for="node" attr.name="link" attr.type="string"/>             
+<key id="amount" for="edge" attr.name="amount" attr.type="int"/>             
+<key id="pubs" for="node" attr.name="pubs" attr.type="int"/>
+<!-- nodes -->                 
+<node id="0">                 
+<data key="name">Carlos Hitoshi Morimoto</data>                 
+<data key="nickname">MORIMOTO, C. H.;Morimoto, Carlos H.;MORIMOTO, C;Morimoto, Carlos;Morimoto, C.;Morimoto, C.H.</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4784731Z4</data>                 
+<data key="link">http://lattes.cnpq.br/4575931307749163</data>                 
+<data key="pubs">0</data>                 
+</node>
+<!-- nodes -->                 
+<node id="1">                 
+<data key="name">João Eduardo Ferreira</data>                 
+<data key="nickname">FERREIRA, J. E.;Ferreira, Joao Eduardo;Ferreira, João Eduardo;Ferreira, João E.</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4785366T8</data>                 
+<data key="link">http://lattes.cnpq.br/0131770792108992</data>                 
+<data key="pubs">0</data>                 
+</node>
+<!-- nodes -->                 
+<node id="2">                 
+<data key="name">Junior Barrera</data>                 
+<data key="nickname">BARRERA, Junior</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4786417Y6</data>                 
+<data key="link">http://lattes.cnpq.br/0362417828475021</data>                 
+<data key="pubs">6</data>                 
+</node>
+<!-- nodes -->                 
+<node id="3">                 
+<data key="name">Marcel Parolin Jackowski</data>                 
+<data key="nickname">JACKOWSKI, M.;Jackowski, Marcel P.;Jackowski, M. P.;Jackowski, Marcel P</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4797214E3</data>                 
+<data key="link">http://lattes.cnpq.br/0926213060635986</data>                 
+<data key="pubs">0</data>                 
+</node>
+<!-- nodes -->                 
+<node id="4">                 
+<data key="name">Nina Sumiko Tomita Hirata</data>                 
+<data key="nickname">HIRATA, N. S. T.;Hirata, Nina S. T.;Hirata, N.S.T.;HIRATA, N;Hirata, Nina S.T.</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4782483T5</data>                 
+<data key="link">http://lattes.cnpq.br/0644408634493034</data>                 
+<data key="pubs">5</data>                 
+</node>
+<!-- nodes -->                 
+<node id="5">                 
+<data key="name">Roberto Hirata Junior</data>                 
+<data key="nickname">HIRATA JR., R.;Hirata, Roberto;Hirata Jr., Roberto;Hirata, R;Hirata, R.;Hirata Jr, Roberto</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4790316P6</data>                 
+<data key="link">http://lattes.cnpq.br/1647118503085126</data>                 
+<data key="pubs">7</data>                 
+</node>
+<!-- nodes -->                 
+<node id="6">                 
+<data key="name">Roberto Marcondes Cesar Junior</data>                 
+<data key="nickname">CESAR JUNIOR, R. M.;Cesar, R.M.;Cesar, Roberto M.;CESARJR, R;Cesar Jr., Roberto M.;Cesar Junior, Roberto Marcondes;Cesar Jr., R.M.;Cesar, Roberto M;Cesar Jr, Roberto M.;CESAR-JR, ROBERTO M.;Cesar, Roberto Marcondes</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4799759H4</data>                 
+<data key="link">http://lattes.cnpq.br/2240951178648368</data>                 
+<data key="pubs">19</data>                 
+</node>
+<!-- nodes -->                 
+<node id="7">                 
+<data key="name">Ronaldo Fumio Hashimoto</data>                 
+<data key="nickname">HASHIMOTO, R. F.;Hashimoto, Ronaldo F</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4723135Z6</data>                 
+<data key="link">http://lattes.cnpq.br/9283304583756076</data>                 
+<data key="pubs">4</data>                 
+</node>
+<!-- nodes -->                 
+<node id="8">                 
+<data key="name">Jesús Pascual Mena Chalco</data>                 
+<data key="nickname">MENA-CHALCO, J. P.;MENA CHALCO, J. P.;MENA-CHALCO, JESÚS P.;MENA-CHALCO, JESÚS PASCUAL</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4500409Y4</data>                 
+<data key="link">http://lattes.cnpq.br/4727357182510680</data>                 
+<data key="pubs">11</data>                 
+</node>
+<!-- nodes -->                 
+<node id="9">                 
+<data key="name">Andréa Britto Mattos</data>                 
+<data key="nickname">MATTOS, A. B.</data>                 
+<data key="gender">M</data>                 
+<data key="image">http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4468283H5</data>                 
+<data key="link">http://lattes.cnpq.br/2837012019824386</data>                 
+<data key="pubs">2</data>                 
+</node>
+<!-- edges -->                         
+<edge source="2" target="4">                         
+<data key="amount">2.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="2" target="5">                         
+<data key="amount">1.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="2" target="6">                         
+<data key="amount">3.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="2" target="7">                         
+<data key="amount">1.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="4" target="2">                         
+<data key="amount">2.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="4" target="5">                         
+<data key="amount">3.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="4" target="7">                         
+<data key="amount">1.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="5" target="2">                         
+<data key="amount">1.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="5" target="4">                         
+<data key="amount">3.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="5" target="6">                         
+<data key="amount">4.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="6" target="2">                         
+<data key="amount">3.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="6" target="5">                         
+<data key="amount">4.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="6" target="7">                         
+<data key="amount">2.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="6" target="8">                         
+<data key="amount">10.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="6" target="9">                         
+<data key="amount">1.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="7" target="2">                         
+<data key="amount">1.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="7" target="4">                         
+<data key="amount">1.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="7" target="6">                         
+<data key="amount">2.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="8" target="6">                         
+<data key="amount">10.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="8" target="9">                         
+<data key="amount">2.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="9" target="6">                         
+<data key="amount">1.0</data>                         
+</edge>
+<!-- edges -->                         
+<edge source="9" target="8">                         
+<data key="amount">2.0</data>                         
+</edge>
+</graph>            
+</graphml>

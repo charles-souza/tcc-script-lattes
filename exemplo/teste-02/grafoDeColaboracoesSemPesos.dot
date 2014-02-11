@@ -1,0 +1,26 @@
+strict graph grafo1 {
+	graph [bb="0,0,534,288", id=grafo1, overlap=False];
+	node [label="\N", fontsize=8, shape=rectangle, style=filled];
+	0 [label="Carlos Hitoshi Morimoto [0]", URL="http://lattes.cnpq.br/4575931307749163", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="67,279", width="1.8611"];
+	1 [label="João Eduardo Ferreira [0]", URL="http://lattes.cnpq.br/0131770792108992", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="213,279", width="1.6944"];
+	2 [label="Junior Barrera [6]", URL="http://lattes.cnpq.br/0362417828475021", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="337,279", width="1.25"];
+	4 [label="Nina S. Tomita Hirata [5]", URL="http://lattes.cnpq.br/0644408634493034", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="293,225", width="1.6667"];
+	6 [label="Roberto M. Cesar Junior [19]", URL="http://lattes.cnpq.br/2240951178648368", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="341,117", width="1.8889"];
+	7 [label="Ronaldo Fumio Hashimoto [4]", URL="http://lattes.cnpq.br/9283304583756076", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="243,63", width="1.9444"];
+	5 [label="Roberto Hirata Junior [7]", URL="http://lattes.cnpq.br/1647118503085126", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="332,171", width="1.6389"];
+	9 [label="Andréa Britto Mattos [2]", URL="http://lattes.cnpq.br/2837012019824386", color="#000099", fontcolor="#FFFFFF", height="0.25", pos="386,9", width="1.6389"];
+	8 [label="Jesús P. Mena Chalco [11]", URL="http://lattes.cnpq.br/4727357182510680", color="#006600", fontcolor="#FFFFFF", height="0.25", pos="432,63", width="1.75"];
+	3 [label="Marcel Parolin Jackowski [0]", URL="http://lattes.cnpq.br/0926213060635986", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="467,279", width="1.8611"];
+	2 -- 4 [pos="329.34,269.59 321.26,259.68 308.62,244.17 300.58,234.3"];
+	2 -- 6 [pos="346.24,270 354.76,261.34 367.35,247.61 376,234 390.09,211.83 394.55,205.69 400,180 401.66,172.17 403.55,169.17 400,162 391.89,145.61\
+ 374.62,133.55 360.85,126.07"];
+	2 -- 7 [pos="302.69,269.92 272.93,261.27 233.21,247.59 224,234 188.63,181.84 224.47,99.495 238.17,72.158"];
+	2 -- 5 [pos="344.88,269.78 354.25,257.66 367.93,235.6 362,216 357.81,202.16 347.8,188.69 340.5,180.15"];
+	6 -- 9 [pos="343.07,107.79 346.03,95.31 352.01,72.453 360,54 365.59,41.082 374.02,27.198 379.76,18.322"];
+	6 -- 8 [pos="356.44,107.84 373.27,97.85 400.05,81.962 416.79,72.025"];
+	6 -- 7 [pos="324.38,107.84 306.25,97.85 277.41,81.962 259.38,72.025"];
+	5 -- 6 [pos="333.57,161.59 335.22,151.68 337.81,136.17 339.45,126.3"];
+	4 -- 7 [pos="285.61,215.94 278.92,207.25 269.31,193.49 264,180 248.96,141.79 244.61,92.284 243.42,72.135"];
+	4 -- 5 [pos="299.79,215.59 306.95,205.68 318.16,190.17 325.28,180.3"];
+	8 -- 9 [pos="423.99,53.594 415.54,43.683 402.33,28.169 393.92,18.298"];
+}

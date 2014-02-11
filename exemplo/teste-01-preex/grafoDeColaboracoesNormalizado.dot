@@ -1,0 +1,13 @@
+strict digraph grafo3 {
+	graph [bb="0,0,210,146", id=grafo3, overlap=False];
+	node [label="\N", fontsize=8, shape=rectangle, style=filled];
+	0 [label="Roberto M. Cesar Junior [10]", URL="http://lattes.cnpq.br/2240951178648368", color="#003399", fontcolor="#FFFFFF", height="0.25", pos="142,137", width="1.8889"];
+	2 [label="Andréa Britto Mattos [2]", URL="http://lattes.cnpq.br/2837012019824386", color="#003399", fontcolor="#FFFFFF", height="0.25", pos="142,9", width="1.6389"];
+	1 [label="Jesús P. Mena Chalco [11]", URL="http://lattes.cnpq.br/4727357182510680", color="#003399", fontcolor="#FFFFFF", height="0.25", pos="63,73", width="1.75"];
+	0 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.05", lp="151.5,73", penwidth="0.65", pos="e,142,18.122 142,127.79 142,106.39 142,53.03 142,25.703"];
+	0 -> 1 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.95", lp="90.5,105", penwidth="3.35", pos="e,65.525,82.304 110.62,127.97 100.24,123.8 89.252,117.96 81,110 75.185,104.39 70.995,96.517 68.129,89.474"];
+	1 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.14", lp="90.5,41", penwidth="0.92", pos="e,110.62,18.028 65.525,63.696 68.177,55.475 73.082,43.637 81,36 87.318,29.906 95.242,25.053 103.27,21.242"];
+	1 -> 0 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.86", lp="120.5,105", penwidth="3.08", pos="e,132.21,127.92 76.233,82.21 83.389,87.301 92.31,93.828 100,100 109.06,107.27 118.81,115.82 126.64,122.86"];
+	2 -> 0 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="174.5,73", penwidth="1.25", pos="e,147.86,127.77 147.54,18.32 153.46,28.94 162.34,47.026 165,64 168.15,84.122 159.29,106.32 151.66,120.89"];
+	2 -> 1 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.75", lp="120.5,41", penwidth="2.75", pos="e,76.233,63.79 132.21,18.085 123.83,25.742 111.37,36.877 100,46 94.473,50.436 88.309,55.056 82.623,59.194"];
+}

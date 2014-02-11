@@ -1,0 +1,992 @@
+
+
+TY  - JOUR
+AU  - MENA-CHALCO, J. P. ; DIGIAMPIETRI, L. A. ; OLIVEIRA, L. B.
+TI  - Perfil de produção acadêmica dos programas brasileiros de pós-graduação em Ciência da Computação nos triênios 2004-2006 e 2007-2009
+JO  - Em Questão (UFRGS. Impresso)
+VL  - 18
+IS  - 
+SP  - 215
+EP  - 229
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - JOUR
+AU  - Noma, Alexandre ; Graciano, Ana B.V. ; Cesar Jr, Roberto M. ; Consularo, Luis A. ; BLOCH, Isabelle
+TI  - Interactive image segmentation by matching attributed relational graphs
+JO  - Pattern Recognition
+VL  - 45
+IS  - 
+SP  - 1159
+EP  - 1179
+PY  - 2012
+L2  - http://dx.doi.org/10.1016/j.patcog.2011.08.017
+ER  - 
+
+TY  - JOUR
+AU  - TAKEMURA, Celina Maki ; Cesar, Roberto M. ; BLOCH, Isabelle
+TI  - Modeling and measuring the spatial relation along : Regions, contours and fuzzy sets
+JO  - Pattern Recognition
+VL  - 45
+IS  - 
+SP  - 757
+EP  - 766
+PY  - 2012
+L2  - http://dx.doi.org/10.1016/j.patcog.2011.06.016
+ER  - 
+
+TY  - JOUR
+AU  - VICENTE, FÁBIO FR ; LOPES, FABRÍCIO M ; HASHIMOTO, RONALDO F ; Cesar, Roberto M
+TI  - Assessing the gain of biological data integration in gene networks inference
+JO  - BMC Genomics
+VL  - 13
+IS  - 
+SP  - S7
+EP  - 
+PY  - 2012
+L2  - http://dx.doi.org/10.1186/1471-2164-13-s6-s7
+ER  - 
+
+TY  - JOUR
+AU  - Lopes, Fabrício ; de Oliveira, Evaldo A ; Cesar, Roberto M
+TI  - Inference of gene regulatory networks from time series by Tsallis entropy
+JO  - BMC Systems Biology
+VL  - 5
+IS  - 
+SP  - 61
+EP  - 
+PY  - 2011
+L2  - http://dx.doi.org/10.1186/1752-0509-5-61
+ER  - 
+
+TY  - JOUR
+AU  - Lopes, Fabrício M. ; Cesar, Roberto M. ; Costa, Luciano Da F.
+TI  - Gene Expression Complex Networks: Synthesis, Identification, and Analysis
+JO  - Journal of Computational Biology
+VL  - 18
+IS  - 
+SP  - 1353
+EP  - 1367
+PY  - 2011
+L2  - http://dx.doi.org/10.1089/cmb.2010.0118
+ER  - 
+
+TY  - JOUR
+AU  - Noma, Alexandre ; Pardo, Alvaro ; Cesar Jr., Roberto M.
+TI  - Structural matching of 2D electrophoresis gels using deformed graphs
+JO  - Pattern Recognition Letters
+VL  - 32
+IS  - 
+SP  - 3
+EP  - 11
+PY  - 2011
+L2  - http://dx.doi.org/10.1016/j.patrec.2010.02.016
+ER  - 
+
+TY  - JOUR
+AU  - Portugal-Zambrano, Christian E. ; MENA-CHALCO, JESÚS P.
+TI  - Robust Range Finder Through a Laser Pointer and a Webcam
+JO  - Electronic Notes in Theoretical Computer Science
+VL  - 281
+IS  - 
+SP  - 143
+EP  - 157
+PY  - 2011
+L2  - http://dx.doi.org/10.1016/j.entcs.2011.11.031
+ER  - 
+
+TY  - JOUR
+AU  - LEANDRO, J ; CESARJR, R ; COSTA, L
+TI  - Automatic contour extraction from 2D neuron images
+JO  - Journal of Neuroscience Methods
+VL  - 177
+IS  - 
+SP  - 497
+EP  - 509
+PY  - 2009
+L2  - http://dx.doi.org/10.1016/j.jneumeth.2008.10.037
+ER  - 
+
+TY  - JOUR
+AU  - LIZIER, M. A. ; MARTINS JR, D C ; CUADROS-VARGAS, A. J. ; CESAR JUNIOR, R. M. ; NONATO, L. G.
+TI  - Generating segmented meshes from textured color images
+JO  - Journal of Visual Communication and Image Representation
+VL  - 20
+IS  - 
+SP  - 190
+EP  - 203
+PY  - 2009
+L2  - http://dx.doi.org/10.1016/j.jvcir.2009.01.002
+ER  - 
+
+TY  - JOUR
+AU  - Mena-Chalco, Jesús Pascual ; Cesar Junior, Roberto Marcondes
+TI  - scriptLattes: an open-source knowledge extraction system from the Lattes platform
+JO  - Journal of the Brazilian Computer Society (Impresso)
+VL  - 15
+IS  - 
+SP  - 31
+EP  - 39
+PY  - 2009
+L2  - http://dx.doi.org/10.1590/S0104-65002009000400004
+ER  - 
+
+TY  - JOUR
+AU  - Mena-Chalco, Jesús P. ; Macêdo, Ives ; Velho, Luiz ; Cesar, Roberto M.
+TI  - 3D Face Computational Photography Using PCA Spaces
+JO  - The Visual Computer
+VL  - 25
+IS  - 
+SP  - 899
+EP  - 909
+PY  - 2009
+L2  - http://dx.doi.org/10.1007/s00371-009-0373-x
+ER  - 
+
+TY  - JOUR
+AU  - ZANA, Y. ; MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
+TI  - A Novel Polar-based Human Face Recognition Computational Model
+JO  - Brazilian Journal of Medical and Biological Research (Impresso)
+VL  - 42
+IS  - 
+SP  - 637
+EP  - 646
+PY  - 2009
+L2  - http://dx.doi.org/10.1590/S0100-879X2009000700008
+ER  - 
+
+TY  - JOUR
+AU  - Lopes, Fabricio M. ; Martins, David C. ; Cesar, Roberto M.
+TI  - Feature selection environment for genomic applications
+JO  - BMC Bioinformatics
+VL  - 9
+IS  - 
+SP  - 451
+EP  - 
+PY  - 2008
+L2  - http://dx.doi.org/10.1186/1471-2105-9-451
+ER  - 
+
+TY  - JOUR
+AU  - MENA-CHALCO, J. P. ; CARRER, H. ; ZANA, Y. ; CESAR JUNIOR, R. M.
+TI  - Identification of protein coding regions using the modified Gabor-wavelet transform
+JO  - IEEE/ACM Transactions on Computational Biology and Bioinformatics (Print)
+VL  - 5
+IS  - 
+SP  - 198
+EP  - 207
+PY  - 2008
+L2  - http://dx.doi.org/10.1109/TCBB.2007.70259
+ER  - 
+
+TY  - JOUR
+AU  - BARRERA, J ; CESAR JUNIOR, R. M. ; HUMES JR., C. ; MARTINS JR, D C ; PATRAO, D. F. C. ; SILVA, P J S ; BRENTANI, H
+TI  - A feature selection approach for identification of signature genes from SAGE data
+JO  - BMC Bioinformatics
+VL  - 8
+IS  - 
+SP  - 1
+EP  - 
+PY  - 2007
+L2  - http://dx.doi.org/10.1186/1471-2105-8-169
+ER  - 
+
+TY  - JOUR
+AU  - Jelinek, Herbert F. ; Cree, Michael J. ; Leandro, Jorge J. G. ; Soares, João V. B. ; Cesar, Roberto M. ; Luckie, A.
+TI  - Automated segmentation of retinal blood vessels and identification of proliferative diabetic retinopathy
+JO  - Journal of the Optical Society of America. A, Optics Image Science and Vision
+VL  - 24
+IS  - 
+SP  - 1448
+EP  - 
+PY  - 2007
+L2  - http://dx.doi.org/10.1364/JOSAA.24.001448
+ER  - 
+
+TY  - JOUR
+AU  - BLOCH, Isabelle ; COLLIOT, O ; CESAR JUNIOR, R. M.
+TI  - On the ternary spatial relation "Between"
+JO  - IEEE Transactions on Systems, Man and Cybernetics. Part B, Cybernetics
+VL  - 36
+IS  - 
+SP  - 312
+EP  - 327
+PY  - 2006
+L2  - http://dx.doi.org/10.1109/TSMCB.2005.857095
+ER  - 
+
+TY  - JOUR
+AU  - MARTINS JR, D C ; CESAR JUNIOR, R. M. ; BARRERA, J
+TI  - W-operator Window Design by Minimization of Mean Conditional Entropy
+JO  - Pattern Analysis and Applications
+VL  - 9
+IS  - 
+SP  - 139
+EP  - 153
+PY  - 2006
+L2  - http://dx.doi.org/10.1007/s10044-006-0031-0
+ER  - 
+
+TY  - JOUR
+AU  - Soares, J.V.B. ; Leandro, J.J.G. ; Cesar, R.M. ; Jelinek, H.F. ; Cree, M.J.
+TI  - Retinal vessel segmentation using the 2-D Gabor wavelet and supervised classification
+JO  - IEEE Transactions on Medical Imaging
+VL  - 25
+IS  - 
+SP  - 1214
+EP  - 1222
+PY  - 2006
+L2  - http://dx.doi.org/10.1109/TMI.2006.879967
+ER  - 
+
+TY  - JOUR
+AU  - ZANA, Y ; CESARJR, R ; FERIS, R ; TURK, M
+TI  - Local approach for face verification in polar frequency domain
+JO  - Image and Vision Computing
+VL  - 24
+IS  - 
+SP  - 904
+EP  - 913
+PY  - 2006
+L2  - http://dx.doi.org/10.1016/j.imavis.2006.02.014
+ER  - 
+
+TY  - JOUR
+AU  - ZANA, Yossi ; Cesar, Roberto M.
+TI  - Face recognition based on polar frequency features
+JO  - ACM Transactions on Applied Perception, ACM - New York
+VL  - 3
+IS  - 1
+SP  - 62
+EP  - 82
+PY  - 2006
+L2  - http://dx.doi.org/10.1145/1119766.1119771
+ER  - 
+
+TY  - BOOK
+AU  - BANON, G. (Org.) ; BRAGA-NETO, U. (Org.) ; CESAR JUNIOR, R. M. (Org.)
+TI  - Special Issue ISMM 2007 - Image and Visiont Computing (Elsevier)
+IS  - 28
+PY  - 2010
+VL  - 1
+SP  - 
+EP  - 
+ER  - 
+
+TY  - BOOK
+AU  - BLOCH, Isabelle (Org.) ; CESAR JUNIOR, R. M. (Org.)
+TI  - LNCS: Progress in Pattern Recognition, Image Analysis, Computer Vision, and Applications Progress in Pattern Recognition, Image Analysis, Computer Vision, and Applications. LNCS - Springer
+IS  - 
+PY  - 2010
+VL  - 
+SP  - 
+EP  - 
+ER  - 
+
+TY  - BOOK
+AU  - COSTA, L. F. ; CESAR JUNIOR, R. M.
+TI  - Shape Classification and Analysis: Theory and Practice
+IS  - 2a
+PY  - 2009
+VL  - 
+SP  - 
+EP  - 
+ER  - 
+
+TY  - BOOK
+AU  - CESAR JUNIOR, R. M. (Org.) ; SANTORO, M. (Org.)
+TI  - X-meeting Special Issue - Genetics and Molecular Research - GMR
+IS  - 6
+PY  - 2007
+VL  - 
+SP  - 
+EP  - 
+ER  - 
+
+TY  - BOOK
+AU  - OLIVEIRA, M C F (Org.) ; CESAR JUNIOR, R. M. (Org.)
+TI  - Sibgrapi Special Issue - Image and Vision Computing (Elsevier)
+IS  - 25
+PY  - 2007
+VL  - 1
+SP  - 
+EP  - 
+ER  - 
+
+TY  - CHAP
+AU  - MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
+T1  - Prospecção de dados acadêmicos de currículos Lattes através de scriptLattes (in press)
+TI  - Maria Cristina Piumbato Innocentini HAYASHI; Jacqueline LETA. (Org.). Bibliometria e Cientometria: reflexões teóricas e interfaces. 1ed.São Carlos
+IS  - 
+PB  - Pedro João
+PY  - 2012
+VL  - 
+SP  - 1
+EP  - 20
+ER  - 
+
+TY  - CHAP
+AU  - SOARES, J. V. B. ; CESAR JUNIOR, R. M.
+T1  - Segmentation of Retinal Vasculature Using Wavelets and Supervised Classification: Theory and Implementation (ACEITO E ENVIADO AOS EDITORES DO LIVRO)
+TI  - H. F. Jelinek; M. Cree. (Org.). Automated Image Analysis of Retinal Pathology. Boca Raton
+IS  - 
+PB  - CRC Press
+PY  - 2007
+VL  - 
+SP  - 
+EP  - 
+ER  - 
+
+TY  - CHAP
+AU  - BARRERA, J ; CESAR JUNIOR, R. M. ; MARTINS JR, D C ; VENCIO, R Z N ; MERINO, e F ; YAMAMOTO, M M ; LEONARDI, F G ; PEREIRA, C A B ; PORTILLO, H A Del
+T1  - Constructing probabilistic genetic networks of Plasmodium falciparum from dynamical expression signals of the intraerythrocytic development cycle}
+TI  - J Shoemaker et al. (Org.). Methods of Microarray Data Analysis V
+IS  - 
+PB  - Springer-Verlag
+PY  - 2006
+VL  - 
+SP  - 
+EP  - 
+ER  - 
+
+TY  - MGZN
+AU  - CESAR JUNIOR, R. M.
+T1  - Olhos nos Olhos: Ensinando o Computador a Reconhecer Pessoas
+TI  - Ciência Hoje, 
+PY  - 0
+VL  - 29
+SP  - 24
+EP  - 29
+M1  - 
+ER  - 
+
+TY  - CONF
+AU  - CINTHO, M. ; FERREIRA, J e ; Cesar Jr., Roberto M.
+T1  - Data-intensive analysis of HIV mutations
+TI  - IEEE International Conference on e-science
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - DIGIAMPIETRI, L. A. ; MENA-CHALCO, J. P. ; ALCÁZAR, J. J. P. ; TUESTA, E. F. ; DELGADO, K. V. ; MUGNAINI, R. ; SILVA, G. S.
+T1  - Minerando e Caracterizando Dados de Currículos Lattes
+TI  - Brazilian Workshop on Social Network Analysis and Mining (BraSNAM)
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - DIGIAMPIETRI, L. A. ; MENA-CHALCO, J. P. ; SILVA, G. S. ; OLIVEIRA, L. B. ; MALHEIRO, A. P. R. ; MEIRA, D. N. O.
+T1  - Dinâmica das Relações de Coautoria nos Programas de Pós-Graduação em Computação no Brasil
+TI  - Brazilian Workshop on Social Network Analysis and Mining (BraSNAM)
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - LIU, Y. ; DRIEMEIER, C. ; Cesar Jr., Roberto M.
+T1  - Data-Oriented Research for Bioresource Utilization:a Case Study to Investigate Water Uptake in Cellulose Using Principal Components
+TI  - IEEE International Conference on e-science
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MATUSZEWSKI, D. J. ; MARTINS, C. I. O. ; Cesar Jr., R.M. ; STRICKLER, R. ; LOPES, R. M.
+T1  - Visual rhythm-based plankton detection method for ballast water quality assessment
+TI  - IEEE ICIP
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MENA-CHALCO, J. P. ; DIGIAMPIETRI, L. A. ; CESAR JUNIOR, R. M.
+T1  - Caracterizando as redes de coautoria de currículos Lattes
+TI  - Brazilian Workshop on Social Network Analysis and Mining (BraSNAM)
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MENA-CHALCO, J. P. ; DIGIAMPIETRI, L. A. ; OLIVEIRA, L. B.
+T1  - Perfil de Produção Bibliográfica dos Programas Brasileiros de Pós-Graduação em Ciência da Computação
+TI  - 3º Encontro Brasileiro de Bibliometria e Cientometria - EBBC
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PEREZ-CERVANTES, E. ; MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
+T1  - Towards a quantitative academic internationalization assessment of Brazilian research groups
+TI  - 2nd workshop on Analyzing and Improving Collaborative eScience with Social Networks - IEEE eScience - 2012
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - TUESTA, E. F. ; DELGADO, K. V. ; DIGIAMPIETRI, L. A. ; ALCÁZAR, J. J. P. ; MUGNAINI, R. ; MENA-CHALCO, J. P.
+T1  - Análise temporal da relação orientador-orientado: um estudo de caso sobre a produtividade dos pesquisadores doutores da área de Ciência da Computação
+TI  - Brazilian Workshop on Social Network Analysis and Mining (BraSNAM)
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MARTINS, C. I. O. ; CESAR JUNIOR, R. M. ; FREITAS, A. V. L. ; JORGE, L. R. ; Leandro, Jorge J. G.
+T1  - Segmentation of Similar Images using Graph Matching and Community Detection
+TI  - 8th IAPR-TC-15 Workshop on Graph-based Representations in Pattern Recognition
+VL  - 
+SP  - 
+EP  - 
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MATTOS, A. B. ; MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
+T1  - 3D facial animation based on structural registration
+TI  - XXIV Sibgrapi (Conference on Graphics
+VL  - 
+SP  - 1
+EP  - 6
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MATTOS, A. B. ; MONTAGNER, I. ; CRIVELLARO, A. ; KLAVA, B. ; BRUN, M.
+T1  - Computer vision research at IBOPE Media automation tools to reduce human intervention
+TI  - XXIV Sibgrapi (Conference on Graphics
+VL  - 
+SP  - 
+EP  - 
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - Mena-Chalco, Jesús Pascual ; Cesar Jr., R.M.
+T1  - Towards automatic discovery of co-authorship networks in the Brazilian academic areas
+TI  - Workshop On Measuring the Impact of e-Science Research (MeSR 2011) - In Conjunction with 7th IEEE International Conference on e-Science
+VL  - 
+SP  - 53
+EP  - 60
+PY  - 2011
+L2  - http://dx.doi.org/10.1109/eScienceW.2011.31
+ER  - 
+
+TY  - CONF
+AU  - MENA-CHALCO, J. P. ; VELHO, L. ; CESAR JUNIOR, R. M.
+T1  - 3D human face reconstruction using principal components spaces
+TI  - XXIV Sibgrapi Conference on Graphics
+VL  - 
+SP  - 1
+EP  - 6
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MORIMITSU, H. ; PIMENTEL, R. ; HASHIMOTO, M. ; Cesar Jr., R.M. ; HIRATA JR., R.
+T1  - Wi-Fi and Keygraphs for Localization with Cell Phones
+TI  - Second IEEE International Workshop on Mobile Vision - IWMV - ICCV
+VL  - 
+SP  - 
+EP  - 
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MORIMITSU, H. ; PIMENTEL, R. ; HIRATA JR., R. ; CESAR JUNIOR, R. M.
+T1  - Keygraphs for Sign Detection in Indoor Environments by Mobile Phones
+TI  - 8th IAPR-TC-15 Workshop on Graph-based Representations in Pattern Recognition
+VL  - 
+SP  - 
+EP  - 
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - NASCIMENTO, C. S. ; FREITAS, C. M. D. S. ; GALANTE, R. ; NEDEL, L. ; MENA-CHALCO, J. P.
+T1  - Visualização interativa de redes sociais: um estudo de caso em redes de colaboração científica
+TI  - Simposio Latinoamericano sobre Computación Gráfica
+VL  - 
+SP  - 1
+EP  - 16
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PERCIANO, T. ; TUPIN, F. ; HIRATA JR., R. ; Cesar Jr., R.M.
+T1  - A hierarchical Markov random field for road network extraction and its applicationwith optical and sar data
+TI  - 2011 IEEE International Geoscience and Remote Sensing Symposium
+VL  - 
+SP  - 
+EP  - 
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PINTO, S. C. D. ; Mena-Chalco, Jesús P. ; LOPES, Fabrício Martins ; VELHO, L ; Cesar Jr., R.M.
+T1  - 3D Facial expression analysis by using 2D and 3D wavelet transforms
+TI  - 18th IEEE International Conference on Image Processing - ICIP 2011
+VL  - 
+SP  - 1281
+EP  - 1284
+PY  - 2011
+L2  - http://dx.doi.org/10.1109/ICIP.2011.6115668
+ER  - 
+
+TY  - CONF
+AU  - CARVALHO, M. A. ; COSTA, A. ; FERREIRA, A. ; CESAR JUNIOR, R. M.
+T1  - Image Segmentation Using Component Tree and Normalized Cut
+TI  - SIBGRAPI
+VL  - 
+SP  - 
+EP  - 
+PY  - 2010
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - CHUCTAYA, J. ; MENA-CHALCO, J. P. ; BELTRÁN-CASTAÑÓN, C. ; PATIÑO, R. ; HUMPIRE, G. ; RODRIGUEZ, A.
+T1  - Detección de huevos helmintos mediante plantillas dinámicas
+TI  - XXXVIth Latin American Informatics Conference (XXXVI CLEI)
+VL  - 
+SP  - 1
+EP  - 12
+PY  - 2010
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - FREIRE, A. ; CESAR JUNIOR, R. M. ; FERREIRA, C. E.
+T1  - A column generation approach for the graph matching problem
+TI  - International Conference on Pattern Recognition - ICPR
+VL  - 
+SP  - 
+EP  - 
+PY  - 2010
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - LOPES, Fabrício Martins ; MARTINS, C. I. O. ; Martins, David C. ; BARRERA, J ; CESAR JUNIOR, R. M.
+T1  - SFFS-MR: a floating search strategy for GRNs inference
+TI  - 5th IAPR International Conference on Pattern Recognition in Bioinformatics
+VL  - 
+SP  - 
+EP  - 
+PY  - 2010
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MATTOS, A. B. ; Mena-Chalco, Jesús P. ; CESAR JUNIOR, R. M. ; VELHO, L
+T1  - 3D Linear Facial Animation Based on Real Data
+TI  - Brazilian Symposium on Computer Graphics and Image Processing SIBGRAPI 2010
+VL  - 
+SP  - 271
+EP  - 278
+PY  - 2010
+L2  - http://dx.doi.org/10.1109/SIBGRAPI.2010.44
+ER  - 
+
+TY  - CONF
+AU  - NOMA, A. ; CESAR JUNIOR, R. M.
+T1  - Sparse Representations for Efficient Shape Matching
+TI  - SIBGRAPI
+VL  - 
+SP  - 
+EP  - 
+PY  - 2010
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PEREZ, E. ; MENA-CHALCO, J. P.
+T1  - A new approach to detect communities in multi-weighted co-authorship networks
+TI  - XXIX International Conference of the Chilean Computer Science Society
+VL  - 
+SP  - 131
+EP  - 138
+PY  - 2010
+L2  - http://dx.doi.org/10.1109/SCCC.2010.31
+ER  - 
+
+TY  - CONF
+AU  - HASHIMOTO, M. ; CESAR JUNIOR, R. M.
+T1  - Object Detection by Keygraph Classification
+TI  - 7th IAPR-TC-15 Workshop on Graph-based Representations in Pattern Recognition
+VL  - 
+SP  - 
+EP  - 
+PY  - 2009
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - LOPES, Fabrício Martins ; MARTINS JR, D C ; CESAR JUNIOR, R. M.
+T1  - Comparative study of GRN's inference methods based on feature selection by mutual information
+TI  - IEEE International Workshop on Genomic Signal Processing and Statistics - GENSIPS
+VL  - 
+SP  - 
+EP  - 
+PY  - 2009
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - LOPES, Fabrício Martins ; Oliveira, E. A. ; CESAR JUNIOR, R. M.
+T1  - Analysis of the GRNs inference by using Tsallis entropy and a feature selection approach
+TI  - 14th Iberoamerican Congress on Pattern Recognition (CIARP 2009)
+VL  - 
+SP  - 
+EP  - 
+PY  - 2009
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MARTINS JR, D C ; Oliveira, E. A. ; SILVA, P J S ; HASHIMOTO, R. ; CESAR JUNIOR, R. M.
+T1  - Revealing temporal genetic regulatory networks from steady-state distributions
+TI  - IEEE International Workshop on Genomic Signal Processing and Statistics - GENSIPS
+VL  - 
+SP  - 
+EP  - 
+PY  - 2009
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MARTINS, C. I. O. ; MEDEIROS, F. N. S. ; VERAS, R. M. S. ; BEZERRA, F. N. ; CESAR JUNIOR, R. M.
+T1  - Evaluation of retinal vessel segmentation methods for microaneurysms detection
+TI  - International Conference on Image Processing
+VL  - 
+SP  - 
+EP  - 
+PY  - 2009
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - NOMA, A. ; VELHO, L ; CESAR JUNIOR, R. M.
+T1  - A Computer-Assisted Colorization Approach based on Eﬃcient Belief Propagation and Graph Matching
+TI  - 14th Iberoamerican Congress on Pattern Recognition (CIARP 2009)
+VL  - 
+SP  - 
+EP  - 
+PY  - 2009
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PORTUGAL ZAMBRANO, C. ; MENA-CHALCO, J. P.
+T1  - Estimación de distancias absolutas utilizando un puntero láser y una cámara web
+TI  - III Simposio Peruano de Computación Gráfica y Procesamiento de Imágenes
+VL  - 
+SP  - 
+EP  - 
+PY  - 2009
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - GRACIANO, A B V ; PAIXAO, T. M. ; CESAR JUNIOR, R. M. ; HIRATA JR., R.
+T1  - A Backmapping Approach for Graph-based Object Tracking
+TI  - SIBGRAPI
+VL  - 
+SP  - 
+EP  - 
+PY  - 2008
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MEDINA-RODRIGUEZ, R. ; MENA-CHALCO, J. P.
+T1  - Firmas genéticas en secuencias de ADN: un análisis en regiones codificantes y no codificantes de proteínas
+TI  - II Simposio Peruano de Computación Gráfica y Procesamiento de Imágenes
+VL  - 
+SP  - 
+EP  - 
+PY  - 2008
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MENA-CHALCO, J. P. ; MACÊDO, I. ; VELHO, L. ; CESAR JUNIOR, R. M.
+T1  - PCA-based 3D face photography
+TI  - Brazilian Symposium on Computer Graphics and Image Processing
+VL  - 
+SP  - 313
+EP  - 320
+PY  - 2008
+L2  - http://dx.doi.org/10.1109/SIBGRAPI.2008.40
+ER  - 
+
+TY  - CONF
+AU  - NOMA, A. ; PARDO, A. ; CESAR JUNIOR, R. M.
+T1  - Structural Matching of 2D Electrophoresis Gels using Graph Models
+TI  - SIBGRAPI
+VL  - 
+SP  - 
+EP  - 
+PY  - 2008
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - ANDREANI, R. ; CESAR, G. ; CESAR JUNIOR, R. M. ; MARTINEZ, J. M. ; SILVA, P J S
+T1  - Efficient curve detection using a Gauss-Newton method with applications in agriculture
+TI  - 1st International Workshop on Computer Vision Applications for Developing Regions in Conjunction with ICCV 2007
+VL  - 
+SP  - 
+EP  - 
+PY  - 2007
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - CONSULARO, L. A. ; CESAR JUNIOR, R. M. ; BLOCH, Isabelle
+T1  - Structural Image Segmentation with Interactive Model Generation (ACCEPTED)
+TI  - IEEE International Conference on Image Processing - ICIP
+VL  - 
+SP  - 
+EP  - 
+PY  - 2007
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - CONSULARO, L. A. ; CESAR JUNIOR, R. M. ; FIGUEIREDO, L H ; BLOCH, Isabelle
+T1  - Oversegmentation control for inexact graph matching: first results (ACCEPTED)
+TI  - International Symposium on Mathematical Morphology - ISMM 2007
+VL  - 
+SP  - 
+EP  - 
+PY  - 2007
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - GRACIANO, A B V ; CESAR JUNIOR, R. M. ; BLOCH, Isabelle
+T1  - Object Tracking Based On Graph Representations And Structural Pattern Recognition (ACCEPTED)
+TI  - Brazilian Symposium on Computer Graphics
+VL  - 
+SP  - 
+EP  - 
+PY  - 2007
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - BLOCH, Isabelle ; COLLIOT, O ; CESAR JUNIOR, R. M.
+T1  - Modélisation de la relation spatiale entre pour des objets d'extensions spatiales très différentes
+TI  - 15e congrès francophone AFRIF-AFIA Reconnaissance des Formes et Intelligence Artificielle
+VL  - 
+SP  - 
+EP  - 
+PY  - 2006
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - CHALCO, J M ; CESAR JUNIOR, R. M.
+T1  - Identificación de regiones codificantes de proteínas mediante la transformada modificada de Morlet
+TI  - XIII Concurso Latinoamericano de Tesis de Maestría. 32a Conferencia Latinoamericana de Informática - CLEI
+VL  - 
+SP  - 
+EP  - 
+PY  - 2006
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - LEANDRO, J. J. G. ; CESAR JUNIOR, R. M. ; COSTA, L. da F.
+T1  - Determining the Branching Structure of 3D Structures from Respective 2D Projections
+TI  - Brazilian Symposium on Computer Graphics
+VL  - 
+SP  - 
+EP  - 
+PY  - 2006
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PINTO, S. C. D. ; CESAR JUNIOR, R. M. ; COSTA, L. da F.
+T1  - Análise de Formas 3D usando Wavelets 1D, 2D e 3D
+TI  - Workshop de teses e dissertações - SIBGRAPI
+VL  - 
+SP  - 
+EP  - 
+PY  - 2006
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PIRES, D da S ; CESAR JUNIOR, R. M. ; VIEIRA, M B ; VELHO, L
+T1  - Rastreamento de Componentes Conexas em Vídeo 3D para Obtenção de
+TI  - Workshop de teses e dissertações - SIBGRAPI
+VL  - 
+SP  - 
+EP  - 
+PY  - 2006
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - ZANA, Y. ; CESAR JUNIOR, R. M. ; MENA-CHALCO, J. P.
+T1  - Human and Machine Recognition of Fourier-Bessel Filtered Face Images
+TI  - 7th IEEE International Conference on Automatic Face and Gesture Recognition
+VL  - 
+SP  - 299
+EP  - 304
+PY  - 2006
+L2  - http://dx.doi.org/10.1109/FGR.2006.66
+ER  - 
+
+TY  - CONF
+AU  - MENA-CHALCO, J. P. ; CAPELLE, K. ; DALPIAN, G. M.
+T1  - Rede de coautoria acadêmica da UFABC
+TI  - Simpósio de Pesquisa do Grande ABC, 2012, São Paulo. Simpósio de Pesquisa do Grande ABC
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PEREZ-CERVANTES, E. ; MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
+T1  - Interação acadêmica dos docentes do IME-USP no período 2000-2011
+TI  - VI Simpósio de Iniciação Científica e Pós-Graduação do IME-USP, 2012, São Paulo. VI Simpósio de Iniciação Científica e Pós-Graduação do IME-USP
+VL  - 
+SP  - 
+EP  - 
+PY  - 2012
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - DANUELLO, J. C. ; MENA-CHALCO, J. P. ; OLIVEIRA, E. F. T.
+T1  - Rede colaborativa dos pesquisadores dos programas de pós-graduação em fonoaudiologia no Brasil
+TI  - XII Encontro Nacional de Pesquisa em Ciência da Informação, 2011, Brasília. XII Encontro Nacional de Pesquisa em Ciência da Informação
+VL  - 
+SP  - 
+EP  - 
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - PINTO, S. C. D. ; MENA-CHALCO, J. P. ; LOPES, F. M. ; CESAR JUNIOR, R. M.
+T1  - Preliminary results on 3D facial expression analysis using 2D and 3D wavelet transforms
+TI  - 23rd Brazilian Symposium on Computer Graphics and Image Processing SIBGRAPI 2010, 2010, Gramado. 23rd Brazilian Symposium on Computer Graphics and Image Processing SIBGRAPI 2010, Conference Proceedings
+VL  - 
+SP  - 
+EP  - 
+PY  - 2010
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - MATTOS, A. B. ; CESAR JUNIOR, R. M.
+T1  - 3D facial animation based on structural registration
+TI  - Brazilian Symposium on Computer Graphics and Image Processing SIBGRAPI 2009, 2009, Rio de Janeiro. Brazilian Symposium on Computer Graphics and Image Processing, Conference Proceedings, 2009
+VL  - 
+SP  - 
+EP  - 
+PY  - 2009
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - LEANDRO, J. J. G. ; CESAR JUNIOR, R. M. ; COSTA, L F
+T1  - Automatic Contour Extraction Of Neurons In Presence Of Overlap
+TI  - 3rd Workshop on Bio-Image Informatics: Biological Imaging, Computer Vision and Data Mining, 2008, 2008, Santa Barbara, CA. 3rd Workshop on Bio-Image Informatics: Biological Imaging, Computer Vision and Data Mining, 2008
+VL  - 
+SP  - 
+EP  - 
+PY  - 2008
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - LOPES, Fabrício Martins ; CESAR JUNIOR, R. M. ; COSTA, L. F.
+T1  - AGN Simulation and Validation Model
+TI  - III Brazilian Symposium on Bioinformatics, 2008. Lecture Notes in Computer Science
+VL  - 5167
+SP  - 169
+EP  - 173
+PY  - 2008
+L2  - http://dx.doi.org/10.1007/978-3-540-85557-6_17
+ER  - 
+
+TY  - CONF
+AU  - MIYAHARA, E. K. ; MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
+T1  - Genealogia Acadêmica Lattes
+TI  - 19º Simpósio Internacional de Iniciação Científica da USP (SIICUSP), 2011, São Paulo. 19º Simpósio Internacional de Iniciação Científica da USP (SIICUSP)
+VL  - 
+IS  - 
+SP  - 
+EP  - 
+PY  - 2011
+L2  - 
+ER  - 
+
+TY  - CONF
+AU  - LESTREL, P. E. ; OHTSUKI, F. ; CESAR JUNIOR, R. M. ; WOLFE, C.
+T1  - Computerized shape analysis of the Japanese mandible: Sexual dimorphism
+TI  - Seventy-Sixth Annual Meeting of the American Association of Physical Anthropologists, 2006. AMERICAN JOURNAL OF PHYSICAL ANTHROPOLOGY SUPPL. 42
+VL  - 132
+IS  - 
+SP  - 121
+EP  - 121
+PY  - 2006
+L2  - http://dx.doi.org/10.1002/ajpa.20577
+ER  - 
+
+TY  - CONF
+AU  - ZANA, Y. ; CESAR JUNIOR, R. M. ; MENA-CHALCO, J. P.
+T1  - Reconhecimento de faces humano: uma modelagem computacional baseada em componentes polares
+TI  - 58ª Reunião Anual da SBPC, 2006, Florianópolis. Annais do 58ª Reunião Anual da SBPC
+VL  - 
+IS  - 
+SP  - 
+EP  - 
+PY  - 2006
+L2  - 
+ER  - 
