@@ -1,40 +1,53 @@
 strict digraph grafo3 {
-	graph [bb="0,0,534,402", id=grafo3, overlap=False];
+	graph [bb="0,0,782,338", id=grafo3, overlap=False];
 	node [label="\N", fontsize=8, shape=rectangle, style=filled];
-	0 [label="Carlos Hitoshi Morimoto [0]", URL="http://lattes.cnpq.br/4575931307749163", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="67,393", width="1.8611"];
-	1 [label="João Eduardo Ferreira [0]", URL="http://lattes.cnpq.br/0131770792108992", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="213,393", width="1.6944"];
-	2 [label="Junior Barrera [6]", URL="http://lattes.cnpq.br/0362417828475021", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="337,393", width="1.25"];
-	4 [label="Nina S. Tomita Hirata [5]", URL="http://lattes.cnpq.br/0644408634493034", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="307,265", width="1.6667"];
-	5 [label="Roberto Hirata Junior [7]", URL="http://lattes.cnpq.br/1647118503085126", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="214,329", width="1.6389"];
-	6 [label="Roberto M. Cesar Junior [19]", URL="http://lattes.cnpq.br/2240951178648368", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="231,137", width="1.8889"];
-	7 [label="Ronaldo Fumio Hashimoto [4]", URL="http://lattes.cnpq.br/9283304583756076", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="318,201", width="1.9444"];
-	9 [label="Andréa Britto Mattos [2]", URL="http://lattes.cnpq.br/2837012019824386", color="#000099", fontcolor="#FFFFFF", height="0.25", pos="306,73", width="1.6389"];
-	8 [label="Jesús P. Mena Chalco [11]", URL="http://lattes.cnpq.br/4727357182510680", color="#006600", fontcolor="#FFFFFF", height="0.25", pos="231,9", width="1.75"];
-	3 [label="Marcel Parolin Jackowski [0]", URL="http://lattes.cnpq.br/0926213060635986", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="467,393", width="1.8611"];
-	2 -> 4 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="332.5,329", penwidth="1.25", pos="e,308.87,274.01 334.53,383.68 331.65,372.76 326.81,354.11 323,338 318.41,318.61 313.57,296.22 310.43,281.4"];
-	2 -> 5 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.08", lp="234.5,361", penwidth="0.74", pos="e,214.25,338.23 291.98,384.36 263.1,378.44 230.08,370.82 225,366 219.55,360.83 216.76,353.09 215.35,346.02"];
-	2 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.5", lp="134,265", penwidth="2.0", pos="e,186.89,146.04 291.81,385.04 268.34,380.42 239.35,373.93 214,366 182.81,356.24 175.89,351.22 146,338 137.45,334.22 127,338.34 127\
-,329 127,329 127,329 127,201 127,173.68 153.36,157.64 179.54,148.46"];
-	2 -> 7 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.17", lp="455.5,297", penwidth="1.01", pos="e,370.92,210.01 379.59,383.91 397.19,379.23 414.72,373.03 420,366 456.83,316.92 455.42,275.02 416,228 410.52,221.46 395.2,216.01\
- 378.25,211.76"];
-	5 -> 4 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.36", lp="279.5,297", penwidth="1.58", pos="e,294.98,274.02 228.52,319.95 236.67,314.8 246.98,308.16 256,302 267.01,294.48 279.09,285.73 288.74,278.63"];
-	5 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.57", lp="179.5,233", penwidth="2.21", pos="e,216.36,146.14 205.76,319.97 191.11,302.81 162.72,263.99 170,228 176.12,197.74 178.33,188.59 197,164 200.72,159.1 205.52,154.59\
- 210.33,150.7"];
-	5 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.07", lp="285.5,361", penwidth="0.71", pos="e,314.67,383.89 228,338.02 240.39,345.84 259.08,357.25 276,366 286.1,371.22 297.42,376.41 307.55,380.82"];
-	6 -> 9 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.03", lp="268.5,105", penwidth="0.59", pos="e,286.09,82.16 236.36,127.96 241.45,119.92 249.69,108.2 259,100 265.04,94.681 272.28,89.904 279.26,85.899"];
-	6 -> 5 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.21", lp="231.5,233", penwidth="1.13", pos="e,214.8,320 230.18,146.21 227.51,176.42 218.97,272.86 215.49,312.12"];
-	6 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.16", lp="499.5,265", penwidth="0.98", pos="e,379.21,383.99 299.05,140.49 375.79,146.33 490,161.63 490,201 490,329 490,329 490,329 490,351.84 431.23,370.95 386.53,382.19"];
-	6 -> 8 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.5", lp="181,73", penwidth="2.0", pos="e,215.07,18.096 215.19,127.84 200.9,118.47 181.06,102.4 174,82 165.69,57.971 189.39,35.775 208.73,22.315"];
-	6 -> 7 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.11", lp="270.5,169", penwidth="0.83", pos="e,292.77,191.93 236.72,146.19 242.16,154.34 250.99,166.13 261,174 268.4,179.81 277.25,184.77 285.75,188.78"];
-	7 -> 4 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="322.5,233", penwidth="1.25", pos="e,308.58,255.83 316.43,210.15 314.73,220.03 311.99,235.98 309.9,248.14"];
-	7 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.5", lp="298,169", penwidth="2.0", pos="e,250.34,146.13 309.85,191.77 302.53,183.82 291.24,172.33 280,164 272.95,158.77 264.77,153.87 257.14,149.72"];
-	7 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="393.5,297", penwidth="1.25", pos="e,345.52,383.65 333.18,210.15 347.28,219.63 367.34,235.86 376,256 395.59,301.58 377.26,320.71 357,366 355.21,369.99 352.76,373.96\
- 350.18,377.58"];
-	4 -> 5 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.5", lp="249,297", penwidth="2.0", pos="e,218.93,319.99 276.1,274.03 264.66,278.31 252.05,284.22 242,292 234.54,297.77 228.06,305.99 223.21,313.22"];
-	4 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.3", lp="351,329", penwidth="1.4", pos="e,339.42,383.85 315.56,274.23 324.39,284.49 337.48,302 342,320 346.75,338.92 344,361.41 341.04,376.38"];
-	4 -> 7 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.2", lp="298,233", penwidth="1.1", pos="e,305.25,210.02 298.74,255.91 293,248.44 287.04,237.57 291,228 292.93,223.34 296.1,219.06 299.6,215.35"];
-	8 -> 9 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.14", lp="294.5,41", penwidth="0.92", pos="e,299.87,63.722 249.49,18.176 258.03,22.878 268.02,29.071 276,36 283.27,42.309 290.13,50.528 295.45,57.617"];
-	8 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.86", lp="228.5,73", penwidth="3.08", pos="e,227.8,127.6 228.34,18.242 225.38,29.09 220.76,47.676 219,64 216.91,83.394 221.52,105.47 225.62,120.22"];
-	9 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="295.5,105", penwidth="1.25", pos="e,250.91,127.84 300.64,82.035 295.55,90.076 287.31,101.8 278,110 271.96,115.32 264.72,120.1 257.74,124.1"];
-	9 -> 8 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.75", lp="262.5,41", penwidth="2.75", pos="e,234.69,18.194 281.23,63.885 271.65,59.51 261.06,53.554 253,46 246.83,40.222 241.82,32.328 238.15,25.315"];
+	0 [label="Carlos Hitoshi Morimoto [0]", URL="http://lattes.cnpq.br/4575931307749163", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="67,329", width="1.8611"];
+	1 [label="João Eduardo Ferreira [2]", URL="http://lattes.cnpq.br/0131770792108992", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="213,329", width="1.6944"];
+	6 [label="Roberto M. Cesar Junior [27]", URL="http://lattes.cnpq.br/2240951178648368", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="443,265", width="1.8889"];
+	4 [label="Nina S. Tomita Hirata [13]", URL="http://lattes.cnpq.br/0644408634493034", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="243,9", width="1.75"];
+	2 [label="Junior Barrera [34]", URL="http://lattes.cnpq.br/0362417828475021", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="258,201", width="1.3333"];
+	8 [label="Jesús P. Mena Chalco [12]", URL="http://lattes.cnpq.br/4727357182510680", color="#006600", fontcolor="#FFFFFF", height="0.25", pos="653,137", width="1.75"];
+	7 [label="Ronaldo Fumio Hashimoto [14]", URL="http://lattes.cnpq.br/9283304583756076", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="336,73", width="2.0278"];
+	5 [label="Roberto Hirata Junior [16]", URL="http://lattes.cnpq.br/1647118503085126", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="494,137", width="1.7222"];
+	9 [label="Andréa Britto Mattos [2]", URL="http://lattes.cnpq.br/2837012019824386", color="#000099", fontcolor="#FFFFFF", height="0.25", pos="723,201", width="1.6389"];
+	3 [label="Marcel Parolin Jackowski [0]", URL="http://lattes.cnpq.br/0926213060635986", color="#990000", fontcolor="#FFFFFF", height="0.25", pos="358,329", width="1.8333"];
+	1 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="350.5,297", penwidth="1.25", pos="e,410.33,274.09 245.47,319.97 286.79,308.47 358.15,288.61 402.85,276.17"];
+	1 -> 4 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="109.5,169", penwidth="1.25", pos="e,189.16,18.022 160.8,319.93 131.19,311.45 100,295.32 100,265 100,265 100,265 100,73 100,52.378 110.71,47.246 128,36 137.31,29.946\
+ 159.31,24.184 181.6,19.549"];
+	1 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.5", lp="209,265", penwidth="2.0", pos="e,242.76,210.06 208.86,319.75 203.15,305.64 194.38,278.05 202,256 208.05,238.51 223.43,224.1 236.55,214.43"];
+	6 -> 8 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.39", lp="575.5,201", penwidth="1.67", pos="e,639.07,146.24 460.75,255.79 470.38,250.7 482.44,244.17 493,238 544.15,208.09 602.64,170.2 632.74,150.41"];
+	6 -> 1 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.02", lp="397.5,297", penwidth="0.56", pos="e,272.78,319.94 426.86,274.09 411.24,282.52 386.66,294.8 364,302 348.43,306.94 313.11,313.35 280.55,318.68"];
+	6 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.31", lp="282.5,233", penwidth="1.43", pos="e,259.14,210.12 374.65,260.94 334.52,257.27 288.67,250.46 273,238 266.7,233 263.03,224.93 260.9,217.6"];
+	6 -> 7 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.11", lp="317.5,169", penwidth="0.83", pos="e,327.07,82.162 400.45,255.92 387.09,251.81 372.76,246.02 361,238 330.49,217.19 325.75,206.39 308,174 297.99,155.73 293.39,148.06\
+ 299,128 303.21,112.95 313.37,98.387 321.98,88.033"];
+	6 -> 5 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.15", lp="479.5,201", penwidth="0.95", pos="e,490.08,146.13 446.14,255.94 451,242.07 460.74,214.78 470,192 473.3,183.89 474.48,182.02 478,174 480.99,167.18 484.26,159.64 487.06\
+,153.16"];
+	6 -> 9 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.02", lp="677.5,233", penwidth="0.56", pos="e,706.58,210.12 511.36,260.56 549.98,256.85 598.82,250.12 641,238 661.57,232.09 683.61,221.91 699.65,213.72"];
+	4 -> 1 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.04", lp="151.5,169", penwidth="0.62", pos="e,190.54,319.95 201.34,18.049 173.51,26.824 142,43.315 142,73 142,265 142,265 142,265 142,288.75 164.19,305.95 183.76,316.5"];
+	4 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.62", lp="232.5,105", penwidth="2.36", pos="e,250.87,191.95 239.15,18.124 232.17,35.757 218.53,75.791 223,110 226.81,139.18 227.9,147.17 240,174 241.8,177.98 244.15,182.02 \
+246.57,185.73"];
+	4 -> 7 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.08", lp="310.5,41", penwidth="0.74", pos="e,324.83,63.797 259.11,18.055 267.82,23.101 278.67,29.634 288,36 298.49,43.156 309.76,51.789 318.74,58.916"];
+	4 -> 5 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.27", lp="529.5,73", penwidth="1.31", pos="e,499.67,127.81 306.16,11.838 379.56,15.691 492.64,23.559 508,36 532.83,56.105 515.69,98.057 503.42,121.06"];
+	2 -> 1 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.03", lp="248.5,265", penwidth="0.59", pos="e,216.24,319.79 254.79,210.12 247.27,231.53 228.38,285.26 218.79,312.54"];
+	2 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="323.5,233", penwidth="1.25", pos="e,376.26,256 269.28,210.32 280.1,218.79 297.22,231 314,238 331.09,245.13 350.27,250.45 368.51,254.39"];
+	2 -> 4 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.24", lp="190.5,105", penwidth="1.22", pos="e,227.92,18.066 230.31,192 220.92,187.79 211.03,181.92 204,174 183.93,151.4 186.19,139.78 181,110 175.55,78.698 207.84,36.202 208\
+,36 211.82,31.042 216.76,26.502 221.72,22.618"];
+	2 -> 7 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.26", lp="321.5,137", penwidth="1.28", pos="e,332.52,82.185 268.55,191.94 273.9,186.99 280.26,180.55 285,174 304.91,146.49 321.19,110.06 329.66,89.317"];
+	2 -> 5 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.22", lp="426.5,169", penwidth="1.16", pos="e,466.74,146.02 306.15,194.03 332.45,189.57 365.4,182.94 394,174 404.64,170.67 406.62,168.07 417,164 430.8,158.59 446.18,153.09 \
+459.54,148.48"];
+	7 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.21", lp="380.5,169", penwidth="1.13", pos="e,433.83,255.68 338.05,82.066 342.4,100.28 353.6,142.27 371,174 387.04,203.26 412.47,232.76 428.42,249.93"];
+	7 -> 4 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.07", lp="274.5,41", penwidth="0.71", pos="e,246.36,18.093 298.46,63.959 286.84,59.856 274.59,54.06 265,46 258.45,40.492 253.35,32.504 249.72,25.358"];
+	7 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.64", lp="391.5,137", penwidth="2.42", pos="e,306.11,195.23 348.46,82.149 353.88,86.845 359.73,93.041 363,100 412.68,205.68 378.04,162.5 369,174 361.75,183.22 337.51,189.68\
+ 313.53,193.97"];
+	7 -> 5 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.07", lp="464.5,105", penwidth="0.71", pos="e,482.63,127.88 382.79,82.012 400.52,86.292 420.62,92.209 438,100 451.74,106.16 465.87,115.52 476.5,123.29"];
+	5 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="508.5,201", penwidth="1.25", pos="e,457.2,255.78 498.49,146.08 501.63,153.54 504.94,164.41 503,174 496.88,204.26 494.49,213.28 476,238 472.46,242.73 467.93,247.13\
+ 463.36,250.95"];
+	5 -> 4 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.22", lp="466.5,73", penwidth="1.16", pos="e,280.47,18.028 491.79,127.92 489.45,119.85 485.1,108.11 478,100 457.51,76.605 446.36,76.751 418,64 375.29,44.8 323.91,29.511 287.91\
+,19.975"];
+	5 -> 2 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.47", lp="465.5,169", penwidth="1.91", pos="e,306.12,195.98 482.78,146.2 471.62,154.83 453.67,167.37 436,174 414.19,182.19 357.44,189.99 313.82,195.09"];
+	5 -> 7 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.06", lp="428.5,105", penwidth="0.68", pos="e,356.1,82.053 467.44,127.98 453.01,122.94 434.92,116.4 419,110 413.42,107.76 385.04,95.056 363,85.153"];
+	8 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.88", lp="618.5,201", penwidth="3.14", pos="e,481.75,255.99 647.04,146.39 636.88,161.7 614.77,192.15 589,210 558.72,230.97 519.42,245.18 489.22,253.89"];
+	8 -> 9 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.13", lp="711.5,169", penwidth="0.89", pos="e,716.76,191.85 668.6,146.01 676.33,150.85 685.59,157.21 693,164 700.1,170.5 706.94,178.74 712.3,185.79"];
+	9 -> 8 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.75", lp="679.5,169", penwidth="2.75", pos="e,655.35,146.2 697,191.94 687.58,187.65 677.44,181.75 670,174 664.46,168.23 660.5,160.34 657.8,153.33"];
+	9 -> 6 [arrowhead=normal, arrowsize="0.75", fontsize=8, label="0.25", lp="712.5,233", penwidth="1.25", pos="e,511.18,263.13 717.95,210.04 712.53,218.81 703.03,231.69 691,238 661.99,253.22 580.66,259.88 518.98,262.78"];
 }

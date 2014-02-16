@@ -26,6 +26,7 @@ import re
 
 
 from scriptLattes import *
+from qualis_extractor import *
 
 class Qualis:
 	periodicos = {}
@@ -37,12 +38,17 @@ class Qualis:
 
 	def __init__(self, grupo):
 		if grupo.obterParametro('global-identificar_publicacoes_com_qualis'):
-			self.periodicos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_periodicos'))
+			#self.periodicos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_periodicos'))
+			#qualis extractor -> extrai qualis diretamente da busca online do qualis
+			self.qextractor = qualis_extractor(1) #por enquantos vamos assumir que iremos extrair online
+			self.qextractor.init_session() #inicia a sessão online Obs.: Também é possivel carregar dados da base local
+			
 			self.congressos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_congressos'))
+			
 	
 	def calcularTotaisDosQualis(self, grupo):
-		if (not grupo.obterParametro('global-arquivo_qualis_de_periodicos')==''):
-			self.qtdPB0 = self.calcularTotaisDosQualisPorTipo(self.qtdPB0, grupo.compilador.listaCompletaArtigoEmPeriodico)
+		#if (not grupo.obterParametro('global-arquivo_qualis_de_periodicos')==''):
+			#self.qtdPB0 = self.calcularTotaisDosQualisPorTipo(self.qtdPB0, grupo.compilador.listaCompletaArtigoEmPeriodico)
 		if (not grupo.obterParametro('global-arquivo_qualis_de_congressos')==''):
 			self.qtdPB4 = self.calcularTotaisDosQualisPorTipo(self.qtdPB4, grupo.compilador.listaCompletaTrabalhoCompletoEmCongresso)
 			self.qtdPB5 = self.calcularTotaisDosQualisPorTipo(self.qtdPB5, grupo.compilador.listaCompletaResumoExpandidoEmCongresso)
@@ -96,9 +102,11 @@ class Qualis:
 		# Percorrer lista de publicacoes buscando e contabilizando os qualis
 		if (not grupo.obterParametro('global-arquivo_qualis_de_periodicos')==''):
 			for pub in membro.listaArtigoEmPeriodico:
-				qualis, similar = self.buscaQualis('P', pub.revista)
-				pub.qualis = qualis
-				pub.qualissimilar = similar
+				#qualis, similar = self.buscaQualis('P', pub.revista)
+				#pub.qualis = qualis
+				pub.qualis = self.qextractor.get_qualis_by_issn(pub.issn)
+				pub.qualissimilar = ''
+				#pub.qualissimilar = similar
 
 		if (not grupo.obterParametro('global-arquivo_qualis_de_congressos')==''):
 			for pub in membro.listaTrabalhoCompletoEmCongresso:

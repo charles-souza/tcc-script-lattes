@@ -121,18 +121,6 @@ L2  - http://dx.doi.org/10.1016/j.jvcir.2009.01.002
 ER  - 
 
 TY  - JOUR
-AU  - Mena-Chalco, Jesús Pascual ; Cesar Junior, Roberto Marcondes
-TI  - scriptLattes: an open-source knowledge extraction system from the Lattes platform
-JO  - Journal of the Brazilian Computer Society (Impresso)
-VL  - 15
-IS  - 
-SP  - 31
-EP  - 39
-PY  - 2009
-L2  - http://dx.doi.org/10.1590/S0104-65002009000400004
-ER  - 
-
-TY  - JOUR
 AU  - Mena-Chalco, Jesús P. ; Macêdo, Ives ; Velho, Luiz ; Cesar, Roberto M.
 TI  - 3D Face Computational Photography Using PCA Spaces
 JO  - The Visual Computer
@@ -142,6 +130,18 @@ SP  - 899
 EP  - 909
 PY  - 2009
 L2  - http://dx.doi.org/10.1007/s00371-009-0373-x
+ER  - 
+
+TY  - JOUR
+AU  - MENA-CHALCO, JESÚS PASCUAL ; JUNIOR, ROBERTO MARCONDES CESAR
+TI  - scriptLattes: an open-source knowledge extraction system from the Lattes platform
+JO  - Journal of the Brazilian Computer Society (Impresso)
+VL  - 15
+IS  - 
+SP  - 31
+EP  - 39
+PY  - 2009
+L2  - http://dx.doi.org/10.1590/S0104-65002009000400004
 ER  - 
 
 TY  - JOUR
@@ -312,18 +312,6 @@ PY  - 2007
 VL  - 1
 SP  - 
 EP  - 
-ER  - 
-
-TY  - CHAP
-AU  - MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
-T1  - Prospecção de dados acadêmicos de currículos Lattes através de scriptLattes (in press)
-TI  - Maria Cristina Piumbato Innocentini HAYASHI; Jacqueline LETA. (Org.). Bibliometria e Cientometria: reflexões teóricas e interfaces. 1ed.São Carlos
-IS  - 
-PB  - Pedro João
-PY  - 2012
-VL  - 
-SP  - 1
-EP  - 20
 ER  - 
 
 TY  - CHAP

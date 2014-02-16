@@ -392,6 +392,16 @@ class ParserLattes(HTMLParser):
 					if name=='src' and u'ico_relevante' in value:
 						self.relevante = 1
 						break
+			    
+				for name,value in attributes:
+					if name=='data-issn':
+						if len(value) == 8:
+						    self.issn = value[0:4]+'-'+value[4:8]
+						break
+			     
+			
+			
+			
 
 		if tag=='br':
 			self.item = self.item + ' '
@@ -509,7 +519,8 @@ class ParserLattes(HTMLParser):
 					if self.achouProducoes:
 						if self.achouProducaoEmCTA:
 							if self.achouArtigoEmPeriodico:
- 	 							iessimoItem = ArtigoEmPeriodico(self.idMembro, self.partesDoItem, self.doi, self.relevante)
+ 	 							iessimoItem = ArtigoEmPeriodico(self.idMembro, self.partesDoItem, self.doi, self.relevante,self.issn)
+
 								self.listaArtigoEmPeriodico.append(iessimoItem)
 								self.doi = ''
 								self.relevante = 0
