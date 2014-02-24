@@ -31,24 +31,33 @@ from qualis_extractor import *
 class Qualis:
 	periodicos = {}
 	congressos = {}
-	qtdPB0     = {}	# Total de artigos em periodicos por Qualis
-	qtdPB4     = {}	# Total de trabalhos completos em congressos por Qualis
-	qtdPB5     = {} # Total de resumos expandidos em congressos por Qualis
+	qtdPB0	 = {}	# Total de artigos em periodicos por Qualis
+	qtdPB4	 = {}	# Total de trabalhos completos em congressos por Qualis
+	qtdPB5	 = {} # Total de resumos expandidos em congressos por Qualis
 	
 
 	def __init__(self, grupo):
 		if grupo.obterParametro('global-identificar_publicacoes_com_qualis'):
 			#self.periodicos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_periodicos'))
 			#qualis extractor -> extrai qualis diretamente da busca online do qualis
-			self.qextractor = qualis_extractor(1) #por enquantos vamos assumir que iremos extrair online
-			self.qextractor.init_session() #inicia a sessão online Obs.: Também é possivel carregar dados da base local
+			self.extrair_qualis_online = grupo.obterParametro('global-extrair_qualis_online')
+			self.qextractor = qualis_extractor(self.extrair_qualis_online)
 			
+			if self.extrair_qualis_online == 0:
+				self.qextractor.load_data()
+				arqareas = grupo.obterParametro('global-arquivo_areas_qualis')
+				self.qextractor.parse_areas_file(arqareas)
+				self.qextractor.extract_qualis()
+				self.periodicos = self.qextractor.publicacao
+				self.qextractor.save_data()
+				
 			self.congressos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_congressos'))
 			
 	
 	def calcularTotaisDosQualis(self, grupo):
 		#if (not grupo.obterParametro('global-arquivo_qualis_de_periodicos')==''):
 			#self.qtdPB0 = self.calcularTotaisDosQualisPorTipo(self.qtdPB0, grupo.compilador.listaCompletaArtigoEmPeriodico)
+		
 		if (not grupo.obterParametro('global-arquivo_qualis_de_congressos')==''):
 			self.qtdPB4 = self.calcularTotaisDosQualisPorTipo(self.qtdPB4, grupo.compilador.listaCompletaTrabalhoCompletoEmCongresso)
 			self.qtdPB5 = self.calcularTotaisDosQualisPorTipo(self.qtdPB5, grupo.compilador.listaCompletaResumoExpandidoEmCongresso)
@@ -81,6 +90,7 @@ class Qualis:
 						dist = distI
 				if indice>0:
 						return self.periodicos.get(chaves[indice]) , chaves[indice]	# Retorna Qualis de nome similar
+			return None,None
 		else:
 			if self.congressos.get(nome)!=None:
 				return self.congressos.get(nome) , '' # Retorna Qualis do nome exato encontrado - Casamento perfeito
@@ -100,14 +110,19 @@ class Qualis:
 
 	def analisarPublicacoes(self, membro, grupo):
 		# Percorrer lista de publicacoes buscando e contabilizando os qualis
-		if (not grupo.obterParametro('global-arquivo_qualis_de_periodicos')==''):
-			for pub in membro.listaArtigoEmPeriodico:
-				#qualis, similar = self.buscaQualis('P', pub.revista)
-				#pub.qualis = qualis
+		for pub in membro.listaArtigoEmPeriodico:
+			#qualis, similar = self.buscaQualis('P', pub.revista)
+			#pub.qualis = qualis
+			if pub.issn != '' and self.qextractor.get_qualis_by_issn(pub.issn):			
 				pub.qualis = self.qextractor.get_qualis_by_issn(pub.issn)
-				pub.qualissimilar = ''
-				#pub.qualissimilar = similar
-
+			elif not self.extrair_qualis_online:
+				qualis, similar = self.buscaQualis('P', pub.revista)
+				pub.qualis = qualis
+				pub.qualissimilar = similar
+			else:
+				pub.qualis = None
+				pub.qualissimilar = None
+		
 		if (not grupo.obterParametro('global-arquivo_qualis_de_congressos')==''):
 			for pub in membro.listaTrabalhoCompletoEmCongresso:
 				qualis, similar = self.buscaQualis('C', pub.nomeDoEvento)

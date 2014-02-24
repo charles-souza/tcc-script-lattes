@@ -20,6 +20,7 @@ from BeautifulSoup import BeautifulSoup
 import codecs
 import pickle
 from HTMLParser import HTMLParser
+import datetime
 
 #converts a string to a integer if the string is a integer, else returns None
 def str2int(string):
@@ -35,16 +36,20 @@ def getvalue(attrs):
             return attr[1]
     return None
 
-
-
 class qualis_extractor(object):
     #Constructor
     def __init__(self,online):
         self.online = online #extrair online ou offline ?
-        self.publicacao = {} #{'nome pub',[ (1,'A1') ]}
+        self.publicacao = {} #{'nome pub',[ ('Nome area','A1') ]}
         self.issn = {} #{'issn','nome pub'}
         self.areas = []
+        self.areas_to_extract = []
+        self.areas_last_update = {}
+        self.dtnow = datetime.datetime.now()
+        self.update_time = 15
+        self.init_session()
         
+                
     def parseContent(self, html):
         """
         Process a html page containing qualis data
@@ -82,10 +87,10 @@ class qualis_extractor(object):
                 else:
                     line.append(HTMLParser().unescape(stringtoadd))
             
-            issn_qualis = line[0]
-            titulo_qualis = line[1]
-            extrato_qualis = line[2]
-            area_qualis = line[3]
+            issn_qualis = line[0].strip()
+            titulo_qualis = line[1].strip()
+            extrato_qualis = line[2].strip()
+            area_qualis = line[3].strip()
             
             if titulo_qualis == '':
                 continue
@@ -97,9 +102,9 @@ class qualis_extractor(object):
                 qualis = self.issn.get(issn_qualis)
                 
             if qualis == None:
-                qualis = []
+                qualis = {}
             
-            qualis.append( (area_qualis,extrato_qualis) )
+            qualis[area_qualis] = extrato_qualis
             
             if issn_qualis != None:
                 self.issn[issn_qualis] = qualis
@@ -135,7 +140,7 @@ class qualis_extractor(object):
         urlBase = "http://qualis.capes.gov.br/webqualis/"
         acessoInicial = requests.get(urlBase+'principal.seam')
         jid = acessoInicial.cookies['JSESSIONID']
-        print 'Session ID: ',jid
+        print 'Iniciando sessão qualis...\n ID da Sessão: ',jid
         url1 = urlBase + "publico/pesquisaPublicaClassificacao.seam;jsessionid=" + jid + "?conversationPropagation=begin"
         req1 = urllib2.Request(url1)
         arq1 = urllib2.urlopen(req1)
@@ -151,21 +156,44 @@ class qualis_extractor(object):
             req3 = urllib2.Request(self.url2, 'consultaPublicaClassificacaoForm=consultaPublicaClassificacaoForm&consultaPublicaClassificacaoForm%3AsomAreaAvaliacao=0&consultaPublicaClassificacaoForm%3AsomEstrato=org.jboss.seam.ui.NoSelectionConverter.noSelectionValue&consultaPublicaClassificacaoForm%3AbtnPesquisarTituloPorArea=Pesquisar&javax.faces.ViewState=j_id2')
             arq3 = urllib2.urlopen (req3)
         
-            
+    def parse_areas_file(self,afile):
+        f = open(afile,'r')
+        lines = f.read()
+        f.close()
+        lines = lines.split('\n')
+        areas = []
+        for line in lines:
+            val = line.split('#')[0]
+            val = val.strip()
+            if val != '' and val.isdigit():
+                self.areas_to_extract.append( int(val) )
     
-    def extract_qualis(self,areas): 
+    
+    def should_update_area(self,area):
+        lupdt = self.areas_last_update.get(area)
+        if lupdt == None: return True
+        dtbtween = self.dtnow - lupdt
+        if dtbtween.days > self.update_time: return True
+        return False
+        
+            
+    def extract_qualis(self): 
         #extract all the areas
-        for area in areas:#areaskeys:
+        for area in self.areas_to_extract:
+            if not self.should_update_area(area):
+                print 'Qualis da area %s atualizado!' % (self.areas[area][1])
+                continue
+                
+            self.areas_last_update[area] = self.dtnow
             scroller = 1
             more = 1
             reqn = urllib2.Request(self.url2, 'consultaPublicaClassificacaoForm=consultaPublicaClassificacaoForm&consultaPublicaClassificacaoForm%3AsomAreaAvaliacao=' + str(area) + '&consultaPublicaClassificacaoForm%3AsomEstrato=org.jboss.seam.ui.NoSelectionConverter.noSelectionValue&consultaPublicaClassificacaoForm%3AbtnPesquisarTituloPorArea=Pesquisar&javax.faces.ViewState=j_id2')
             
-            arqn = urllib2.urlopen (reqn)
+            arqn = urllib2.urlopen(reqn)
             data = []
-            print 'Extracting from Area: ',area,' - ',self.Areas[area]
+            print 'Qualis da area %s desatualizado!' % (self.areas[area][1])
+            print 'Extraindo qualis da area: %d - %s' % self.areas[area]
             while more == 1:
-                print "Page:", scroller 
-            
                 reqn = urllib2.Request(self.url2, 'AJAXREQUEST=_viewRoot&consultaPublicaClassificacaoForm=consultaPublicaClassificacaoForm&consultaPublicaClassificacaoForm%3AsomAreaAvaliacao=' + str(area) + '&consultaPublicaClassificacaoForm%3AsomEstrato=org.jboss.seam.ui.NoSelectionConverter.noSelectionValue&javax.faces.ViewState=j_id3&ajaxSingle=consultaPublicaClassificacaoForm%3AscrollerArea&consultaPublicaClassificacaoForm%3AscrollerArea=' + str(scroller) + '&AJAX%3AEVENTS_COUNT=1&')
                 
                 #arqn = urllib2.urlopen (reqn)
@@ -184,32 +212,36 @@ class qualis_extractor(object):
                     if i == 10:
                         print "ja tentou 10 vezes!"
                         break
-        
+            
                 htmln = arqn.read()
-                more = self.parseContent(htmln,area)
+                more = self.parseContent(htmln)
                 scroller += 1
             
-            
-            
+           
     def load_data(self):
-        f = open('data','r')
-        data = pickle.load(f)
-        self.issn = data[0]
-        self.publicacao = data[1]
-        self.Areas = data[2]
-        f.close() 
+        try:
+            f = open('data','r')
+            data = pickle.load(f)
+            self.issn = data[0]
+            self.publicacao = data[1]
+            self.areas = data[2]
+            self.areas_last_update = data[3]
+            f.close()
+            return True
+        except:
+            return False
     
     def save_data(self): 
         f = open('data','w')
-        data = (self.issn,self.publicacao,self.Areas)
+        data = (self.issn,self.publicacao,self.areas,self.areas_last_update)
         pickle.dump(data,f)
         f.close()
     
     def get_area_by_name(self,name):
         for i in self.areas:
-            print i[1],'->',name
             if i[1].upper() == name.upper():
                 return i
+        return None
     
     def get_area_by_cod(self,cod):
         for i in self.areas:
@@ -220,7 +252,9 @@ class qualis_extractor(object):
     #get a qualis by issn        
     def get_qualis_by_issn(self,issn):
         if self.online:
-            print 'Getting qualis online...'
+            print 'Extraindo qualis online a partir do issn %s...' % (issn)
+            if self.issn.get(issn) != None:
+                return self.issn.get(issn)
             req = urllib2.Request(self.url2,'consultaPublicaClassificacaoForm=consultaPublicaClassificacaoForm&consultaPublicaClassificacaoForm%3Aissn='+issn+'&consultaPublicaClassificacaoForm%3AbtnPesquisarISSN=Pesquisar&javax.faces.ViewState=j_id2') 
             for i in range(0,10):
                 try:
@@ -237,16 +271,33 @@ class qualis_extractor(object):
             
             self.parseContent(html)
                 
-        
+        print 'Extraindo qualis offline a partir do issn',issn,'...'
         return self.issn.get(issn)
     #get a qualis by the name
     def get_qualis_by_name(self,name):
-        return self.publicacoes.get(name)
+        qualis = self.publicacoes.get(name)
+        
+        '''if qualis != None: return qualis,1
+        else:
+            iqualis = -1
+            r = 0
+            pkeys = self.publicacoes.keys()
+            for i in xrange(0,pkeys):
+                nr = compararCadeias( name, pkeys[i], qualis=True)              
+                if nr > r:
+                    r = nr
+                    iqualis = i
+            if r > 0:
+                return self.publicacoes.get(pkeys[iqualis]),0        
+        '''
+        return None
     
 
-#extractor = qualis_extractor(0)
-#extractor.init_session()
-#print extractor.areas
+"""extractor = qualis_extractor(0)
+extractor.init_session()
+extractor.load_data()
+extractor.parse_areas_file()
+extractor.extract_qualis()
 #for i,j in extractor.get_qualis_by_issn('1993-8233'):
 #    print i,'=',j
-#extractor.save_data()
+extractor.save_data()"""

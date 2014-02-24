@@ -223,6 +223,7 @@ class ParserLattes(HTMLParser):
 		self.sexo = 'Masculino'
 
 		self.item = ''
+		self.issn = ''
 		self.listaIDLattesColaboradores = []
 		self.listaFormacaoAcademica = []
 		self.listaProjetoDePesquisa = []
@@ -294,6 +295,21 @@ class ParserLattes(HTMLParser):
 		self.feed(cvLattesHTML)
 
 	# ------------------------------------------------------------------------ #
+	
+	def parse_issn(self,url):
+	    s = url.find('issn=')
+	    if s == -1:
+	        return None
+	    e = url.find('&',s)
+	    if e == -1:
+	        return None
+	    
+	    issnvalue = url[s:e].split('=')
+	    issn = issnvalue[1]
+	    if len(issn) < 8: return
+	    issn = issn[:8]
+	    self.issn = issn[0:4]+'-'+issn[4:8]
+	
 	def handle_starttag(self, tag, attributes):
 
 		if tag=='h2':
@@ -323,6 +339,12 @@ class ParserLattes(HTMLParser):
 			self.item = ''
 
 		if tag=='div':
+			
+			for name, value in attributes:
+			    if name == 'cvuri':
+			        self.parse_issn(value)
+			        
+			
 			for name, value in attributes:
 				if name=='class' and value=='title-wrapper':
 					self.umaUnidade = 1	
@@ -393,12 +415,12 @@ class ParserLattes(HTMLParser):
 						self.relevante = 1
 						break
 			    
-				for name,value in attributes:
+				"""for name,value in attributes:
 					if name=='data-issn':
 						if len(value) == 8:
 						    self.issn = value[0:4]+'-'+value[4:8]
 						break
-			     
+			    """ 
 			
 			
 			
@@ -523,6 +545,7 @@ class ParserLattes(HTMLParser):
 
 								self.listaArtigoEmPeriodico.append(iessimoItem)
 								self.doi = ''
+								self.issn = ''
 								self.relevante = 0
     
 							if self.achouLivroPublicado:
