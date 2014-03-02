@@ -1,0 +1,27 @@
+nodedef> name VARCHAR, idLattes VARCHAR, label VARCHAR, rotulo VARCHAR, lat DOUBLE, lon DOUBLE, collaborationRank DOUBLE, producaoBibliografica DOUBLE, artigoEmPeriodico DOUBLE, livro DOUBLE, capituloDeLivro DOUBLE, trabalhoEmCongresso DOUBLE, resumoExpandido DOUBLE, resumo DOUBLE, color VARCHAR
+0,4575931307749163,Carlos Hitoshi Morimoto,Professor,-23.5598580,-46.7329875,0.15,42,5,3,3,20,3,8,'153,0,0'
+1,0131770792108992,João Eduardo Ferreira,Professor,-23.5598580,-46.7329875,0.257182,80,24,3,2,40,8,3,'153,0,0'
+2,0362417828475021,Junior Barrera,Professor,-23.5598580,-46.7329875,2.06358,62,22,3,3,25,0,9,'153,0,0'
+3,0926213060635986,Marcel Parolin Jackowski,Professor,-23.5598580,-46.7329875,0.15,57,19,0,0,10,3,25,'153,0,0'
+4,0644408634493034,Nina Sumiko Tomita Hirata,Professor,-23.5598580,-46.7329875,0.858693,39,6,0,3,24,3,3,'153,0,0'
+5,1647118503085126,Roberto Hirata Junior,Professor,-23.5598580,-46.7329875,1.00757,55,17,0,1,21,5,11,'153,0,0'
+6,2240951178648368,Roberto Marcondes Cesar Junior,Professor,-23.5598580,-46.7329875,1.74831,129,37,7,3,70,3,9,'153,0,0'
+7,9283304583756076,Ronaldo Fumio Hashimoto,Professor,-23.5598580,-46.7329875,0.889096,47,16,0,1,20,3,7,'153,0,0'
+8,4727357182510680,Jesús Pascual Mena Chalco,Colaborador,-23.6431216,-46.5293690,0.902192,39,6,0,1,20,5,7,'0,102,0'
+9,2837012019824386,Andréa Britto Mattos,Aluno,-23.5598580,-46.7329875,0.273378,4,0,0,0,3,1,0,'0,0,153'
+edgedef> node1 VARCHAR, node2 VARCHAR, weight DOUBLE
+1,2,2.0
+1,4,1.0
+1,6,1.0
+2,4,9.0
+2,5,9.0
+2,6,9.0
+2,7,10.0
+4,5,4.0
+4,7,1.0
+5,6,4.0
+5,7,2.0
+6,7,3.0
+6,8,11.0
+6,9,1.0
+8,9,2.0
