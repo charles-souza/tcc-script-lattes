@@ -55,20 +55,13 @@ if __name__ == "__main__":
 		novoGrupo.compilarListasDeItems() # obrigatorio
 		novoGrupo.identificarQualisEmPublicacoes() # obrigatorio
 		novoGrupo.calcularInternacionalizacao() # obrigatorio
-		novoGrupo.imprimirMatrizesDeFrequencia() 
+		#novoGrupo.imprimirMatrizesDeFrequencia() 
 
 		novoGrupo.gerarGrafosDeColaboracoes() # obrigatorio
-		print "[ROTULOS]"
-		print "- "+str(novoGrupo.listaDeRotulos)
-		print "- "+str(novoGrupo.listaDeRotulosCores)
-
 		novoGrupo.gerarGraficosDeBarras() # obrigatorio
 		novoGrupo.gerarMapaDeGeolocalizacao() # obrigatorio
 		novoGrupo.gerarPaginasWeb() # obrigatorio
-
-		#novoGrupo.gerarXMLdeGrupo()
-		novoGrupo.gerarCSVdeQualisdeGrupo()
-		novoGrupo.gerarRISdeGrupo()
+		novoGrupo.gerarArquivosTemporarios() # obrigatorio
 
 		# copiar imagens e css
 		copiarArquivos(novoGrupo.obterParametro('global-diretorio_de_saida'))
@@ -80,7 +73,6 @@ if __name__ == "__main__":
 		print '    Jesus P. Mena-Chalco e Roberto M. Cesar-Jr.'
 		print '    scriptLattes: An open-source knowledge extraction system from the Lattes Platform.'
 		print '    Journal of the Brazilian Computer Society, vol.15, n.4, páginas 31-39, 2009.'
-
 		print '\n\nscriptLattes executado!'
 
 # ---------------------------------------------------------------------------- #

@@ -51,13 +51,12 @@ class GeradorDePaginasWeb:
 			self.html1 = '<html>'
 			self.html2 = '</html>'
 
-
+		# geracao de arquivo RIS com as publicacoes
 		if self.grupo.obterParametro('relatorio-salvar_publicacoes_em_formato_ris'): 
 			prefix = self.grupo.obterParametro('global-prefixo')+'-' if not self.grupo.obterParametro('global-prefixo')=='' else ''
 			self.arquivoRis = open(self.dir+"/"+prefix+"publicacoes.ris", 'w')
 
 		self.gerarPaginaDeMembros()
-
 		self.gerarPaginasDeProducoesBibliograficas()
 		self.gerarPaginasDeProducoesTecnicas()
 		self.gerarPaginasDeProducoesArtisticas()
@@ -644,7 +643,7 @@ class GeradorDePaginasWeb:
         gerando os seguintes grafos de colabora&ccedil;&otilde;es encontradas com base nas produ&ccedil;&otilde;es: <i>'+lista+'</i>. <br><p>'.decode("utf8")
 
 		prefix = self.grupo.obterParametro('global-prefixo')+'-' if not self.grupo.obterParametro('global-prefixo')=='' else ''
-		s+='Veja <a href="grafoDeColaboracoesInterativo'+self.extensaoPagina+'?entradaScriptLattes=./'+prefix+'matrizDeAdjacencia.xml">na seguinte página</a> uma versão interativa do grafo de colabora&ccedil;&otilde;es.<br><p><br><p>'.decode("utf8")
+		# s+='Veja <a href="grafoDeColaboracoesInterativo'+self.extensaoPagina+'?entradaScriptLattes=./'+prefix+'matrizDeAdjacencia.xml">na seguinte página</a> uma versão interativa do grafo de colabora&ccedil;&otilde;es.<br><p><br><p>'.decode("utf8")
 
 		s+='\nClique no nome dentro do vértice para visualizar o currículo Lattes. Para cada nó: o valor entre colchetes indica o número \
         de produ&ccedil;&otilde;es feitas em colabora&ccedil;&atilde;o apenas com os outros membros do próprio grupo. <br>'.decode("utf8")

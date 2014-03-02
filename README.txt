@@ -12,10 +12,9 @@ REQUISITOS
 EXECUÇÃO
 	Teste o scriptLattes com os seguintes exemplos de compilação na linha de comando:
 
-
 	(*) EXEMPLO 01:
-	$ cd <nome_diretorio_scriptLattes>
-	$ ./scriptLattes.py ./exemplo/teste-01.config
+	cd <nome_diretorio_scriptLattes>
+	python scriptLattes.py ./exemplo/teste-01.config
 
 	Nesse exemplo consideram-se todas as produções cujos anos de publicações
 	estão entre 2006 e 2012. Nenhum rótulo foi considerado para os membros. 
@@ -27,10 +26,9 @@ EXECUÇÃO
 	./exemplo/teste-01/
 
 
-
 	(*) EXEMPLO 02:
-	$ cd <nome_diretorio_scriptLattes>
-	$ ./scriptLattes.py ./exemplo/teste-02.config
+	cd <nome_diretorio_scriptLattes>
+	python scriptLattes.py ./exemplo/teste-02.config
 
 	Nesse exemplo consideram-se todas as produções cadastradas nos CVs Lattes.
 	São considerados rótulos para os membros do grupo (professor, colaborador, aluno)
@@ -55,10 +53,14 @@ URL DO PROJETO
 =========================================================================================
 LOG
 
+Dom Mar  2 18:31:39 BRT 2014
+-- A rede de coautoria armazenada em formato GDF (gephi). 
+   Veja o arquivo 'rede.gdf' (automaticamente gerado)
+-- Foram melhorados alguns procedimentos de criação dos grafos.
 
 Seg Ago 26 03:09:50 BRT 2013
--- Algumas melhoras no parser (<x<)
--- Armazenamento das geolocalizações
+-- Algumas melhoras no parser (<x<).
+-- Armazenamento das geolocalizações.
 
 Sex Jun 28 17:04:13 BRT 2013
 -- Um bug na criação do mapa de geolocalização foi consertado.

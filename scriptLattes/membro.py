@@ -291,9 +291,9 @@ class Membro:
 		self.listaOutroTipoDeProducaoTecnica  = parser.listaOutroTipoDeProducaoTecnica
 
 		# Patentes e registros	
-		self.listaPatente          = parser.listaPatente
-		self.listaProgramaComputador = parser.listaProgramaComputador
-		self.listaDesenhoIndustrial = parser.listaDesenhoIndustrial
+		self.listaPatente          			  = parser.listaPatente
+		self.listaProgramaComputador          = parser.listaProgramaComputador
+		self.listaDesenhoIndustrial           = parser.listaDesenhoIndustrial
 				
 		# Produção artística
 		self.listaProducaoArtistica = parser.listaProducaoArtistica
