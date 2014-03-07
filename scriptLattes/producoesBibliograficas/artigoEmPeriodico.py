@@ -44,10 +44,12 @@ class ArtigoEmPeriodico:
 	resto = None
 	chave = None
 
-	def __init__(self, idMembro, partesDoItem='', doi='', relevante=''):
+	def __init__(self, idMembro, partesDoItem='', doi='', relevante='',issn=''):
 		self.idMembro = set([])
 		self.idMembro.add(idMembro)
-
+		
+		self.issn = issn
+		
 		if not partesDoItem=='': 
 			# partesDoItem[0]: Numero (NAO USADO)
 			# partesDoItem[1]: Descricao do artigo (DADO BRUTO)
@@ -206,12 +208,13 @@ class ArtigoEmPeriodico:
 		return s
 
 	def csv(self, nomeCompleto=""):
-		s  = "artigoEmPeriodico\t"
+		"""s  = "artigoEmPeriodico\t"
 		if nomeCompleto=="": # tratamento grupal
 			s +=  str(self.ano) +"\t"+ self.doi +"\t"+ self.titulo +"\t"+ self.revista +"\t"+ self.autores +"\t"+ self.qualis +"\t"+ self.qualissimilar
 		else: # tratamento individual
 			s += nomeCompleto +"\t"+ str(self.ano) +"\t" + self.doi +"\t"+ self.titulo +"\t"+ self.revista +"\t"+ self.autores +"\t"+ self.qualis +"\t"+ self.qualissimilar
-		return s
+		return s"""
+		return ''
 
 
 	# ------------------------------------------------------------------------ #

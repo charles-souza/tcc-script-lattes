@@ -554,7 +554,8 @@ class Grupo:
 		self.listaDeParametros.append(['global-salvar_informacoes_em_formato_xml', 'nao'])
 
 		self.listaDeParametros.append(['global-identificar_publicacoes_com_qualis', 'nao'])
-		self.listaDeParametros.append(['global-arquivo_qualis_de_periodicos', ''])
+		self.listaDeParametros.append(['global-extrair_qualis_online','nao'])
+		self.listaDeParametros.append(['global-arquivo_areas_qualis',''])
 		self.listaDeParametros.append(['global-arquivo_qualis_de_congressos', ''])
 
 		self.listaDeParametros.append(['relatorio-salvar_publicacoes_em_formato_ris', 'nao'])

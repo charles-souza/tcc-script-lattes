@@ -842,6 +842,7 @@ class GeradorDePaginasWeb:
 
 		
 	def formatarTotaisQualis(self, qtd):
+		"""
 		st = '(<b>A1</b>: '+str(qtd['A1'])+', <b>A2</b>: '+str(qtd['A2'])+', <b>B1</b>: '+str(qtd['B1'])+', <b>B2</b>: '+str(qtd['B2'])
 		st+= ', <b>B3</b>: '+str(qtd['B3'])+', <b>B4</b>: '+str(qtd['B4'])+', <b>B5</b>: '+str(qtd['B5'])+', <b>C</b>: '+str(qtd['C'])
 		st+= ', <b>Qualis n&atilde;o identificado</b>: '+str(qtd['Qualis nao identificado'])+')'
@@ -851,6 +852,8 @@ class GeradorDePaginasWeb:
 		st+= '<li> Publica&ccedil;&atilde;o para a qual nenhum nome do Qualis foi identificado: <font color="#8B0000"><b>Qualis n&atilde;o identificado</b></font> (nome usado na busca)'
 		st+= '</ul>'
 		return st
+		"""
+		return 'Sem totais qualis ainda...'
 
 
 def menuHTMLdeBuscaPB(titulo):
@@ -885,7 +888,7 @@ def menuHTMLdeBuscaPA(titulo):
          </font><br>'
 	return s
 
-def formataQualis(qualis, qualissimilar):
+"""def formataQualis(qualis, qualissimilar):
 	s = ''
 	if not qualis==None:
 		if qualis=='':
@@ -902,5 +905,14 @@ def formataQualis(qualis, qualissimilar):
 				# Similar - imprime em laranja
 				s += '<font color="#FF9933"><b>Qualis: ' + qualis + '</b></font> ('+qualissimilar+')' 
 	return s
-
+	"""
+def formataQualis(qualis, qualissimilar):
+    s = ''
+    if qualis == None:
+        s += '<font color="#8B0000"><b>Qualis: N&atilde;o identificado</b></font>'
+    else:
+        s += '<font color="#336600"><b>Qualis: </b></font> '
+        for area,q in sorted(qualis.items(),key = lambda x: x[1]):
+            s+= '<font color="#ADD8E6"><b>'+area+'</b></font> - <b>'+q+'</b>&nbsp'
+    return s
 
