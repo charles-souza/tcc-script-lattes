@@ -22,72 +22,74 @@
 #  Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
-import matplotlib
-#matplotlib.use("Agg")
+# import matplotlib
+# matplotlib.use("Agg")
 
-
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-	
+
 class GraficoDeBarras:
-	diretorioDeSaida = None
-	listaCompleta = None
-	prefixo = None
-	titulo = None
-	vetorDeProducoes = None
+    diretorioDeSaida = None
+    listaCompleta = None
+    prefixo = None
+    titulo = None
+    vetorDeProducoes = None
 
-	def __init__(self, diretorioDeSaida):
-		self.diretorioDeSaida = diretorioDeSaida
-		self.vetorDeProducoes = []
+    def __init__(self, diretorioDeSaida):
+        self.diretorioDeSaida = diretorioDeSaida
+        self.vetorDeProducoes = []
 
-	
-	def criarGrafico(self, listaCompleta, prefixo, titulo):
-		self.listaCompleta = []
-		self.listaCompleta = listaCompleta
-		self.prefixo = prefixo
-		self.titulo = titulo
 
-		vetorDeAnos = []
-		vetorDeQuantidades = []
+    def criarGrafico(self, listaCompleta, prefixo, titulo):
+        self.listaCompleta = []
+        self.listaCompleta = listaCompleta
+        self.prefixo = prefixo
+        self.titulo = titulo
 
-		keys = self.listaCompleta.keys()
-		keys.sort(reverse=False) #keys.sort(reverse=True)
-		for k in keys:
-			if k==0:
-				vetorDeAnos.append('*itens sem ano')
-			else:
-				vetorDeAnos.append(k)
+        vetorDeAnos = []
+        vetorDeQuantidades = []
 
-			vetorDeQuantidades.append( len(self.listaCompleta[k]) )
+        keys = self.listaCompleta.keys()
+        keys.sort(reverse=False)  # keys.sort(reverse=True)
+        for k in keys:
+            if k == 0:
+                vetorDeAnos.append('*itens sem ano')
+            else:
+                vetorDeAnos.append(k)
 
-		if len(vetorDeAnos)>0: # Apenas para listas com elemtos
-			print self.prefixo + ": " , vetorDeAnos , vetorDeQuantidades
+            vetorDeQuantidades.append(len(self.listaCompleta[k]))
 
-			ind = np.arange(len(vetorDeAnos)) 
-			bar_width = 0.20
+        if len(vetorDeAnos) > 0:  # Apenas para listas com elemtos
+            print self.prefixo + ": ", vetorDeAnos, vetorDeQuantidades
 
-			plt.clf()
-			plt.figure(111, figsize=(8.5,3), dpi=80)
+            ind = np.arange(len(vetorDeAnos))
+            bar_width = 0.20
 
-			rects = plt.bar(ind, vetorDeQuantidades, color='#006600', edgecolor='#006600')
+            plt.clf()
+            plt.figure(111, figsize=(8.5, 3), dpi=80)
 
-			plt.ylabel(self.titulo.encode('utf8'), fontsize=10, color='#000099') #, family='sans-serif')
-			plt.yticks([])
+            rects = plt.bar(ind, vetorDeQuantidades, color='#006600', edgecolor='#006600')
 
-			plt.xticks(ind+2*bar_width, vetorDeAnos , rotation=90, fontsize=8, color='#000099') #, family='sans-serif')
-			#plt.axis('tight')
-			old_axis = plt.axis()
-			plt.axis([old_axis[0], old_axis[1], 0, max(vetorDeQuantidades)*1.15 ] )
+            plt.ylabel(self.titulo.encode('utf8'), fontsize=10, color='#000099')  # , family='sans-serif')
+            plt.yticks([])
 
-			# rotulos sobre as barras
-			for rect in rects:
-				height = rect.get_height()
-				plt.text(rect.get_x()+rect.get_width()/2., 1.05*height, '%d'%int(height), ha='center', va='bottom', fontsize=6, color='#001100')
+            plt.xticks(ind + 2 * bar_width, vetorDeAnos, rotation=90, fontsize=8,
+                       color='#000099')  # , family='sans-serif')
+            # plt.axis('tight')
+            old_axis = plt.axis()
+            plt.axis([old_axis[0], old_axis[1], 0, max(vetorDeQuantidades) * 1.15])
 
-			plt.savefig(self.diretorioDeSaida+"/"+self.prefixo+'.png', format='png', transparent=False, pad_inches=0.1, bbox_inches='tight')
+            # rotulos sobre as barras
+            for rect in rects:
+                height = rect.get_height()
+                plt.text(rect.get_x() + rect.get_width() / 2., 1.05 * height, '%d' % int(height), ha='center',
+                         va='bottom', fontsize=6, color='#001100')
 
-			self.vetorDeProducoes.append( (prefixo, vetorDeAnos, vetorDeQuantidades) )
+            plt.savefig(self.diretorioDeSaida + "/" + self.prefixo + '.png', format='png', transparent=False,
+                        pad_inches=0.1, bbox_inches='tight')
 
-	def obterVetorDeProducoes(self):
-		return self.vetorDeProducoes
+            self.vetorDeProducoes.append((prefixo, vetorDeAnos, vetorDeQuantidades))
+
+    def obterVetorDeProducoes(self):
+        return self.vetorDeProducoes
