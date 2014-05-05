@@ -9,16 +9,20 @@ BASE = 'scriptLattes' + SEP
 ABSBASE = os.path.abspath('.') + SEP
 
 class OutputStream:
-    def __init__(self, output):
+    def __init__(self, output, encoding):
+        self.encoding = encoding
         self.output = output
     def write(self, text):
-        try:
-            text = text.decode('utf8').encode('iso-8859-1')
-        except:
+        if self.encoding:
+            text = text.decode(self.encoding)
+        else:
             try:
-                text = text.encode('iso-8859-1')
+                text = text.decode('utf8').encode('iso-8859-1')
             except:
-                pass
+                try:
+                    text = text.encode('iso-8859-1')
+                except:
+                    pass
         try:
             self.output.write(text)
         except:

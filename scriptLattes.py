@@ -47,8 +47,8 @@ from scriptLattes.util import *
 
 if 'win' in sys.platform.lower():
     os.environ['PATH'] += ";" + os.path.abspath(os.curdir + '\\Graphviz2.36\\bin')
-sys.stdout = OutputStream(sys.stdout)
-sys.stderr = OutputStream(sys.stderr)
+sys.stdout = OutputStream(sys.stdout, sys.stdout.encoding)
+sys.stderr = OutputStream(sys.stderr, sys.stdout.encoding)
 
 if __name__ == "__main__":
 	arquivoConfiguracao = sys.argv[1]
