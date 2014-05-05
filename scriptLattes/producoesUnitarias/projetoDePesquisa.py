@@ -24,8 +24,9 @@
 
 
 from scriptLattes import *
-from geradorDePaginasWeb import *
+from scriptLattes.geradorDePaginasWeb import *
 import datetime
+from scriptLattes.util import compararCadeias
 
 class ProjetoDePesquisa:
 	idMembro = None

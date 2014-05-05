@@ -27,7 +27,7 @@ import datetime
 import re
 import math
 import unicodedata
-from graficoDeInternacionalizacao import *
+from charts.graficoDeInternacionalizacao import *
 from qualis import * # Qualis
 
 class GeradorDePaginasWeb:

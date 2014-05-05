@@ -28,12 +28,12 @@ import re
 import sets
 import datetime
 import time
-
+import os
 
 from parserLattes import *
 from parserLattesXML import *
 from htmlentitydefs import name2codepoint
-from geolocalizador import *
+from charts.geolocalizador import *
 
 class Membro:
 	idLattes = None # ID Lattes

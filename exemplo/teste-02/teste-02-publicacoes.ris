@@ -1021,6 +1021,18 @@ L2  - http://dx.doi.org/10.1016/j.fss.2003.07.003
 ER  - 
 
 TY  - JOUR
+AU  - COSTA, Luciano da Fontoura ; CESAR JR, Roberto Marcondes ; BARRERA, JUNIOR
+TI  - Editorial - Special section on Bioinformatics
+JO  - Genetics and Molecular Biology (Impresso)
+VL  - 27
+IS  - 
+SP  - 604
+EP  - 604
+PY  - 2004
+L2  - http://dx.doi.org/10.1590/S1415-47572004000400001
+ER  - 
+
+TY  - JOUR
 AU  - FERIS, R ; KRUEGER, V ; CESARJR, R
 TI  - A wavelet subspace method for real-time face tracking
 JO  - Real-Time Imaging
@@ -1529,18 +1541,6 @@ EP  -
 ER  - 
 
 TY  - CHAP
-AU  - MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
-T1  - Prospecção de dados acadêmicos de currículos Lattes através de scriptLattes (in press)
-TI  - Maria Cristina Piumbato Innocentini HAYASHI; Jacqueline LETA. (Org.). Bibliometria e Cientometria: reflexões teóricas e interfaces. 1ed.São Carlos
-IS  - 
-PB  - Pedro João
-PY  - 2012
-VL  - 
-SP  - 1
-EP  - 20
-ER  - 
-
-TY  - CHAP
 AU  - HIRATA, N. S. T.
 T1  - Morphological Operator Design from Training Data: A State of the Art Overview
 TI  - Halina Kwasnicka; Lakhmi C. Jain. (Org.). Innovations in Intelligent Image Analysis
@@ -1941,14 +1941,14 @@ L2  -
 ER  - 
 
 TY  - CONF
-AU  - PEREZ-CERVANTES, E. ; MENA-CHALCO, J. P. ; CESAR JUNIOR, R. M.
+AU  - PEREZ-CERVANTES, EVELYN ; MENA-CHALCO, JESUS P. ; CESAR-JR, ROBERTO M.
 T1  - Towards a quantitative academic internationalization assessment of Brazilian research groups
 TI  - 2nd workshop on Analyzing and Improving Collaborative eScience with Social Networks - IEEE eScience - 2012
 VL  - 
-SP  - 
-EP  - 
+SP  - 1
+EP  - 8
 PY  - 2012
-L2  - 
+L2  - http://dx.doi.org/10.1109/eScience.2012.6404456
 ER  - 
 
 TY  - CONF
@@ -3657,10 +3657,10 @@ L2  -
 ER  - 
 
 TY  - CONF
-AU  - TORRES, Martha ; BARRERA, Junior
-T1  - A parallel algorithm for enumerating combinations
+AU  - TORRES, Martha ; BARRERA, Junior ; GOLDMAN, A.
+T1  - Parallel algorithm for enumerating combinations
 TI  - International Conference on Parallel Processing (ICPP'03)
-VL  - 
+VL  - 1
 SP  - 581
 EP  - 588
 PY  - 2003

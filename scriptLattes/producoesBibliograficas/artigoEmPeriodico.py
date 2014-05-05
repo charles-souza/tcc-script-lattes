@@ -24,7 +24,8 @@
 
 
 from scriptLattes import *
-from geradorDePaginasWeb import *
+from scriptLattes.geradorDePaginasWeb import *
+from scriptLattes.util import compararCadeias
 
 class ArtigoEmPeriodico:
 	item = None # dado bruto

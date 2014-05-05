@@ -29,13 +29,13 @@ import operator
 
 from membro import *
 from compiladorDeListas import *
-from grafoDeColaboracoes import *
-from graficoDeBarras import *
-from mapaDeGeolocalizacao import *
+from charts.grafoDeColaboracoes import *
+from charts.graficoDeBarras import *
+from charts.mapaDeGeolocalizacao import *
 from geradorDePaginasWeb import *
 from authorRank import *
-from analisadorDePublicacoes import *
-from qualis import *
+from internacionalizacao.analisadorDePublicacoes import *
+from qualis.qualis import *
 from geradorDeXML import *
 	
 class Grupo:

@@ -29,19 +29,26 @@ import os, errno
 import warnings
 warnings.filterwarnings('ignore')
 
-sys.path.append('scriptLattes')
-sys.path.append('scriptLattes/producoesBibliograficas/')
-sys.path.append('scriptLattes/producoesTecnicas/')
-sys.path.append('scriptLattes/producoesArtisticas/')
-sys.path.append('scriptLattes/producoesUnitarias/')
-sys.path.append('scriptLattes/orientacoes/')
-sys.path.append('scriptLattes/eventos/')
-sys.path.append('scriptLattes/charts/')
-sys.path.append('scriptLattes/internacionalizacao/')
-sys.path.append('scriptLattes/qualis/')
-sys.path.append('scriptLattes/patentesRegistros/')
 
-from grupo import *
+from scriptLattes.producoesBibliograficas import *
+from scriptLattes.producoesTecnicas import *
+from scriptLattes.producoesArtisticas import *
+from scriptLattes.producoesUnitarias import *
+from scriptLattes.orientacoes import *
+from scriptLattes.eventos import *
+from scriptLattes.charts import *
+from scriptLattes.internacionalizacao import *
+from scriptLattes.qualis import *
+from scriptLattes.patentesRegistros import *
+
+from scriptLattes.grupo import *
+
+from scriptLattes.util import *
+
+if 'win' in sys.platform.lower():
+    os.environ['PATH'] += ";" + os.path.abspath(os.curdir + '\\Graphviz2.36\\bin')
+sys.stdout = OutputStream(sys.stdout)
+sys.stderr = OutputStream(sys.stderr)
 
 if __name__ == "__main__":
 	arquivoConfiguracao = sys.argv[1]
@@ -82,45 +89,3 @@ if __name__ == "__main__":
 		print '    Journal of the Brazilian Computer Society, vol.15, n.4, páginas 31-39, 2009.'
 
 		print '\n\nscriptLattes executado!'
-
-# ---------------------------------------------------------------------------- #
-def compararCadeias(str1, str2, qualis=False):
-	str1 = str1.strip().lower()
-	str2 = str2.strip().lower()
-
-	if len(str1)==0 or len(str2)==0:
-		return 0
-	
-	if len(str1)>=20 and len(str2)>=20 and (str1 in str2 or str2 in str1):
-		return 1
-
-	if qualis:
-		dist = Levenshtein.ratio(str1, str2)
-		if len(str1)>=10 and len(str2)>=10 and dist>=0.80:
-			#return 1
-			return dist
-
-	else:
-		if len(str1)>=10 and len(str2)>=10 and Levenshtein.distance(str1, str2)<=5:
-			return 1
-	return 0
-
-def criarDiretorio(dir):
-	if not os.path.exists(dir):
-		try:
-			os.makedirs(dir)
-		### except OSError as exc:
-		except:
-			print "\n[ERRO] Não foi possível criar ou atualizar o diretório: "+dir.encode('utf8')
-			print "[ERRO] Você conta com as permissões de escrita? \n"
-			return 0
-	return 1
-
-def copiarArquivos(dir):
-	shutil.copy2(sys.path[0]+'/css/scriptLattes.css', dir)
-	shutil.copy2(sys.path[0]+'/imagens/lattesPoint0.png', dir)
-	shutil.copy2(sys.path[0]+'/imagens/lattesPoint1.png', dir)
-	shutil.copy2(sys.path[0]+'/imagens/lattesPoint2.png', dir)
-	shutil.copy2(sys.path[0]+'/imagens/lattesPoint3.png', dir)
-	shutil.copy2(sys.path[0]+'/imagens/lattesPoint_shadow.png', dir)
-	shutil.copy2(sys.path[0]+'/imagens/doi.png', dir)

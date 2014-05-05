@@ -26,6 +26,8 @@ import re
 
 
 from scriptLattes import *
+import fileinput
+from scriptLattes.util import compararCadeias
 
 class Qualis:
 	periodicos = {}
