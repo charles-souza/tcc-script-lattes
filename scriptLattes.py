@@ -52,7 +52,7 @@ sys.stderr = OutputStream(sys.stderr, sys.stdout.encoding)
 
 if __name__ == "__main__":
 	arquivoConfiguracao = sys.argv[1]
-
+	#os.chdir( os.path.abspath(os.path.join(arquivoConfiguracao, os.pardir)))
 	novoGrupo = Grupo(arquivoConfiguracao)
 	novoGrupo.imprimirListaDeParametros()
 	novoGrupo.imprimirListaDeRotulos()

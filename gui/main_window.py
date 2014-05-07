@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/main_window.ui'
 #
-# Created: Mon May  5 11:36:46 2014
+# Created: Wed May  7 14:48:44 2014
 #      by: pyside-uic 0.2.13 running on PySide 1.1.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -125,7 +125,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.addWidget(self.resultsWidget)
         self.mainTabs.addTab(self.singleTab, "")
         self.multipleTab = QtGui.QWidget()
-        self.multipleTab.setEnabled(False)
+        self.multipleTab.setEnabled(True)
         self.multipleTab.setObjectName("multipleTab")
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.multipleTab)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -158,9 +158,11 @@ class Ui_MainWindow(object):
         self.multipleExecute = QtGui.QPushButton(self.multipleTab)
         self.multipleExecute.setObjectName("multipleExecute")
         self.verticalLayout_2.addWidget(self.multipleExecute)
-        self.tableView = QtGui.QTableView(self.multipleTab)
-        self.tableView.setObjectName("tableView")
-        self.verticalLayout_2.addWidget(self.tableView)
+        self.tableWidget = QtGui.QTableWidget(self.multipleTab)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
+        self.verticalLayout_2.addWidget(self.tableWidget)
         self.mainTabs.addTab(self.multipleTab, "")
         self.verticalLayout.addWidget(self.mainTabs)
         MainWindow.setCentralWidget(self.centralwidget)

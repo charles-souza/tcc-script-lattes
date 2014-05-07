@@ -27,7 +27,7 @@ import re
 
 from scriptLattes import *
 import fileinput
-from scriptLattes.util import compararCadeias
+from scriptLattes.util import compararCadeias, buscarArquivo
 
 class Qualis:
 	periodicos = {}
@@ -39,8 +39,10 @@ class Qualis:
 
 	def __init__(self, grupo):
 		if grupo.obterParametro('global-identificar_publicacoes_com_qualis'):
-			self.periodicos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_periodicos'))
-			self.congressos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_congressos'))
+			self.periodicos = self.carregarQualis(
+					buscarArquivo(grupo.obterParametro('global-arquivo_qualis_de_periodicos')))
+			self.congressos = self.carregarQualis(
+					buscarArquivo(grupo.obterParametro('global-arquivo_qualis_de_congressos')))
 	
 	def calcularTotaisDosQualis(self, grupo):
 		if (not grupo.obterParametro('global-arquivo_qualis_de_periodicos')==''):

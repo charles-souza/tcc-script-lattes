@@ -3,7 +3,7 @@
 #
 #
 
-import os, shutil, Levenshtein
+import os, shutil, Levenshtein, sys
 SEP = os.path.sep
 BASE = 'scriptLattes' + SEP
 ABSBASE = os.path.abspath('.') + SEP
@@ -30,7 +30,20 @@ class OutputStream:
                 self.output.write(unicode(text))
             except:
                 self.output.write('ERRO na impressao')
-                
+
+def buscarArquivo(filepath, arquivoConfiguracao=None):
+    if not arquivoConfiguracao:
+        arquivoConfiguracao = sys.argv[1]
+    curdir = os.path.abspath(os.path.curdir)
+    if not os.path.isfile(filepath) and arquivoConfiguracao:
+        #vamos tentar mudar o diretorio pro atual do arquivo
+        os.chdir( os.path.abspath(os.path.join(arquivoConfiguracao, os.pardir)))
+    if not os.path.isfile(filepath):
+        # se ainda nao existe, tentemos ver se o list não está junto com o config
+        filepath = os.path.abspath(os.path.basename(filepath))
+    os.chdir( curdir )
+    return filepath
+
 def copiarArquivos(dir):
     base = ABSBASE
     shutil.copy2(base + 'css'+SEP+'scriptLattes.css', dir)

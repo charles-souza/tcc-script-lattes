@@ -26,6 +26,7 @@
 import fileinput
 import sets
 import operator
+import os
 
 from membro import *
 from compiladorDeListas import *
@@ -37,7 +38,8 @@ from authorRank import *
 from internacionalizacao.analisadorDePublicacoes import *
 from qualis.qualis import *
 from geradorDeXML import *
-	
+from scriptLattes.util import *
+
 class Grupo:
 	compilador = None
 	listaDeParametros = []
@@ -119,15 +121,17 @@ class Grupo:
 
 		self.diretorioCache = self.obterParametro('global-diretorio_de_armazenamento_de_cvs')
 		if not self.diretorioCache=='':
-			criarDiretorio(self.diretorioCache)
+			util.criarDiretorio(self.diretorioCache)
 
 		self.diretorioDoi = self.obterParametro('global-diretorio_de_armazenamento_de_doi')
 		if not self.diretorioDoi=='':
 			criarDiretorio(self.diretorioDoi)
 
 		# carregamos a lista de membros
+		entrada = buscarArquivo(self.obterParametro('global-arquivo_de_entrada'))
+			
 		idSequencial = 0
-		for linha in fileinput.input(self.obterParametro('global-arquivo_de_entrada')):
+		for linha in fileinput.input(entrada):
 			linha = linha.replace("\r","") 
 			linha = linha.replace("\n","")
 			
