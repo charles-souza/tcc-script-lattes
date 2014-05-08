@@ -30,6 +30,7 @@ import re
 import string
 
 from base_panel import BasePanel
+from text_dialog import Ui_Dialog
 
 class MultiProcessingTableModel(QtCore.QAbstractTableModel):
     def __init__(self, parent, data_list, header, *args):
@@ -80,7 +81,7 @@ def finished_signal_factory(panel, index, process):
             e = file(os.path.join(output_folder, 'erros.txt'), 'w')
             e.write(errors)
             e.close()
-        panel.finish_process(index, output_folder, errors.strip())
+        panel.finish_process(index, output_folder, errors.strip(), output.strip())
     return finished
 
 
@@ -96,31 +97,43 @@ class MultipleProcessingTabPanel(BasePanel):
             self.ui.input_multiple.setPlainText(last_folder)
             self.make_list()
         self.ui.tableWidget.cellClicked.connect(self.cell_clicked)
-
+        
     
     def open_link(self, folder):
-        path = folder +  'index.html'
+        path = self.get_output_folder(folder) +  'index.html'
         QtGui.QDesktopServices.openUrl(QtCore.QUrl(path, QtCore.QUrl.TolerantMode))
     
     def open_folder(self, folder):
-        path = folder
+        path = self.get_output_folder(folder)
         QtGui.QDesktopServices.openUrl(path)
     
+    def open_dialog(self, text):
+        dialog = QtGui.QDialog(self.parent)
+        ui = Ui_Dialog()
+        ui.setupUi(dialog)
+        ui.text.insertPlainText(text)
+        dialog.show()
+    
     def cell_clicked(self, row, column):
+        #self.open_dialog('teste')
         if self.results.get(row, False):
-            if column == 2:
-                self.open_folder(self.results[row])
-            elif column == 3:
-                self.open_link(self.results[row])
-        
+            if column == 2 and self.results[row][0]:
+                self.open_folder(self.results[row][0])
+            elif column == 3 and self.results[row][0]:
+                self.open_link(self.results[row][0])
+            elif column == 4 and self.results[row][1]:
+                self.open_dialog(self.results[row][1])
+            elif column == 5 and self.results[row][2]:
+                self.open_dialog(self.results[row][2])
     
     def choose_folder(self):
         last_folder = self.settings.value('lastFolder', '.')
         folderpath = QtGui.QFileDialog.getExistingDirectory(self.parent,
             "Abrir pasta com configs", last_folder)
-        self.settings.setValue('lastFolder',  folderpath)
-        self.ui.input_multiple.setPlainText(folderpath)
-        self.make_list()
+        if folderpath:
+            self.settings.setValue('lastFolder',  folderpath)
+            self.ui.input_multiple.setPlainText(folderpath)
+            self.make_list()
         
     def make_list(self):
         folderpath = self.ui.input_multiple.toPlainText()
@@ -133,10 +146,10 @@ class MultipleProcessingTabPanel(BasePanel):
         self.file_list.sort()
         self.ui.tableWidget.setRowCount(0)
         self.ui.tableWidget.setRowCount(len(self.file_list))
-        self.ui.tableWidget.setColumnCount(4)
+        self.ui.tableWidget.setColumnCount(6)
         for index, f in enumerate(self.file_list):
             self.ui.tableWidget.setItem(index, 0, QtGui.QTableWidgetItem(
-                f
+                f.replace(folderpath+os.path.sep, '')
             ))
             self.ui.tableWidget.setItem(index, 1, QtGui.QTableWidgetItem(
                 u"Não executado"
@@ -146,15 +159,30 @@ class MultipleProcessingTabPanel(BasePanel):
         hheader.setResizeMode(QtGui.QHeaderView.ResizeToContents)
         self.ui.tableWidget.setHorizontalHeader(hheader)
         self.ui.tableWidget.setHorizontalHeaderLabels(
-            ['Arquivo Config', 'Estado', 'Resultado Pasta', 'Resultado Browser']
+            ['Arquivo Config', 'Estado', 'Resultado Pasta', 'Resultado Browser',
+             'Saida', 'Erros']
         )
         
         return
-        
-    def run(self):
+    
+    def enable_running(self):
+        self.running = True
+        self.ui.folder_holder.setDisabled(True)
         self.ui.multipleExecute.setDisabled(True)
-        self.ui.runner.setText('Aguarde, processando...')
+        self.ui.multipleExecute.setText('Aguarde, processando...')
         self.ui.statusbar.showMessage('Aguarde, processando...')
+        self.ui.mainTabs.setTabEnabled(0, False)
+    
+    def disable_running(self):
+        self.running = False
+        self.ui.folder_holder.setDisabled(False)
+        self.ui.multipleExecute.setDisabled(False)
+        self.ui.multipleExecute.setText('Executar lote')
+        self.ui.statusbar.showMessage('Tudo finalizado!') 
+        self.ui.mainTabs.setTabEnabled(0, True)
+    
+    def run(self):
+        self.enable_running()
         self.processes = [(i, f) for i,f in enumerate(self.file_list)]
         self.results = {}
         for i in range(4):
@@ -164,27 +192,44 @@ class MultipleProcessingTabPanel(BasePanel):
         if not self.processes:
             return None
         index, filepath = self.processes.pop(0)
-        self.ui.tableWidget.setItem(index, 1, QtGui.QTableWidgetItem("Processando..."))
+        self.ui.tableWidget.setItem(index, 1, 
+                    self.make_cell("Processando...", (255,255,100)))
         process = QtCore.QProcess(self.parent)
         process.finished.connect(finished_signal_factory(self, index, process))
         process.start(self.parent.CMD,[filepath])
     
-    def finish_process(self, index, output_folder, errors):
-        self.results[index] = output_folder
-        if errors:
-            self.ui.tableWidget.setItem(index, 1, QtGui.QTableWidgetItem("ERRO"))
-        else:
-            self.ui.tableWidget.setItem(index, 1, QtGui.QTableWidgetItem("Finalizado!"))
+    def make_cell(self, text="", color=None):
+        item = QtGui.QTableWidgetItem(text)
+        if color:
+            item.setData(QtCore.Qt.BackgroundRole, QtGui.QColor(*color) )
+        return item
+    
+    def finish_process(self, index, output_folder, errors, output):
+        self.results[index] = (output_folder, output, errors)
+        if output:
+            self.ui.tableWidget.setItem(index, 4, 
+                    self.make_cell("Abrir", (200,200,200)))
         if output_folder:
-            self.ui.tableWidget.setItem(index, 2, QtGui.QTableWidgetItem("Abrir"))
-            self.ui.tableWidget.setItem(index, 3, QtGui.QTableWidgetItem("Abrir"))
+            self.ui.tableWidget.setItem(index, 1,
+                self.make_cell("Finalizado!", (150,255,150)))
+            self.ui.tableWidget.setItem(index, 2,
+                self.make_cell(output_folder, (150,255,150)))
+            self.ui.tableWidget.setItem(index, 3,
+                self.make_cell("Abrir", (150,255,150)))
+        else:
+            self.ui.tableWidget.setItem(index, 1, 
+                self.make_cell("Erro!", (255,150,150)))
+            self.ui.tableWidget.setItem(index, 5, 
+                self.make_cell("Abrir", (255,150,150)))
+            
         #open_folder = QtGui.QTableWidgetItem("Abrir Pasta")
         #self.ui.tableWidget.itemClicked()
         #self.ui.tableWidget.setItem(index, 2, open_folder)
-        if len(self.processes) == 0:
-            self.ui.multipleExecute.setDisabled(False)
-            self.ui.runner.setText('Executar lote')
-            self.ui.statusbar.showMessage('Tudo finalizado!') 
+        if len(self.results) == len(self.file_list):
+            self.disable_running()
         else:
-            self.run_process()
+            if len(self.processes):
+                self.run_process()
+            else:
+                self.ui.statusbar.showMessage('Finalizando...')
     

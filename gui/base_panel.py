@@ -34,4 +34,12 @@ class BasePanel(object):
         self.settings = QtCore.QSettings("ScriptLattes", "ScriptLattesGUI")
         self.ui = parent.ui
         self.parent = parent
-    
+        self.running = False
+        
+    def get_output_folder(self, output_folder=None):
+        if not output_folder:
+            output_folder = self.output_folder
+        if 'win' in sys.platform.lower():
+            return 'file:///' + output_folder.replace('\\', '/')
+        else:
+            return 'file://' + output_folder

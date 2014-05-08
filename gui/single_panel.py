@@ -68,12 +68,6 @@ class SingleProcessingTabPanel(BasePanel):
         self.ui.errors.setPlainText('');
         self.ui.statusbar.clearMessage()
     
-    def get_output_folder(self):
-        if 'win' in sys.platform.lower():
-            return 'file:///' + self.output_folder.replace('\\', '/')
-        else:
-            return 'file://' + self.output_folder
-    
     def open_link(self):
         path = self.get_output_folder() +  'index.html'
         QtGui.QDesktopServices.openUrl(QtCore.QUrl(path, QtCore.QUrl.TolerantMode))
@@ -82,15 +76,30 @@ class SingleProcessingTabPanel(BasePanel):
         path = self.get_output_folder()
         QtGui.QDesktopServices.openUrl(path)
     
+    def enable_running(self):
+        self.running = True
+        self.ui.runner.setDisabled(True)
+        self.ui.file_holder.setDisabled(True)
+        self.ui.runner.setText('Aguarde, processando...')
+        self.ui.statusbar.showMessage('Aguarde, processando...')
+        self.ui.mainTabs.setTabEnabled(1, False)
+    
+    def disable_running(self):
+        self.running = False
+        self.ui.runner.setDisabled(False)
+        self.ui.file_holder.setDisabled(False)
+        self.ui.runner.setText('Executar')
+        self.ui.statusbar.showMessage('Processo finalizado!')
+        self.ui.mainTabs.setTabEnabled(1, True)
+    
     def run(self):
         self.clearOutputs()
         self.ui.resultsWidget.setDisabled(True)
         
         self.current_file = self.ui.input.toPlainText()
         
-        self.ui.runner.setDisabled(True)
-        self.ui.runner.setText('Aguarde, processando...')
-        self.ui.statusbar.showMessage('Aguarde, processando...')
+        self.enable_running()
+        
         self.process = QtCore.QProcess(self.parent)
         self.process.readyReadStandardOutput.connect(self.print_text)
         self.process.readyReadStandardError.connect(self.print_error)
@@ -105,15 +114,14 @@ class SingleProcessingTabPanel(BasePanel):
             folder = '.'
         filename = QtGui.QFileDialog.getOpenFileName(self.parent,
             "Abrir arquivo config", folder, "Text files (*.config)")
-        path = filename[0]
-        self.settings.setValue('lastFile',  path)
-        self.ui.input.setPlainText(path)
+        if filename[0]:
+            path = filename[0]
+            self.settings.setValue('lastFile',  path)
+            self.ui.input.setPlainText(path)
 
 
     def finished(self):
-        self.ui.runner.setDisabled(False)
-        self.ui.runner.setText('Executar')
-        self.ui.statusbar.showMessage('Processo finalizado!')
+        self.disable_running()
         
         s = self.ui.out.toPlainText()
         # getting from output result folder

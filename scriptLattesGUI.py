@@ -37,7 +37,7 @@ from gui.multiple_panel import MultipleProcessingTabPanel
 class ControlMainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
         super(ControlMainWindow, self).__init__(parent)
-        
+
         # definir executavel do scriptLattes
         if 'win' in sys.platform.lower():
             self.CMD = 'scriptLattes.exe'
@@ -48,7 +48,7 @@ class ControlMainWindow(QtGui.QMainWindow):
         self.single = SingleProcessingTabPanel(self)
         self.multiple = MultipleProcessingTabPanel(self)
         self.setWindowIcon(QtGui.QIcon('gui/logo.png'))
-    
+
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
