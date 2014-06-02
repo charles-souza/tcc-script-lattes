@@ -116,3 +116,6 @@ def copiarArquivos(dir):
 	shutil.copy2(sys.path[0]+'/imagens/lattesPoint3.png', dir)
 	shutil.copy2(sys.path[0]+'/imagens/lattesPoint_shadow.png', dir)
 	shutil.copy2(sys.path[0]+'/imagens/doi.png', dir)
+	shutil.copy2(sys.path[0]+'/js/highcharts.js', dir)
+	shutil.copy2(sys.path[0]+'/js/exporting.js', dir)
+	
