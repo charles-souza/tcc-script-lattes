@@ -29,6 +29,7 @@ import math
 import unicodedata
 from graficoDeInternacionalizacao import *
 from qualis import * # Qualis
+from highcharts import * # highcharts
 
 class GeradorDePaginasWeb:
 	grupo = None
@@ -479,83 +480,6 @@ class GeradorDePaginasWeb:
 		self.nIn0 = self.gerarPaginaDeInternacionalizacao(self.grupo.listaDePublicacoesEinternacionalizacao, "Coautoria e internacionalização", "In0")
 
 
-	def gerarGraficoBarras(self,listaCompleta,titulo):
-		keys = listaCompleta.keys()
-		keys.sort()
-		html = u"""
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script type="text/javascript" src="./highcharts.js"></script>
-		<script type="text/javascript" src="./modules/exporting.js"></script>
-		<script type="text/javascript">
-		$(function () {
-		$('#container').highcharts({
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: '@titulo@'
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                categories: [''],
-                title: {
-                    text: ''
-                }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Produções',
-                    align: 'high'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                enabled: false,
-                valueSuffix: ''
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 100,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
-                shadow: true
-            },
-            credits: {
-                enabled: false
-            },
-            'series': @series@
-        });
-    });
-</script>
-"""
-
-		series = []
-		for k in keys:
-			qtd = len(listaCompleta[k])
-			if qtd>0:
-				s = {'name':k,'data':[qtd]}
-				series.append(s)
-		html = html.replace('@titulo@',titulo)
-		html = html.replace('@series@',str(series))
-		return html
-				
-
 	def gerarPaginaDeProducoes(self, listaCompleta, tituloPagina, prefixo, ris=False):
 		numeroTotalDeProducoes = 0
 		sQualis = ""
@@ -597,8 +521,15 @@ class GeradorDePaginasWeb:
 				
 					if numeroDeItem%maxElementos==0 or numeroDeItem==numeroTotalDeProducoes:
 						st = self.paginaTop()
-						st+= self.gerarGraficoBarras(listaCompleta,u'Número de produções')
-						st+= '\n<h3>'+tituloPagina.decode("utf8")+'</h3> <br> <img src="'+prefixo+'.png"> <br>'
+						chart = highchart()
+						chart.settitle(u'Número total de produções/publicações')
+						chart.setYtitle(u'Número de produções/publicações')
+						chart.setXtitle(u'Ano')
+						chart.setcharttype(charttype.column)
+						chart.listaCompleta(listaCompleta)
+						#st+= self.gerarGraficoBarras(listaCompleta,u'Número de produções')
+						st+= chart.html()
+						st+= '\n<h3>'+tituloPagina.decode("utf8")+'</h3> <br>' #'<img src="'+prefixo+'.png"> <br>'
 						st+= '<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0"></div>'
 						st+= 'Número total de itens: '.decode("utf8")+str(numeroTotalDeProducoes)+'<br>'
 						st+= sQualis
