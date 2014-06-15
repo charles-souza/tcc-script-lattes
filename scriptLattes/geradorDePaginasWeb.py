@@ -507,7 +507,7 @@ class GeradorDePaginasWeb:
 
 			for ano in keys:
 				anoRotulo = str(ano) if not ano==0 else '*itens sem ano'
-				s+= '<h3 class="year">'+anoRotulo+'</h3> <table>'
+				s+= '<div id="dv-year-%s"><h3 class="year">%s</h3> <table>' % (str(ano),anoRotulo)
 				elementos = listaCompleta[ano]
 				elementos.sort(key = lambda x: x.chave.lower())	# Ordenamos a lista em forma ascendente (hard to explain!)
 
@@ -521,14 +521,32 @@ class GeradorDePaginasWeb:
 				
 					if numeroDeItem%maxElementos==0 or numeroDeItem==numeroTotalDeProducoes:
 						st = self.paginaTop()
+						
+						cmdhs = """function(event){
+						    dv = document.getElementById("dv-year-"+this.name);
+						    dv.style.display = '%s';
+						}"""
+												
+						jshidediv = {'series':{
+                            'events': {                                       
+                                'show':jscmd(cmdhs % ('block'))
+                                ,
+                                'hide':jscmd(cmdhs % ('none'))
+                                
+                                    }
+                             }
+                        }
+						
 						chart = highchart()
 						chart.settitle(u'Número total de produções/publicações')
 						chart.setYtitle(u'Número de produções/publicações')
 						chart.setXtitle(u'Ano')
 						chart.setcharttype(charttype.column)
+						chart['plotOptions'] = jshidediv
 						chart.listaCompleta(listaCompleta)
-						#st+= self.gerarGraficoBarras(listaCompleta,u'Número de produções')
+						
 						st+= chart.html()
+						
 						st+= '\n<h3>'+tituloPagina.decode("utf8")+'</h3> <br>' #'<img src="'+prefixo+'.png"> <br>'
 						st+= '<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0"></div>'
 						st+= 'Número total de itens: '.decode("utf8")+str(numeroTotalDeProducoes)+'<br>'
@@ -542,12 +560,12 @@ class GeradorDePaginasWeb:
 						numeroDePaginaAtual += 1
 
 						if (index+1)<len(elementos):
-							s = '<h3 class="year">'+anoRotulo+'</h3> <table>'
+							s = '<div id="dv-year-%s"><h3 class="year">%s</h3> <table>' % (str(ano),anoRotulo)
 						else:
 							s = '' 
 					numeroDeItem += 1
 
-				s+= '</table>' 
+				s+= '</table></div>' 
 		return numeroTotalDeProducoes 
 
 	def gerarIndiceDePaginas(self, numeroDePaginas, numeroDePaginaAtual, prefixo):
@@ -583,6 +601,7 @@ class GeradorDePaginasWeb:
 
 			for ano in keys:
 				anoRotulo = str(ano) if not ano==0 else '*itens sem ano'
+				
 				s+= '<h3 class="year">'+anoRotulo+'</h3> <table>'
 
 				elementos = listaCompleta[ano]

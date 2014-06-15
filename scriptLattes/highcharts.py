@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# filename: highcharts
+# filename: highcharts.py
 #
 #  scriptLattes V8
-#  Copyright 2005-2013: Jesús P. Mena-Chalco e Roberto M. Cesar-Jr.
+#  Copyright 2005-2013: Cristhian W. Bilhalva
 #  http://scriptlattes.sourceforge.net/
 #
 #
@@ -22,6 +22,13 @@
 #  Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
+
+class jscmd(object):
+    cmd = ''
+    def __init__(self,cmd):
+        self.cmd = cmd
+    def __str__(self):
+        return self.cmd
 
 class jsbool(object):
     value = False
