@@ -35,6 +35,7 @@ class Qualis:
 	qtdPB4	 = {}	# Total de trabalhos completos em congressos por Qualis
 	qtdPB5	 = {}	# Total de resumos expandidos em congressos por Qualis
 	tabelaDosAnos = []
+	tabelaDosTipos = {}
 	anoInicio = 0
 	anoFim = 0
 	
@@ -63,14 +64,10 @@ class Qualis:
 	
 
 	def qualisPorAno(self, membro):
-		
-		print "---------------------------------"
-		print "-------QUALIS POR ANO------------"
-		print "---------------------------------"
-
 		lista = membro.listaArtigoEmPeriodico
 		listaDeArtigos = lista
 		self.inicializaTabelaDosAnos()
+		self.inicializaTabelaDosTipos()
 
 		if(len(listaDeArtigos) > 0):
 			for publicacao in listaDeArtigos:
@@ -79,8 +76,32 @@ class Qualis:
 				for tipo in tiposQualis:
 					valorAtual = self.getTiposPeloAno(ano)[tipo]
 					self.setValorPeloAnoTipo(ano, tipo, valorAtual+1)
+					self.tabelaDosTipos[tipo] += 1
 
+
+	def getTabelaQualisPorAno(self):
 		return self.tabelaDosAnos
+
+	def getTabelaQualisPorTipo(self):
+		return self.tabelaDosTipos
+
+
+
+	def printTabelas(self):
+		print "\n**************************************************\n"
+		print "\nTABELAS DOS QUALIS:\n\n"
+
+		for i in range(len(self.tabelaDosAnos)):
+			print str(self.anoInicio+i)+":"
+			print "------"
+			print self.tabelaDosAnos[i]
+			print "\n\n"
+		
+		print "\nTOTAIS POR TIPO:\n"
+		print self.tabelaDosTipos
+		print "\n\n"
+
+		self.parar()
 
 
 	def parar(self):
@@ -195,13 +216,14 @@ class Qualis:
 
 
 	def inicializaTabelaDosAnos(self):
-
 		fim = self.anoFim-self.anoInicio
-		novaLista = {}
-		self.inicializaListaQualis(novaLista)
-
-		for i in range(0, fim+1):
+		for i in range(fim+1):
+			novaLista = {}
+			self.inicializaListaQualis(novaLista)
 			self.tabelaDosAnos.append(novaLista)
+
+	def inicializaTabelaDosTipos(self):
+		self.inicializaListaQualis(self.tabelaDosTipos)
 
 
 	def getTiposPeloAno(self, ano):
