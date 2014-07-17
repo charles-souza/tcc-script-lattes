@@ -906,12 +906,16 @@ def menuHTMLdeBuscaPA(titulo):
 	return s
 	"""
 def formataQualis(qualis, qualissimilar):
-    s = ''
-    if qualis == None:
-        s += '<font color="#8B0000"><b>Qualis: N&atilde;o identificado</b></font>'
-    else:
-        s += '<font color="#336600"><b>Qualis: </b></font> '
-        for area,q in sorted(qualis.items(),key = lambda x: x[1]):
-            s+= '<font color="#ADD8E6"><b>'+area+'</b></font> - <b>'+q+'</b>&nbsp'
-    return s
+	s = ''
+
+	if qualis == None:
+		s += '<font color="#8B0000"><b>Qualis: N&atilde;o identificado</b></font>'
+	else:
+		s += '<font color="#336600"><b>Qualis: </b></font> '
+		if type(qualis) is str:
+			s+= '<font color="#ADD8E6"><b>SEM_AREA</b></font> - <b>'+qualis+'</b>&nbsp'
+		else:
+			for area,q in sorted(qualis.items(), key = lambda x: x[1]):
+				s+= '<font color="#ADD8E6"><b>'+area+'</b></font> - <b>'+q+'</b>&nbsp'
+	return s
 

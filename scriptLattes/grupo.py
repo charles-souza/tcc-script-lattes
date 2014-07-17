@@ -69,6 +69,9 @@ class Grupo:
 	matrizTrabalhoTecnico = None
 	matrizOutroTipoDeProducaoTecnica = None
 	matrizProducaoArtistica = None
+
+	tabelaQualisPorAno = {}
+	tabelaQualisPorTipo = {}
 	
 	matrizPatente = None
 	matrizProgramaComputador = None
@@ -157,6 +160,7 @@ class Grupo:
 		self.listaDeRotulosCores =  ['']*len(self.listaDeRotulos) 
 
 		self.qualis = Qualis(self) # carregamos Qualis a partir de arquivos definidos no arquivo de configuração
+
 
 	
 	def gerarXMLdeGrupo(self):
@@ -365,6 +369,15 @@ class Grupo:
 			for membro in self.listaDeMembros:
 				self.qualis.analisarPublicacoes(membro, self) # Qualis - Adiciona Qualis as publicacoes dos membros
 			self.qualis.calcularTotaisDosQualis(self)
+
+		self.separarQualisPorAno()
+
+
+	def separarQualisPorAno(self):
+		for membro in self.listaDeMembros:
+			self.qualis.qualisPorAno(membro)
+			self.tabelaQualisPorAno[membro] = self.qualis.getTabelaQualisPorAno()
+			self.tabelaQualisPorTipo[membro] = self.qualis.getTabelaQualisPorTipo()
 	
 
 	def salvarListaTXT(self, lista, nomeArquivo):
@@ -611,9 +624,10 @@ class Grupo:
 		self.listaDeParametros.append(['global-salvar_informacoes_em_formato_xml', 'nao'])
 
 		self.listaDeParametros.append(['global-identificar_publicacoes_com_qualis', 'nao'])
-		self.listaDeParametros.append(['global-extrair_qualis_online','nao'])
+		self.listaDeParametros.append(['global-extrair_qualis_online','sim'])
 		self.listaDeParametros.append(['global-arquivo_areas_qualis',''])
 		self.listaDeParametros.append(['global-arquivo_qualis_de_congressos', ''])
+		self.listaDeParametros.append(['global-arquivo_qualis_de_periodicos', ''])
 
 		self.listaDeParametros.append(['relatorio-salvar_publicacoes_em_formato_ris', 'nao'])
 		self.listaDeParametros.append(['relatorio-incluir_artigo_em_periodico', 'sim'])

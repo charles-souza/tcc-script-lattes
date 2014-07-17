@@ -23,7 +23,7 @@
 #
 
 import re
-
+import sys
 
 from scriptLattes import *
 from qualis_extractor import *
@@ -33,10 +33,18 @@ class Qualis:
 	congressos = {}
 	qtdPB0	 = {}	# Total de artigos em periodicos por Qualis
 	qtdPB4	 = {}	# Total de trabalhos completos em congressos por Qualis
-	qtdPB5	 = {} # Total de resumos expandidos em congressos por Qualis
+	qtdPB5	 = {}	# Total de resumos expandidos em congressos por Qualis
+	tabelaDosAnos = []
+	tabelaDosTipos = {}
+	anoInicio = 0
+	anoFim = 0
 	
 
 	def __init__(self, grupo):
+
+		self.anoInicio = int(grupo.obterParametro('global-itens_desde_o_ano'))
+		self.anoFim = int(grupo.obterParametro('global-itens_ate_o_ano'))
+
 		if grupo.obterParametro('global-identificar_publicacoes_com_qualis'):
 			#self.periodicos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_periodicos'))
 			#qualis extractor -> extrai qualis diretamente da busca online do qualis
@@ -44,6 +52,7 @@ class Qualis:
 			self.qextractor = qualis_extractor(self.extrair_qualis_online)
 			
 			if self.extrair_qualis_online == 0:
+				print "\n**************************************************\n"
 				self.qextractor.load_data()
 				arqareas = grupo.obterParametro('global-arquivo_areas_qualis')
 				self.qextractor.parse_areas_file(arqareas)
@@ -52,15 +61,64 @@ class Qualis:
 				self.qextractor.save_data()
 				
 			self.congressos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_congressos'))
-			
 	
+
+	def qualisPorAno(self, membro):
+		lista = membro.listaArtigoEmPeriodico
+		listaDeArtigos = lista
+		self.inicializaTabelaDosAnos()
+		self.inicializaTabelaDosTipos()
+
+		if(len(listaDeArtigos) > 0):
+			for publicacao in listaDeArtigos:
+				ano = publicacao.ano
+				tiposQualis = publicacao.qualis.values()
+				for tipo in tiposQualis:
+					valorAtual = self.getTiposPeloAno(ano)[tipo]
+					self.setValorPeloAnoTipo(ano, tipo, valorAtual+1)
+					self.tabelaDosTipos[tipo] += 1
+
+
+	def getTabelaQualisPorAno(self):
+		return self.tabelaDosAnos
+
+	def getTabelaQualisPorTipo(self):
+		return self.tabelaDosTipos
+
+
+
+	def printTabelas(self):
+		print "\n**************************************************\n"
+		print "\nTABELAS DOS QUALIS:\n\n"
+
+		for i in range(len(self.tabelaDosAnos)):
+			print str(self.anoInicio+i)+":"
+			print "------"
+			print self.tabelaDosAnos[i]
+			print "\n\n"
+		
+		print "\nTOTAIS POR TIPO:\n"
+		print self.tabelaDosTipos
+		print "\n\n"
+
+		self.parar()
+
+
+	def parar(self):
+		sys.stdin.read(1)
+
+	
+
 	def calcularTotaisDosQualis(self, grupo):
+
 		#if (not grupo.obterParametro('global-arquivo_qualis_de_periodicos')==''):
 			#self.qtdPB0 = self.calcularTotaisDosQualisPorTipo(self.qtdPB0, grupo.compilador.listaCompletaArtigoEmPeriodico)
 		
 		if (not grupo.obterParametro('global-arquivo_qualis_de_congressos')==''):
 			self.qtdPB4 = self.calcularTotaisDosQualisPorTipo(self.qtdPB4, grupo.compilador.listaCompletaTrabalhoCompletoEmCongresso)
 			self.qtdPB5 = self.calcularTotaisDosQualisPorTipo(self.qtdPB5, grupo.compilador.listaCompletaResumoExpandidoEmCongresso)
+
+
 
 	def calcularTotaisDosQualisPorTipo(self, qtd, listaCompleta):
 		self.inicializaListaQualis(qtd)
@@ -72,6 +130,9 @@ class Qualis:
 					pub = elementos[index]
 					qtd[pub.qualis] += 1
 		return qtd
+
+
+
 
 
 	def buscaQualis(self, tipo, nome):
@@ -152,6 +213,31 @@ class Qualis:
 		lista['B5'] = 0
 		lista['C']  = 0
 		lista['Qualis nao identificado'] = 0
+
+
+	def inicializaTabelaDosAnos(self):
+		fim = self.anoFim-self.anoInicio
+		for i in range(fim+1):
+			novaLista = {}
+			self.inicializaListaQualis(novaLista)
+			self.tabelaDosAnos.append(novaLista)
+
+	def inicializaTabelaDosTipos(self):
+		self.inicializaListaQualis(self.tabelaDosTipos)
+
+
+	def getTiposPeloAno(self, ano):
+		if ano >= self.anoInicio and ano <= self.anoFim:
+			return self.tabelaDosAnos[ano-self.anoInicio]
+		else:
+			raise Exception("Ano fora do limite" "O ano "+str(ano)+" nao esta no limite determinado nas configuracoes")
+
+
+	def setValorPeloAnoTipo(self, ano, tipo, valor):
+		if ano >= self.anoInicio and ano <= self.anoFim:
+			self.tabelaDosAnos[ano-self.anoInicio][tipo] = valor
+		else:
+			raise Exception("Ano fora do limite" "O ano "+str(ano)+" nao esta no limite determinado nas configuracoes")
 
 
 	def carregarQualis(self, arquivo):
