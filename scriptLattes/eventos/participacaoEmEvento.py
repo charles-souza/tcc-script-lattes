@@ -23,64 +23,62 @@
 #
 
 
-# from scriptLattes import *  
+from scriptLattes import *  
+from geradorDePaginasWeb import *
 import re
 
-from scriptLattes.utils import compararCadeias
-
-
 class ParticipacaoEmEvento:
-    item = None  # dado bruto
-    idMembro = []
+	item = None # dado bruto
+	idMembro = []
 
-    ano = None
-    chave = None
+	ano = None
+	chave = None
 
-    def __init__(self, idMembro, partesDoItem=''):
-        self.idMembro = set([])
-        self.idMembro.add(idMembro)
+	def __init__(self, idMembro, partesDoItem=''):
+		self.idMembro = set([])
+		self.idMembro.add(idMembro)
 
-        if not partesDoItem == '':
-            # partesDoItem[0]: Numero (NAO USADO)
-            # partesDoItem[1]: Descricao
-            self.item = partesDoItem[1]
+		if not partesDoItem=='':
+			# partesDoItem[0]: Numero (NAO USADO)
+			# partesDoItem[1]: Descricao
+			self.item = partesDoItem[1]
 
-            partes = self.item
-            aux = re.findall(u'\. ((?:19|20)\d\d)\\b', partes)
-            if len(aux) > 0:
-                self.ano = aux[0]
-            else:
-                self.ano = ''
+			partes = self.item
+			aux = re.findall(u'\. ((?:19|20)\d\d)\\b', partes)
+			if len(aux)>0:
+				self.ano = aux[0] 
+			else:
+				self.ano = ''
+			
+			self.chave = self.item # chave de comparação entre os objetos
 
-            self.chave = self.item  # chave de comparação entre os objetos
-
-        else:
-            self.ano = ''
-
-
-    def compararCom(self, objeto):
-        if self.idMembro.isdisjoint(objeto.idMembro) and compararCadeias(self.item, objeto.item):
-            # Os IDs dos membros são agrupados.
-            # Essa parte é importante para a criação do GRAFO de colaborações
-            self.idMembro.update(objeto.idMembro)
-
-            if len(self.item) < len(objeto.item):
-                self.item = objeto.item
-
-            return self
-        else:  # nao similares
-            return None
+		else:
+			self.ano = ''
 
 
-    def html(self, listaDeMembros):
-        s = self.item
+	def compararCom(self, objeto):
+		if self.idMembro.isdisjoint(objeto.idMembro) and compararCadeias(self.item, objeto.item):
+			# Os IDs dos membros são agrupados. 
+			# Essa parte é importante para a criação do GRAFO de colaborações
+			self.idMembro.update(objeto.idMembro)
 
-        return s
+			if len(self.item)<len(objeto.item):
+				self.item = objeto.item
 
-    # ------------------------------------------------------------------------ #
-    def __str__(self):
-        s = "\n[PARTICIPACAO EM EVENTO] \n"
-        s += "+ID-MEMBRO   : " + str(self.idMembro) + "\n"
-        s += "+item         : @@" + self.item.encode('utf8', 'replace') + "@@\n"
+			return self
+		else: # nao similares
+			return None
 
-        return s
+
+	def html(self, listaDeMembros):
+		s = self.item
+
+		return s
+
+	# ------------------------------------------------------------------------ #
+	def __str__(self):
+		s  = "\n[PARTICIPACAO EM EVENTO] \n"
+		s += "+ID-MEMBRO   : " + str(self.idMembro) + "\n"
+		s += "+item         : @@" + self.item.encode('utf8','replace') + "@@\n"
+
+		return s
