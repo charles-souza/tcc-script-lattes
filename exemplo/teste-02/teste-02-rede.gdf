@@ -1,4 +1,0 @@
-nodedef> name VARCHAR, idLattes VARCHAR, label VARCHAR, rotulo VARCHAR, lat DOUBLE, lon DOUBLE, collaborationRank DOUBLE, producaoBibliografica DOUBLE, artigoEmPeriodico DOUBLE, livro DOUBLE, capituloDeLivro DOUBLE, trabalhoEmCongresso DOUBLE, resumoExpandido DOUBLE, resumo DOUBLE, color VARCHAR
-0,4575931307749163,Carlos Hitoshi Morimoto,Professor,-23.5598580,-46.7329875,0.15,28,4,3,3,10,3,5,'0,0,153'
-1,0131770792108992,João Eduardo Ferreira,Professor,-23.5598580,-46.7329875,0.15,69,24,3,2,32,5,3,'0,0,153'
-edgedef> node1 VARCHAR, node2 VARCHAR, weight DOUBLE
