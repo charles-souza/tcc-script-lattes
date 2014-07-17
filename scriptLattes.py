@@ -58,7 +58,7 @@ if __name__ == "__main__":
 		#novoGrupo.imprimirMatrizesDeFrequencia() 
 
 		novoGrupo.gerarGrafosDeColaboracoes() # obrigatorio
-		novoGrupo.gerarGraficosDeBarras() # obrigatorio
+		#novoGrupo.gerarGraficosDeBarras() # obrigatorio
 		novoGrupo.gerarMapaDeGeolocalizacao() # obrigatorio
 		novoGrupo.gerarPaginasWeb() # obrigatorio
 		novoGrupo.gerarArquivosTemporarios() # obrigatorio
@@ -116,3 +116,6 @@ def copiarArquivos(dir):
 	shutil.copy2(sys.path[0]+'/imagens/lattesPoint3.png', dir)
 	shutil.copy2(sys.path[0]+'/imagens/lattesPoint_shadow.png', dir)
 	shutil.copy2(sys.path[0]+'/imagens/doi.png', dir)
+	shutil.copy2(sys.path[0]+'/js/highcharts.js', dir)
+	shutil.copy2(sys.path[0]+'/js/exporting.js', dir)
+	shutil.copy2(sys.path[0]+'/js/jquery.min.js', dir)
