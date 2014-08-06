@@ -854,18 +854,112 @@ class GeradorDePaginasWeb:
             # print membro.periodo
             # print membro.atualizacaoCV
 
-            s += '\n<tr> \
-                     <td valign="center" height="40px">' + str(elemento) + '.</td> \
-                     <td valign="top" height="40px"><img src="' + membro.foto + '" width="40px"></td> \
-                     <td><a href="' + membro.url + '">' + nomeCompleto + '</a></td> \
-                     <td class="centered"><font size=-1>' + rotulo + '</font></td> \
-                     <td class="centered"><font size=-1>' + bolsa + '</font></td> \
-                     <td class="centered"><font size=-1>' + membro.periodo + '</font></td> \
-                     <td class="centered"><font size=-1>' + membro.atualizacaoCV + '</font></td> \
-                     <td class="centered"><a href="http://scholar.google.com.br/citations?view_op=search_authors&mauthors=' + nomeCompleto + '"><font size=-1>[ Cita&ccedil;&otilde;es em Google Acad&ecirc;mico | </font></a></td> \
-                     <td class="centered"><a href="http://academic.research.microsoft.com/Search?query=author:(' + nomeCompleto + ')"><font size=-1>Cita&ccedil;&otilde;es em Microsoft Acad&ecirc;mico ]</font></a></td> \
-                 </tr>'
-        s += '\n</table>'
+            anoInicio = int(self.grupo.obterParametro('global-itens_desde_o_ano'))
+			anoFim = int(self.grupo.obterParametro('global-itens_ate_o_ano'))
+			tabelaDosAnos = self.grupo.tabelaQualisPorAno[membro]
+			tabelaDosTipos = self.grupo.tabelaQualisPorTipo[membro]
+
+			tabAno = '<br><span style="font-size:14px;"><b>Qualis por ano:</b></span><br><br>'
+			tabTipo = '<br><span style="font-size:14px;"><b>Qualis por tipo:</b></span><br><br>'
+			i = 0
+
+			for conteudo in tabelaDosAnos:
+
+				if(anoInicio+i > anoFim):
+					break
+
+				display = "block"
+				if(i > 0):
+					display = "none"
+
+				anoAtual = str(anoInicio+i)
+				esquerda = '<a class="ano_esquerda" rel="'+anoAtual+'" style="cursor:pointer; padding:2px; border:1px solid #C3FDB8;">«</a>'.decode("utf8")
+				direita = '<a class="ano_direita" rel="'+anoAtual+'" style="cursor:pointer; padding:2px; border:1px solid #C3FDB8;">»</a>'.decode("utf8")
+				tabAno += '<div id="ano_'+anoAtual+'" style="display:'+display+'">'+esquerda+' <b> '+anoAtual+' </b> '+direita+'<br><br>'
+				chaves = ''
+				valores = ''
+
+				for chave, valor in conteudo.items():
+
+					if(chave == "Qualis nao identificado"):
+						chave = '<span title="Qualis nao identificado">QNI</span>'
+
+					chaves += '<div style="float:left; width:70px; border:1px solid #000; margin-left:-1px; margin-top:-1px; background:#CCC; padding:4px 6px;"><b>'+chave+'</b></div>'
+					valores += '<div style="float:left; width:70px; border:1px solid #000; margin-left:-1px; margin-top:-1px; background:#EAEAEA; padding:4px 6px;">'+str(valor)+'</div>'
+				
+				
+				tabAno += '<div>'+chaves+'</div>'
+				tabAno += '<div style="clear:both"></div>'
+				tabAno += '<div>'+valores+'</div>'
+				tabAno += '<div style="clear:both"></div>'
+				tabAno += "<br><br></div>"
+				i+=1
+			
+
+			tabTipo += '<div>'
+			chaves = ''
+			valores = ''
+
+			for chave, valor in tabelaDosTipos.items():
+					
+					if(chave == "Qualis nao identificado"):
+						chave = "QNI"
+
+					chaves += '<div style="float:left; width:70px; border:1px solid #000; margin-left:-1px; margin-top:-1px; background:#CCC; padding:4px 6px;"><b>'+chave+'</b></div>'
+					valores += '<div style="float:left; width:70px; border:1px solid #000; margin-left:-1px; margin-top:-1px; background:#EAEAEA; padding:4px 6px;">'+str(valor)+'</div>'
+
+			
+			tabTipo += '<div>'+chaves+'</div>'
+			tabTipo += '<div style="clear:both"></div>'
+			tabTipo += '<div>'+valores+'</div>'
+			tabTipo += '<div style="clear:both"></div>'
+			tabTipo += "<br><br></div><br><br>"
+
+
+
+
+			s+= '\n<tr class="testetabela"> \
+                     <td valign="center" height="40px">'+str(elemento)+'.</td> \
+                     <td valign="top" height="40px"><img src="'+membro.foto+'" width="40px"></td> \
+                     <td><a href="'+membro.url+'">'+nomeCompleto+'</a></td> \
+                     <td class="centered"><font size=-1>'+rotulo+'</font></td> \
+                     <td class="centered"><font size=-1>'+bolsa+'</font></td> \
+                     <td class="centered"><font size=-1>'+membro.periodo+'</font></td> \
+                     <td class="centered"><font size=-1>'+membro.atualizacaoCV+'</font></td> \
+                     <td class="centered"><a href="http://scholar.google.com.br/citations?view_op=search_authors&mauthors='+nomeCompleto+'"><font size=-1>[ Cita&ccedil;&otilde;es em Google Acad&ecirc;mico | </font></a></td> \
+                     <td class="centered"><a href="http://academic.research.microsoft.com/Search?query=author:('+nomeCompleto+')"><font size=-1>Cita&ccedil;&otilde;es em Microsoft Acad&ecirc;mico ]</font></a></td> \
+                 </tr> \
+                 <tr><td colspan="9"> \
+                 '+tabAno+' \
+                 '+tabTipo+' \
+                 </td></tr>'
+
+		s+='\n</table>'
+
+		#add jquery and plugins
+		s+='\
+		<script src="../../js/jquery.min.js"></script>\
+		<script src="../../js/jexpand/jExpand.js"></script>\
+		<script>\
+		$(document).ready(function(){\
+			$(".collapse-box").jExpand();\
+			$(".ano_esquerda").live("click", function(e){\
+				var anoAtual = parseInt($(this).attr("rel"));\
+				if(anoAtual > '+str(anoInicio)+'){\
+					$("#ano_"+anoAtual).css("display", "none");\
+					$("#ano_"+(anoAtual-1)).css("display", "block");\
+				}\
+			});\
+			$(".ano_direita").live("click", function(e){\
+				var anoAtual = parseInt($(this).attr("rel"));\
+				if(anoAtual < '+str(anoFim)+'){\
+					$("#ano_"+anoAtual).css("display", "none");\
+					$("#ano_"+(anoAtual+1)).css("display", "block");\
+				}\
+			});\
+		});\
+		\
+		</script>'
         s += self.paginaBottom()
 
         self.salvarPagina("membros" + self.extensaoPagina, s)
