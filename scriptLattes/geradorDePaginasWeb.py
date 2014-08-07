@@ -742,8 +742,6 @@ class GeradorDePaginasWeb:
 	def gerarPaginaDeMembros(self):
 		s= self.paginaTop()
 		s+='\n<h3>Lista de membros</h3> <table> \
-              <tr><td></td> <td></td> <td></td> <td></td> <td class="centered"><b><font size=-1>Bolsa de produtividade</font></b></td> <td class="centered"><b><font size=-1>Período de</font></b></td>           <td class="centered"><b><font size=-1>Data de          </font><b></td>  <td class="centered"></td></tr> \
-<<<<<<< HEAD
               <tr><td></td> <td></td> <td></td> <td></td> <td class="centered"><b><font size=-1>em pesquisa do CNPq</font></b></td>    <td class="centered"><b><font size=-1>análise individual</font></b></td> <td class="centered"><b><font size=-1>atualização do CV</font><b></td>  <td class="centered"></td></tr>'.decode(
             "utf8")
 
@@ -849,7 +847,6 @@ class GeradorDePaginasWeb:
 
 
 			s+= '\n<tr class="testetabela"> \
-=======
               <tr><td></td> <td></td> <td></td> <td></td> <td class="centered"><b><font size=-1>em pesquisa do CNPq</font></b></td>    <td class="centered"><b><font size=-1>análise individual</font></b></td> <td class="centered"><b><font size=-1>atualização do CV</font><b></td>  <td class="centered"></td></tr>'.decode("utf8")
 
 		elemento = 0
@@ -889,7 +886,6 @@ class GeradorDePaginasWeb:
 			#print membro.atualizacaoCV
 
 			s+= '\n<tr> \
->>>>>>> 09ce66aa00549944fac36436f7ea6aef074ec85a
                      <td valign="center" height="40px">'+str(elemento)+'.</td> \
                      <td valign="top" height="40px"><img src="'+membro.foto+'" width="40px"></td> \
                      <td><a href="'+membro.url+'">'+nomeCompleto+'</a></td> \
@@ -899,13 +895,11 @@ class GeradorDePaginasWeb:
                      <td class="centered"><font size=-1>'+membro.atualizacaoCV+'</font></td> \
                      <td class="centered"><a href="http://scholar.google.com.br/citations?view_op=search_authors&mauthors='+nomeCompleto+'"><font size=-1>[ Cita&ccedil;&otilde;es em Google Acad&ecirc;mico | </font></a></td> \
                      <td class="centered"><a href="http://academic.research.microsoft.com/Search?query=author:('+nomeCompleto+')"><font size=-1>Cita&ccedil;&otilde;es em Microsoft Acad&ecirc;mico ]</font></a></td> \
-<<<<<<< HEAD
                  </tr> \
                  <tr><td colspan="9"> \
                  '+tabAno+' \
                  '+tabTipo+' \
                  </td></tr>'
-
 		s+='\n</table>'
 
 		#add jquery and plugins
@@ -933,11 +927,8 @@ class GeradorDePaginasWeb:
 		\
 		</script>'
         s += self.paginaBottom()
-=======
-                 </tr>'
 		s+='\n</table>'
 		s+= self.paginaBottom()
->>>>>>> 09ce66aa00549944fac36436f7ea6aef074ec85a
 
 		self.salvarPagina("membros"+self.extensaoPagina, s)
 
