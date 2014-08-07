@@ -800,9 +800,9 @@ class GeradorDePaginasWeb:
 					display = "none"
 
 				anoAtual = str(anoInicio+i)
-				esquerda = '<a class="ano_esquerda" rel="'+anoAtual+'" style="cursor:pointer; padding:2px; border:1px solid #C3FDB8;">«</a>'.decode("utf8")
-				direita = '<a class="ano_direita" rel="'+anoAtual+'" style="cursor:pointer; padding:2px; border:1px solid #C3FDB8;">»</a>'.decode("utf8")
-				tabAno += '<div id="ano_'+anoAtual+'" style="display:'+display+'">'+esquerda+' <b> '+anoAtual+' </b> '+direita+'<br><br>'
+				esquerda = '<a class="ano_esquerda" rel="'+anoAtual+'" rev="'+str(elemento)+'" style="cursor:pointer; padding:2px; border:1px solid #C3FDB8;">«</a>'.decode("utf8")
+				direita = '<a class="ano_direita" rel="'+anoAtual+'" rev="'+str(elemento)+'" style="cursor:pointer; padding:2px; border:1px solid #C3FDB8;">»</a>'.decode("utf8")
+				tabAno += '<div id="ano_'+anoAtual+'_'+str(elemento)+'" style="display:'+display+'">'+esquerda+' <b> '+anoAtual+' </b> '+direita+'<br><br>'
 				chaves = ''
 				valores = ''
 
@@ -872,16 +872,18 @@ class GeradorDePaginasWeb:
 			$(".collapse-box").jExpand();\
 			$(".ano_esquerda").live("click", function(e){\
 				var anoAtual = parseInt($(this).attr("rel"));\
+				var contador = $(this).attr("rev");\
 				if(anoAtual > '+str(anoInicio)+'){\
-					$("#ano_"+anoAtual).css("display", "none");\
-					$("#ano_"+(anoAtual-1)).css("display", "block");\
+					$("#ano_"+anoAtual+"_"+contador).css("display", "none");\
+					$("#ano_"+(anoAtual-1)+"_"+contador).css("display", "block");\
 				}\
 			});\
 			$(".ano_direita").live("click", function(e){\
 				var anoAtual = parseInt($(this).attr("rel"));\
+				var contador = $(this).attr("rev");\
 				if(anoAtual < '+str(anoFim)+'){\
-					$("#ano_"+anoAtual).css("display", "none");\
-					$("#ano_"+(anoAtual+1)).css("display", "block");\
+					$("#ano_"+anoAtual+"_"+contador).css("display", "none");\
+					$("#ano_"+(anoAtual+1)+"_"+contador).css("display", "block");\
 				}\
 			});\
 		});\

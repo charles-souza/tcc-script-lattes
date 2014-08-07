@@ -376,12 +376,6 @@ class Grupo:
 			membro.tabelaQualisDosAnos = tabelas[0]
 			membro.tabelaQualisDosTipos = tabelas[1]
 
-			print "\nTOTAIS POR TIPO:\n\n"
-			print membro.nomeCompleto+"\n------------\n"
-			print membro.tabelaQualisDosTipos
-			print "\n\n"
-			sys.stdin.read(1)
-
 
 	def salvarListaTXT(self, lista, nomeArquivo):
 		dir = self.obterParametro('global-diretorio_de_saida')
