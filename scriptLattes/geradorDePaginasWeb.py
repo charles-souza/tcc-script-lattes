@@ -741,48 +741,48 @@ class GeradorDePaginasWeb:
 		
 	def gerarPaginaDeMembros(self):
 		s= self.paginaTop()
-		s+='\n<h3>Lista de membros</h3> <table> \
-              <tr><td></td> <td></td> <td></td> <td></td> <td class="centered"><b><font size=-1>em pesquisa do CNPq</font></b></td>    <td class="centered"><b><font size=-1>análise individual</font></b></td> <td class="centered"><b><font size=-1>atualização do CV</font><b></td>  <td class="centered"></td></tr>'.decode(
-            "utf8")
+		s+='\n<h3>Lista de membros</h3> <table class="collapse-box"> \
+			<tr><th></th> <th></th> <th></th> <th></th> <th class="centered"><b><font size=-1>Bolsa de produtividade<br>em pesquisa</font></b></th> <th class="centered"><b><font size=-1>Período de<br>análise individual</font></b></th><th class="centered"><b><font size=-1>Data de<br>atualização do CV</font><b></th>  <th class="centered"></th></tr>'.decode("utf8")
 
-        elemento = 0
-        for membro in self.grupo.listaDeMembros:
-            elemento += 1
-            bolsa = '(' + membro.bolsaProdutividade + ')' if not membro.bolsaProdutividade == '' else ''
-            rotulo = membro.rotulo if not membro.rotulo == '[sem rotulo]' else ''
-            rotulo = rotulo.decode('iso-8859-1', 'replace')
+		elemento = 0
+		tabela = {}
+		for membro in self.grupo.listaDeMembros:
+			elemento += 1
+			bolsa = '('+membro.bolsaProdutividade+')' if not membro.bolsaProdutividade=='' else ''
+			rotulo=  membro.rotulo if not membro.rotulo=='[sem rotulo]' else ''
+			rotulo = rotulo.decode('iso-8859-1','replace')
 
-            if "-grp[" in rotulo:
-                multirotulos = rotulo.split("::")
-                rotulo = ""
-                for r in multirotulos:
-                    grupoURL = "http://dgp.cnpq.br/buscaoperacional/detalhegrupo.jsp?grupo=" + re.search('\[(.*)\]',
-                                                                                                         r.strip()).group(
-                        1)
-                    rotulo = rotulo + "<a href=" + grupoURL + ">" + r.strip() + "</a><br>"
+			if "-grp[" in rotulo:
+				multirotulos = rotulo.split("::")
+				rotulo = ""
+				for r in multirotulos:
+					grupoURL = "http://dgp.cnpq.br/buscaoperacional/detalhegrupo.jsp?grupo="+ re.search('\[(.*)\]', r.strip()).group(1) 
+					rotulo = rotulo + "<a href=" + grupoURL + ">" + r.strip() + "</a><br>"
+			
 
-            nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
+			nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
 
-            # print " --------------------------------------------"
-            # print membro.nomeCompleto
-            # print type(membro.nomeCompleto)
-            # print " "
-            # nomeCompleto = membro.nomeCompleto.decode('utf8','replace')
-            # print nomeCompleto
-            # print type(nomeCompleto)
-            # print " --------------------------------------------"
-            # nomeCompleto = membro.nomeCompleto.decode('iso-8859-1','replace')
+			#print " --------------------------------------------"
+			#print membro.nomeCompleto
+			#print type(membro.nomeCompleto)
+			#print " "
+			#nomeCompleto = membro.nomeCompleto.decode('utf8','replace')
+			#print nomeCompleto
+			#print type(nomeCompleto)
+			#print " --------------------------------------------"
+			#nomeCompleto = membro.nomeCompleto.decode('iso-8859-1','replace')
+			
+			#print str(elemento)
+			#print membro.foto
+			#print membro.url
+			#print nomeCompleto
+			#print rotulo
+			#print bolsa
+			#print membro.periodo
+			#print membro.atualizacaoCV
 
-            # print str(elemento)
-            # print membro.foto
-            # print membro.url
-            # print nomeCompleto
-            # print rotulo
-            # print bolsa
-            # print membro.periodo
-            # print membro.atualizacaoCV
 
-            anoInicio = int(self.grupo.obterParametro('global-itens_desde_o_ano'))
+			anoInicio = int(self.grupo.obterParametro('global-itens_desde_o_ano'))
 			anoFim = int(self.grupo.obterParametro('global-itens_ate_o_ano'))
 			tabelaDosAnos = self.grupo.tabelaQualisPorAno[membro]
 			tabelaDosTipos = self.grupo.tabelaQualisPorTipo[membro]
@@ -847,45 +847,6 @@ class GeradorDePaginasWeb:
 
 
 			s+= '\n<tr class="testetabela"> \
-              <tr><td></td> <td></td> <td></td> <td></td> <td class="centered"><b><font size=-1>em pesquisa do CNPq</font></b></td>    <td class="centered"><b><font size=-1>análise individual</font></b></td> <td class="centered"><b><font size=-1>atualização do CV</font><b></td>  <td class="centered"></td></tr>'.decode("utf8")
-
-		elemento = 0
-		for membro in self.grupo.listaDeMembros:
-			elemento += 1
-			bolsa = '('+membro.bolsaProdutividade+')' if not membro.bolsaProdutividade=='' else ''
-			rotulo=  membro.rotulo if not membro.rotulo=='[sem rotulo]' else ''
-			rotulo = rotulo.decode('iso-8859-1','replace')
-
-			if "-grp[" in rotulo:
-				multirotulos = rotulo.split("::")
-				rotulo = ""
-				for r in multirotulos:
-					grupoURL = "http://dgp.cnpq.br/buscaoperacional/detalhegrupo.jsp?grupo="+ re.search('\[(.*)\]', r.strip()).group(1) 
-					rotulo = rotulo + "<a href=" + grupoURL + ">" + r.strip() + "</a><br>"
-			
-
-			nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
-
-			#print " --------------------------------------------"
-			#print membro.nomeCompleto
-			#print type(membro.nomeCompleto)
-			#print " "
-			#nomeCompleto = membro.nomeCompleto.decode('utf8','replace')
-			#print nomeCompleto
-			#print type(nomeCompleto)
-			#print " --------------------------------------------"
-			#nomeCompleto = membro.nomeCompleto.decode('iso-8859-1','replace')
-			
-			#print str(elemento)
-			#print membro.foto
-			#print membro.url
-			#print nomeCompleto
-			#print rotulo
-			#print bolsa
-			#print membro.periodo
-			#print membro.atualizacaoCV
-
-			s+= '\n<tr> \
                      <td valign="center" height="40px">'+str(elemento)+'.</td> \
                      <td valign="top" height="40px"><img src="'+membro.foto+'" width="40px"></td> \
                      <td><a href="'+membro.url+'">'+nomeCompleto+'</a></td> \
@@ -900,6 +861,7 @@ class GeradorDePaginasWeb:
                  '+tabAno+' \
                  '+tabTipo+' \
                  </td></tr>'
+
 		s+='\n</table>'
 
 		#add jquery and plugins
@@ -926,9 +888,9 @@ class GeradorDePaginasWeb:
 		});\
 		\
 		</script>'
-        s += self.paginaBottom()
-		s+='\n</table>'
 		s+= self.paginaBottom()
+
+
 
 		self.salvarPagina("membros"+self.extensaoPagina, s)
 
