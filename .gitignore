@@ -1,4 +1,11 @@
-.idea/
+*.zip
+*.tar.gz
+*.o 
+*.hi
 *.pyc
+<<<<<<< HEAD
 exemplo/teste-01/
 exemplo/teste-02/
+=======
+*.class
+>>>>>>> 09ce66aa00549944fac36436f7ea6aef074ec85a

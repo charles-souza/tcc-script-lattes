@@ -23,67 +23,99 @@
 #
 
 import sys
+import shutil
+import Levenshtein
+import os, errno
 import warnings
-from scriptLattes.grupo import Grupo
-from scriptLattes import utils
-
 warnings.filterwarnings('ignore')
 
-# sys.path.append('scriptLattes')
-# sys.path.append('scriptLattes/producoesBibliograficas/')
-# sys.path.append('scriptLattes/producoesTecnicas/')
-# sys.path.append('scriptLattes/producoesArtisticas/')
-# sys.path.append('scriptLattes/producoesUnitarias/')
-# sys.path.append('scriptLattes/orientacoes/')
-# sys.path.append('scriptLattes/eventos/')
-# sys.path.append('scriptLattes/charts/')
-# sys.path.append('scriptLattes/internacionalizacao/')
-# sys.path.append('scriptLattes/qualis/')
-# sys.path.append('scriptLattes/patentesRegistros/')
+sys.path.append('scriptLattes')
+sys.path.append('scriptLattes/producoesBibliograficas/')
+sys.path.append('scriptLattes/producoesTecnicas/')
+sys.path.append('scriptLattes/producoesArtisticas/')
+sys.path.append('scriptLattes/producoesUnitarias/')
+sys.path.append('scriptLattes/orientacoes/')
+sys.path.append('scriptLattes/eventos/')
+sys.path.append('scriptLattes/charts/')
+sys.path.append('scriptLattes/internacionalizacao/')
+sys.path.append('scriptLattes/qualis/')
+sys.path.append('scriptLattes/patentesRegistros/')
 
-# ---------------------------------------------------------------------------- #
-
-
-def print_help():
-    mensagem = """scriptLattes V8
-Veja o arquivo README.txt para detalhes de como configurar.
-> Use 'scriptLattes.py <nome_arquivo_de_configuracao>'"""
-    print(mensagem)
-
+from grupo import *
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print_help()
-        exit()
+	arquivoConfiguracao = sys.argv[1]
 
-    arquivoConfiguracao = sys.argv[1]
+	novoGrupo = Grupo(arquivoConfiguracao)
+	novoGrupo.imprimirListaDeParametros()
+	novoGrupo.imprimirListaDeRotulos()
 
-    novoGrupo = Grupo(arquivoConfiguracao)
-    novoGrupo.imprimirListaDeParametros()
-    novoGrupo.imprimirListaDeRotulos()
+	if criarDiretorio(novoGrupo.obterParametro('global-diretorio_de_saida')):
+		novoGrupo.carregarDadosCVLattes() #obrigatorio
+		novoGrupo.compilarListasDeItems() # obrigatorio
+		novoGrupo.identificarQualisEmPublicacoes() # obrigatorio
+		novoGrupo.calcularInternacionalizacao() # obrigatorio
+		#novoGrupo.imprimirMatrizesDeFrequencia() 
 
-    if utils.criarDiretorio(novoGrupo.obterParametro('global-diretorio_de_saida')):
-        novoGrupo.carregarDadosCVLattes()  # obrigatorio
-        novoGrupo.compilarListasDeItems()  # obrigatorio
-        novoGrupo.identificarQualisEmPublicacoes()  # obrigatorio
-        novoGrupo.calcularInternacionalizacao()  # obrigatorio
-        # novoGrupo.imprimirMatrizesDeFrequencia()
+		novoGrupo.gerarGrafosDeColaboracoes() # obrigatorio
+		#novoGrupo.gerarGraficosDeBarras() # obrigatorio
+		novoGrupo.gerarMapaDeGeolocalizacao() # obrigatorio
+		novoGrupo.gerarPaginasWeb() # obrigatorio
+		novoGrupo.gerarArquivosTemporarios() # obrigatorio
 
-        novoGrupo.gerarGrafosDeColaboracoes()  # obrigatorio
-        novoGrupo.gerarGraficosDeBarras()  # obrigatorio
-        novoGrupo.gerarMapaDeGeolocalizacao()  # obrigatorio
-        novoGrupo.gerarPaginasWeb()  # obrigatorio
-        novoGrupo.gerarArquivosTemporarios()  # obrigatorio
+		# copiar imagens e css
+		copiarArquivos(novoGrupo.obterParametro('global-diretorio_de_saida'))
 
-        # copiar imagens e css
-        utils.copiarArquivos(novoGrupo.obterParametro('global-diretorio_de_saida'))
+		# finalizando o processo
+		#print '[AVISO] Quem vê \'Lattes\', não vê coração! B-)'
+		#print '[AVISO] Por favor, cadastre-se na página: http://scriptlattes.sourceforge.net\n'
+		print '\n\n\n[COMO REFERENCIAR ESTE TRABALHO]'
+		print '    Jesus P. Mena-Chalco e Roberto M. Cesar-Jr.'
+		print '    scriptLattes: An open-source knowledge extraction system from the Lattes Platform.'
+		print '    Journal of the Brazilian Computer Society, vol.15, n.4, páginas 31-39, 2009.'
+		print '\n\nscriptLattes executado!'
 
-        # finalizando o processo
-        # print '[AVISO] Quem vê \'Lattes\', não vê coração! B-)'
-        # print '[AVISO] Por favor, cadastre-se na página: http://scriptlattes.sourceforge.net\n'
-        print '\n\n\n[COMO REFERENCIAR ESTE TRABALHO]'
-        print '    Jesus P. Mena-Chalco e Roberto M. Cesar-Jr.'
-        print '    scriptLattes: An open-source knowledge extraction system from the Lattes Platform.'
-        print '    Journal of the Brazilian Computer Society, vol.15, n.4, páginas 31-39, 2009.'
-        print '\n\nscriptLattes executado!'
+# ---------------------------------------------------------------------------- #
+def compararCadeias(str1, str2, qualis=False):
+	str1 = str1.strip().lower()
+	str2 = str2.strip().lower()
 
+	if len(str1)==0 or len(str2)==0:
+		return 0
+	
+	if len(str1)>=20 and len(str2)>=20 and (str1 in str2 or str2 in str1):
+		return 1
+
+	if qualis:
+		dist = Levenshtein.ratio(str1, str2)
+		if len(str1)>=10 and len(str2)>=10 and dist>=0.80:
+			#return 1
+			return dist
+
+	else:
+		if len(str1)>=10 and len(str2)>=10 and Levenshtein.distance(str1, str2)<=5:
+			return 1
+	return 0
+
+def criarDiretorio(dir):
+	if not os.path.exists(dir):
+		try:
+			os.makedirs(dir)
+		### except OSError as exc:
+		except:
+			print "\n[ERRO] Não foi possível criar ou atualizar o diretório: "+dir.encode('utf8')
+			print "[ERRO] Você conta com as permissões de escrita? \n"
+			return 0
+	return 1
+
+def copiarArquivos(dir):
+	shutil.copy2(sys.path[0]+'/css/scriptLattes.css', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint0.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint1.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint2.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint3.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint_shadow.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/doi.png', dir)
+	shutil.copy2(sys.path[0]+'/js/highcharts.js', dir)
+	shutil.copy2(sys.path[0]+'/js/exporting.js', dir)
+	shutil.copy2(sys.path[0]+'/js/jquery.min.js', dir)

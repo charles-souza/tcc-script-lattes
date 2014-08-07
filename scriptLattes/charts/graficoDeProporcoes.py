@@ -27,10 +27,10 @@
 # Mon Mar  7 13:38:35 BRT 2011
 
 class GraficoDeProporcoes:
-    grupo = None
+	grupo = None
 
-    def __init__(self, grupo, diretorioDeSaida):
-        self.grupo = grupo
+	def __init__(self, grupo, diretorioDeSaida):
+		self.grupo = grupo
 
 # from pylab import *
 #
