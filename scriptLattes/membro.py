@@ -119,6 +119,11 @@ class Membro:
 	listaOCIniciacaoCientifica = []
 	listaOCOutroTipoDeOrientacao = []
 
+	# Qualis
+	tabelaQualisDosAnos = [{}]
+	tabelaQualisDosTipos = {}
+	tabelaQualisDasCategorias = [{}]
+
 	# Eventos
 	listaParticipacaoEmEvento = []
 	listaOrganizacaoDeEvento = []
@@ -142,6 +147,9 @@ class Membro:
 		self.itemsAteOAno = itemsAteOAno
 		self.criarListaDePeriodos(self.periodo)
 		self.diretorioCache = diretorioCache
+
+
+	
 
 
 	def criarListaDePeriodos(self, periodoDoMembro):

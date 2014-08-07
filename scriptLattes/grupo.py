@@ -70,9 +70,6 @@ class Grupo:
 	matrizOutroTipoDeProducaoTecnica = None
 	matrizProducaoArtistica = None
 
-	tabelaQualisPorAno = {}
-	tabelaQualisPorTipo = {}
-	
 	matrizPatente = None
 	matrizProgramaComputador = None
 	matrizDesenhoIndustrial = None
@@ -375,10 +372,16 @@ class Grupo:
 
 	def separarQualisPorAno(self):
 		for membro in self.listaDeMembros:
-			self.qualis.qualisPorAno(membro)
-			self.tabelaQualisPorAno[membro] = self.qualis.getTabelaQualisPorAno()
-			self.tabelaQualisPorTipo[membro] = self.qualis.getTabelaQualisPorTipo()
-	
+			tabelas = self.qualis.qualisPorAno(membro)
+			membro.tabelaQualisDosAnos = tabelas[0]
+			membro.tabelaQualisDosTipos = tabelas[1]
+
+			print "\nTOTAIS POR TIPO:\n\n"
+			print membro.nomeCompleto+"\n------------\n"
+			print membro.tabelaQualisDosTipos
+			print "\n\n"
+			sys.stdin.read(1)
+
 
 	def salvarListaTXT(self, lista, nomeArquivo):
 		dir = self.obterParametro('global-diretorio_de_saida')

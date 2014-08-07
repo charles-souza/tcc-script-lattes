@@ -781,11 +781,10 @@ class GeradorDePaginasWeb:
 			#print membro.periodo
 			#print membro.atualizacaoCV
 
-
 			anoInicio = int(self.grupo.obterParametro('global-itens_desde_o_ano'))
 			anoFim = int(self.grupo.obterParametro('global-itens_ate_o_ano'))
-			tabelaDosAnos = self.grupo.tabelaQualisPorAno[membro]
-			tabelaDosTipos = self.grupo.tabelaQualisPorTipo[membro]
+			tabelaDosAnos = membro.tabelaQualisDosAnos
+			tabelaDosTipos = membro.tabelaQualisDosTipos
 
 			tabAno = '<br><span style="font-size:14px;"><b>Qualis por ano:</b></span><br><br>'
 			tabTipo = '<br><span style="font-size:14px;"><b>Qualis por tipo:</b></span><br><br>'
