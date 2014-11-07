@@ -43,13 +43,23 @@ class ArtigoEmPeriodico:
 	ano = None
 	resto = None
 	chave = None
+	issn = None
 
-	def __init__(self, idMembro, partesDoItem='', doi='', relevante='',issn=''):
+	def __init__(self, idMembro, partesDoItem='', doi='', relevante='', complemento=''):
 		self.idMembro = set([])
 		self.idMembro.add(idMembro)
 		
-		self.issn = issn
-		
+		self.doi = ''
+		self.relevante = ''
+		self.autores = ''
+		self.titulo = ''
+		self.revista = ''
+		self.volume = ''
+		self.paginas = ''
+		self.numero = ''
+		self.ano = ''
+		self.issn = ''
+
 		if not partesDoItem=='': 
 			# partesDoItem[0]: Numero (NAO USADO)
 			# partesDoItem[1]: Descricao do artigo (DADO BRUTO)
@@ -74,7 +84,7 @@ class ArtigoEmPeriodico:
 			# Processando o resto (tudo menos autores)
 			partes = partes[2].rpartition(", ")
 			self.ano = partes[2].strip().rstrip(".")
-
+			
 			partes = partes[0].rpartition("p. ")
 			if partes[1]=='': # se nao existe paginas
 				self.paginas = ''
@@ -82,7 +92,7 @@ class ArtigoEmPeriodico:
 			else:
 				self.paginas = partes[2].strip()
 				partes = partes[0]
-	
+			
 			partes = partes.rpartition(", n.")
 			if partes[1]=='': # se nao existe numero
 				self.numero = ''
@@ -90,7 +100,7 @@ class ArtigoEmPeriodico:
 			else:
 				self.numero = partes[2].strip().rstrip(",")
 				partes = partes[0]
-	
+			
 			partes = partes.rpartition(", v. ")
 			if partes[1]=='': # se nao existe volume
 				self.volume = ''
@@ -98,7 +108,7 @@ class ArtigoEmPeriodico:
 			else:
 				self.volume = partes[2].strip().rstrip(",")
 				partes = partes[0]
-
+			
 			p1 = partes.partition(". ")
 			p2 = partes.rpartition(". ")
 			if len(p1[0])>len(p2[2]):
@@ -110,16 +120,23 @@ class ArtigoEmPeriodico:
 
 			self.chave = self.autores # chave de comparação entre os objetos
 
-		else:
-			self.doi = ''
-			self.relevante = ''
-			self.autores = ''
-			self.titulo = ''
-			self.revista = ''
-			self.volume = ''
-			self.paginas = ''
-			self.numero = ''
-			self.ano = ''
+
+		# usando os dados complementares (obtidos do div/cvuri)
+		nomePeriodicoParte = complemento.split("nomePeriodico=")
+
+		if (len(nomePeriodicoParte)==2):
+			self.revista = nomePeriodicoParte[1].strip()
+
+		complementoPartes = complemento.split("&")
+		for parametro in complementoPartes:
+			partes = parametro.split("=")
+			if len(partes)==2:
+				parametroNome  = partes[0].strip()
+				parametroValor = partes[1].strip()
+				if parametroNome=="issn"   : self.issn   = parametroValor
+				if parametroNome=="volume" : self.volume = parametroValor
+				if parametroNome=="titulo" : self.titulo = parametroValor
+				#if parametroNome=="nomePeriodico": self.revista = parametroValor
 
 
 	def compararCom(self, objeto):
@@ -148,6 +165,9 @@ class ArtigoEmPeriodico:
 
 			if len(self.numero)<len(objeto.numero):
 				self.numero = objeto.numero
+			
+			if len(self.issn)<len(objeto.issn):
+				self.issn = objeto.issn
 
 			return self
 		else: # nao similares
@@ -175,12 +195,13 @@ class ArtigoEmPeriodico:
 		s+= 'v. ' + self.volume + ', '  if not self.volume==''  else ''
 		s+= 'n. ' + self.numero + ', '  if not self.numero== '' else ''
 		s+= 'p. ' + self.paginas + ', ' if not self.paginas=='' else ''
+		s+= 'issn: ' + self.issn + ', ' if not self.issn==''    else ''
 		s+= str(self.ano) + '.'         if str(self.ano).isdigit() else '.'
 
 		if not self.doi=='':
 			s+= ' <a href="'+self.doi+'" target="_blank" style="PADDING-RIGHT:4px;"><img border=0 src="doi.png"></a>' 
 
- 		s+= menuHTMLdeBuscaPB(self.titulo)
+		s+= menuHTMLdeBuscaPB(self.titulo)
 		s+= formataQualis(self.qualis, self.qualissimilar)
 		return s
 
@@ -204,17 +225,21 @@ class ArtigoEmPeriodico:
 		s+= '\nEP  - '+p2
 		s+= '\nPY  - '+str(self.ano)
 		s+= '\nL2  - '+self.doi
+		s+= '\nL3  - '+self.issn
 		s+= '\nER  - '
 		return s
 
 	def csv(self, nomeCompleto=""):
-		"""s  = "artigoEmPeriodico\t"
+		if self.qualis==None:
+			self.qualis=''
+		if self.qualissimilar==None:
+			self.qualissimilar=''
+		s  = "artigoEmPeriodico\t"
 		if nomeCompleto=="": # tratamento grupal
 			s +=  str(self.ano) +"\t"+ self.doi +"\t"+ self.titulo +"\t"+ self.revista +"\t"+ self.autores +"\t"+ self.qualis +"\t"+ self.qualissimilar
 		else: # tratamento individual
 			s += nomeCompleto +"\t"+ str(self.ano) +"\t" + self.doi +"\t"+ self.titulo +"\t"+ self.revista +"\t"+ self.autores +"\t"+ self.qualis +"\t"+ self.qualissimilar
-		return s"""
-		return ''
+		return s
 
 
 	# ------------------------------------------------------------------------ #
@@ -230,5 +255,6 @@ class ArtigoEmPeriodico:
 		s += "+VOLUME      : " + self.volume.encode('utf8','replace') + "\n"
 		s += "+NUMERO      : " + self.numero.encode('utf8','replace') + "\n"
 		s += "+ANO         : " + str(self.ano) + "\n"
+		s += "+ISSN        : " + str(self.issn) + "\n"
 		s += "+item        : " + self.item.encode('utf8','replace') + "\n"
 		return s

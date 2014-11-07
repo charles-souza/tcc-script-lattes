@@ -128,13 +128,19 @@ class Membro:
 	listaParticipacaoEmEvento = []
 	listaOrganizacaoDeEvento = []
 
+	rotuloCorFG = ''
+	rotuloCorBG = ''
+
 	###def __init__(self, idMembro, identificador, nome, periodo, rotulo, itemsDesdeOAno, itemsAteOAno, xml=''):
 	def __init__(self, idMembro, identificador, nome, periodo, rotulo, itemsDesdeOAno, itemsAteOAno, diretorioCache):
 		self.idMembro = idMembro
 		self.idLattes = identificador
 		self.nomeInicial = nome
+		self.nomeCompleto = nome.split(";")[0].strip().decode('utf8', 'replace')
 		self.periodo = periodo
 		self.rotulo = rotulo
+		self.rotuloCorFG = '#000000'
+		self.rotuloCorBG = '#FFFFFF'
 	
 		p = re.compile('[a-zA-Z]+')
 		
@@ -194,6 +200,12 @@ class Membro:
 			self.url      = parser.url
 			print "(*) Utilizando CV armazenado no cache: "+cvPath
 
+		elif '0000000000000000'==self.idLattes:
+			# se o codigo for '0000000000000000' então serao considerados dados de pessoa estrangeira - sem Lattes. 
+			# sera procurada a coautoria endogena com os outros membro.
+			# para isso é necessario indicar o nome abreviado no arquivo .list
+			return 
+
 		else:
 			if os.path.exists(cvPath):
 				arquivoH = open(cvPath)
@@ -227,7 +239,7 @@ class Membro:
 
 						if len(cvLattesHTML)<=2000:
 							print '[AVISO] O scriptLattes tentará baixar novamente o seguinte CV Lattes: ', self.url
-							time.sleep(30)
+							time.sleep(1)  #(10)
 							tentativa+=1
 							continue
 

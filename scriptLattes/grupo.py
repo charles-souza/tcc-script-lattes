@@ -69,7 +69,7 @@ class Grupo:
 	matrizTrabalhoTecnico = None
 	matrizOutroTipoDeProducaoTecnica = None
 	matrizProducaoArtistica = None
-
+	
 	matrizPatente = None
 	matrizProgramaComputador = None
 	matrizDesenhoIndustrial = None
@@ -171,6 +171,24 @@ class Grupo:
 			 		print "- [ID Lattes: " + item + "]"
 
 	def gerarCSVdeQualisdeGrupo(self):
+		prefix = self.obterParametro('global-prefixo')+'-' if not self.obterParametro('global-prefixo')=='' else ''
+
+		# Salvamos a lista individual
+		s = ""
+		for membro in self.listaDeMembros:
+			s += self.imprimeCSVListaIndividual(membro.nomeCompleto, membro.listaArtigoEmPeriodico)
+			s += self.imprimeCSVListaIndividual(membro.nomeCompleto, membro.listaTrabalhoCompletoEmCongresso)
+			s += self.imprimeCSVListaIndividual(membro.nomeCompleto, membro.listaResumoExpandidoEmCongresso)
+		self.salvarArquivoGenerico(s, prefix+'publicacoesPorMembro.csv')
+
+		# Salvamos a lista total (publicações do grupo)
+		s = ""
+		s += self.imprimeCSVListaGrupal(self.compilador.listaCompletaArtigoEmPeriodico)
+		s += self.imprimeCSVListaGrupal(self.compilador.listaCompletaTrabalhoCompletoEmCongresso)
+		s += self.imprimeCSVListaGrupal(self.compilador.listaCompletaResumoExpandidoEmCongresso)
+		self.salvarArquivoGenerico(s, prefix+'publicacoesDoGrupo.csv')
+                        
+	def gerarCSVdeQualisdeGrupoOld(self):
 		if self.obterParametro('global-identificar_publicacoes_com_qualis'):
 			prefix = self.obterParametro('global-prefixo')+'-' if not self.obterParametro('global-prefixo')=='' else ''
 
@@ -198,7 +216,7 @@ class Grupo:
 		
 		self.gerarRISdeMembros()
 		self.gerarCSVdeQualisdeGrupo()
-		#self.gerarXMLdeGrupo()
+		self.gerarXMLdeGrupo()
 		
 		# Salvamos alguns dados para análise posterior (com outras ferramentas)
 		prefix = self.obterParametro('global-prefixo')+'-' if not self.obterParametro('global-prefixo')=='' else ''
@@ -207,7 +225,7 @@ class Grupo:
 		self.salvarMatrizTXT(self.matrizDeAdjacencia, prefix+"matrizDeAdjacencia.txt")
 		self.salvarMatrizTXT(self.matrizDeFrequencia, prefix+"matrizDeFrequencia.txt")
 		self.salvarMatrizTXT(self.matrizDeFrequenciaNormalizada, prefix+"matrizDeFrequenciaNormalizada.txt")
-		# self.salvarMatrizXML(self.matrizDeAdjacencia, prefix+"matrizDeAdjacencia.xml")
+		#self.salvarMatrizXML(self.matrizDeAdjacencia, prefix+"matrizDeAdjacencia.xml")
 	
 		# (2) listas de nomes, rótulos, ids
 		self.salvarListaTXT(self.nomes, prefix+"listaDeNomes.txt")
@@ -241,7 +259,8 @@ class Grupo:
 		string = "nodedef> name VARCHAR, idLattes VARCHAR, label VARCHAR, rotulo VARCHAR, lat DOUBLE, lon DOUBLE, collaborationRank DOUBLE, producaoBibliografica DOUBLE, artigoEmPeriodico DOUBLE, livro DOUBLE, capituloDeLivro DOUBLE, trabalhoEmCongresso DOUBLE, resumoExpandido DOUBLE, resumo DOUBLE, color VARCHAR"
 		i = 0
 		for membro in self.listaDeMembros:
-			string += "\n"+str(i)+","+membro.idLattes+","+membro.nomeCompleto+","+membro.rotulo+","+membro.enderecoProfissionalLat+","+membro.enderecoProfissionalLon+","
+			nomeCompleto = unicodedata.normalize('NFKD', membro.nomeCompleto).encode('ASCII', 'ignore')
+			string += "\n"+str(i)+","+membro.idLattes+","+nomeCompleto+","+membro.rotulo+","+membro.enderecoProfissionalLat+","+membro.enderecoProfissionalLon+","
 			string += str(self.vectorRank[i])+","
 			string += str(len(membro.listaArtigoEmPeriodico)+len(membro.listaLivroPublicado)+len(membro.listaCapituloDeLivroPublicado)+len(membro.listaTrabalhoCompletoEmCongresso)+len(membro.listaResumoExpandidoEmCongresso)+len(membro.listaResumoEmCongresso))+","
 			string += str(len(membro.listaArtigoEmPeriodico))+","
@@ -262,10 +281,11 @@ class Grupo:
 				if (i!=j) and (matriz[i,j]>0):
 					string +='\n'+str(i)+','+str(j)+','+str(matriz[i,j])
 
+
 		# gerando o arquivo GDF
 		dir = self.obterParametro('global-diretorio_de_saida')
 		arquivo = open(dir+"/"+nomeArquivo, 'w')
-		arquivo.write(string.encode("utf8"))
+		arquivo.write(string) # .encode("utf8","ignore"))
 		arquivo.close()
 
 
@@ -367,7 +387,7 @@ class Grupo:
 				self.qualis.analisarPublicacoes(membro, self) # Qualis - Adiciona Qualis as publicacoes dos membros
 			self.qualis.calcularTotaisDosQualis(self)
 
-		self.separarQualisPorAno()
+			self.separarQualisPorAno()
 
 
 	def separarQualisPorAno(self):

@@ -110,7 +110,6 @@ class GeradorDePaginasWeb:
 		s+='[ <a href=membros'+self.extensaoPagina+'>Membros</a> \
             | <a href=#producaoBibliografica>Produção bibliográfica</a> \
             | <a href=#producaoTecnica>Produção técnica</a> \
-            | <a href=#patenteRegistro>Patente e Registro</a> \
             | <a href=#producaoArtistica>Produção artística</a> '.decode("utf8")
 
 		if self.grupo.obterParametro('relatorio-mostrar_orientacoes'):
@@ -182,15 +181,15 @@ class GeradorDePaginasWeb:
 			s+= '<i>Nenhum item achado nos currículos Lattes</i>'.decode("utf8")
 
 
-		s+='</ul> <h3 id="patenteRegistro">Patente e Registro</h3> <ul>'.decode("utf8")
-		if self.nPR0>0:
-			s+= '<li> <a href="PR0-0'+self.extensaoPagina+'">Patente</a> '.decode("utf8")+'('+str(self.nPR0)+')'
-		if self.nPR1>0:
-			s+= '<li> <a href="PR1-0'+self.extensaoPagina+'">Programa de computador</a> '.decode("utf8")+'('+str(self.nPR1)+')'
-		if self.nPR2>0:
-			s+= '<li> <a href="PR2-0'+self.extensaoPagina+'">Desenho industrial</a> '.decode("utf8")+'('+str(self.nPR2)+')'
-		if self.nPR0 == 0 and self.nPR1 == 0 and self.nPR2 == 0:
-			s+= '<i>Nenhum item achado nos currículos Lattes</i>'.decode("utf8")
+		#s+='</ul> <h3 id="patenteRegistro">Patente e Registro</h3> <ul>'.decode("utf8")
+		#if self.nPR0>0:
+		#	s+= '<li> <a href="PR0-0'+self.extensaoPagina+'">Patente</a> '.decode("utf8")+'('+str(self.nPR0)+')'
+		# if self.nPR1>0:
+		#	s+= '<li> <a href="PR1-0'+self.extensaoPagina+'">Programa de computador</a> '.decode("utf8")+'('+str(self.nPR1)+')'
+		#if self.nPR2>0:
+		#	s+= '<li> <a href="PR2-0'+self.extensaoPagina+'">Desenho industrial</a> '.decode("utf8")+'('+str(self.nPR2)+')'
+		#if self.nPR0 == 0 and self.nPR1 == 0 and self.nPR2 == 0:
+		#	s+= '<i>Nenhum item achado nos currículos Lattes</i>'.decode("utf8")
 
 
 		s+='</ul> <h3 id="producaoArtistica">Produção artística</h3> <ul>'.decode("utf8")
@@ -394,13 +393,13 @@ class GeradorDePaginasWeb:
 		self.nPR2 =0
 		self.nPR  =0
 
-		if self.grupo.obterParametro('relatorio-incluir_patente'):
-			self.nPR0 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaPatente, "Patente", "PR0")
-			self.nPR1 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaProgramaComputador, "Programa de computador", "PR1")
-			self.nPR2 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaDesenhoIndustrial, "Desenho industrial", "PR2")
+		#if self.grupo.obterParametro('relatorio-incluir_patente'):
+		#	self.nPR0 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaPatente, "Patente", "PR0")
+		#	self.nPR1 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaProgramaComputador, "Programa de computador", "PR1")
+		#	self.nPR2 = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaDesenhoIndustrial, "Desenho industrial", "PR2")
 
 		# Total de produções técnicas
-		self.nPR = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaPR, "Total de patentes e registros", "PR")
+		#self.nPR = self.gerarPaginaDeProducoes(self.grupo.compilador.listaCompletaPR, "Total de patentes e registros", "PR")
 
 
 	def gerarPaginasDeOrientacoes(self):
@@ -478,6 +477,7 @@ class GeradorDePaginasWeb:
 	def gerarPaginasDeInternacionalizacao(self):
 		self.nIn0 = 0
 		self.nIn0 = self.gerarPaginaDeInternacionalizacao(self.grupo.listaDePublicacoesEinternacionalizacao, "Coautoria e internacionalização", "In0")
+
 
 
 	def gerarPaginaDeProducoes(self, listaCompleta, tituloPagina, prefixo, ris=False):
@@ -679,7 +679,7 @@ class GeradorDePaginasWeb:
 		if self.grupo.obterParametro('grafo-considerar_rotulos_dos_membros_do_grupo'):
 			s+='As cores representam os seguintes rótulos: '.decode("utf8")
 			for i in range(0, len(self.grupo.listaDeRotulos)):
-				rot = self.grupo.listaDeRotulos[i].decode("utf8")
+				rot = self.grupo.listaDeRotulos[i].decode("utf8","ignore")
 				cor = self.grupo.listaDeRotulosCores[i].decode("utf8")
 				if rot=='':
 					rot = '[Sem rótulo]'.decode("utf8")
@@ -717,7 +717,7 @@ class GeradorDePaginasWeb:
 				for i in range(0, len(self.grupo.listaDeRotulos)): 
 					somaAuthorRank = 0
 
-					rot = self.grupo.listaDeRotulos[i].decode("utf8")
+					rot = self.grupo.listaDeRotulos[i].decode("utf8","ignore")
 					cor = self.grupo.listaDeRotulosCores[i].decode("utf8")
 					s+='<b><span style="background-color:'+cor+'">&nbsp;&nbsp;&nbsp;&nbsp;</span>'+rot+'</b><br>'
 
@@ -937,9 +937,9 @@ class GeradorDePaginasWeb:
 
 		s+='\n<br>Data de processamento: '+data+'<br> \
         <div id="footer"> \
-        Este arquivo foi gerado automaticamente por <a href="http://scriptlattes.sourceforge.net/">scriptLattes '+self.version+'</a> \
-        (desenvolvido no <a href="http://cmcc.ufabc.edu.br/">CMCC-UFABC</a> e \
-        no <a href="http://ccsl.ime.usp.br/">CCSL-IME/USP</a> por <a href="http://professor.ufabc.edu.br/~jesus.mena/">Jesús P. Mena-Chalco</a> e <a href="http://www.ime.usp.br/~cesar">Roberto M. Cesar-Jr</a>). \
+        Este arquivo foi gerado automaticamente por <a href="http://scriptlattes.sourceforge.net/">scriptLattes '+self.version+'</a>. \
+		(desenvolvido no <a href="http://nuvem.ufabc.edu.br/">NUVEM/UFABC</a> e \
+		no <a href="http://ccsl.ime.usp.br/">CCSL-IME/USP</a> por <a href="http://professor.ufabc.edu.br/~jesus.mena/">Jesús P. Mena-Chalco</a> e <a href="http://www.ime.usp.br/~cesar">Roberto M. Cesar-Jr</a>). \
         Os resultados estão sujeitos a falhas devido a inconsistências no preenchimento dos currículos Lattes. Caso note alguma falha, por favor, contacte o responsável por esta página: <a href="mailto:'+self.grupo.obterParametro('global-email_do_admin')+'">'+self.grupo.obterParametro('global-email_do_admin')+'</a> \
         </div> \
         <script type="text/javascript">\
@@ -958,7 +958,7 @@ class GeradorDePaginasWeb:
 
 	def salvarPagina(self, nome, conteudo):
 		file = open(self.dir+"/"+nome, 'w')
- 		file.write(conteudo.encode('utf8','replace'))
+		file.write(conteudo.encode('utf8','replace'))
 		file.close()
 
 
@@ -1018,7 +1018,7 @@ def menuHTMLdeBuscaPA(titulo):
 	if not qualis==None:
 		if qualis=='':
 			qualis = 'Qualis nao identificado'
-	
+		
 		if qualis=='Qualis nao identificado':
 			# Qualis nao identificado - imprime em vermelho
 			s += '<font color="#8B0000"><b>Qualis: N&atilde;o identificado</b></font> ('+qualissimilar+')'
