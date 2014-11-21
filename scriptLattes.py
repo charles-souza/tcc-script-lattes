@@ -3,7 +3,7 @@
 #
 #
 #  scriptLattes V8
-#  Copyright 2005-2013: Jesús P. Mena-Chalco e Roberto M. Cesar-Jr.
+#  Copyright 2005-2014: Jesús P. Mena-Chalco e Roberto M. Cesar-Jr.
 #  http://scriptlattes.sourceforge.net/
 #
 #
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 	arquivoConfiguracao = sys.argv[1]
 	#os.chdir( os.path.abspath(os.path.join(arquivoConfiguracao, os.pardir)))
 	novoGrupo = Grupo(arquivoConfiguracao)
-	novoGrupo.imprimirListaDeParametros()
+	#novoGrupo.imprimirListaDeParametros()
 	novoGrupo.imprimirListaDeRotulos()
 
 	if criarDiretorio(novoGrupo.obterParametro('global-diretorio_de_saida')):
@@ -62,20 +62,13 @@ if __name__ == "__main__":
 		novoGrupo.compilarListasDeItems() # obrigatorio
 		novoGrupo.identificarQualisEmPublicacoes() # obrigatorio
 		novoGrupo.calcularInternacionalizacao() # obrigatorio
-		novoGrupo.imprimirMatrizesDeFrequencia() 
+		#novoGrupo.imprimirMatrizesDeFrequencia() 
 
 		novoGrupo.gerarGrafosDeColaboracoes() # obrigatorio
-		print "[ROTULOS]"
-		print "- "+str(novoGrupo.listaDeRotulos)
-		print "- "+str(novoGrupo.listaDeRotulosCores)
-
-		novoGrupo.gerarGraficosDeBarras() # obrigatorio
+		#novoGrupo.gerarGraficosDeBarras() # java charts
 		novoGrupo.gerarMapaDeGeolocalizacao() # obrigatorio
 		novoGrupo.gerarPaginasWeb() # obrigatorio
-
-		#novoGrupo.gerarXMLdeGrupo()
-		novoGrupo.gerarCSVdeQualisdeGrupo()
-		novoGrupo.gerarRISdeGrupo()
+		novoGrupo.gerarArquivosTemporarios() # obrigatorio
 
 		# copiar imagens e css
 		copiarArquivos(novoGrupo.obterParametro('global-diretorio_de_saida'))
@@ -83,9 +76,54 @@ if __name__ == "__main__":
 		# finalizando o processo
 		#print '[AVISO] Quem vê \'Lattes\', não vê coração! B-)'
 		#print '[AVISO] Por favor, cadastre-se na página: http://scriptlattes.sourceforge.net\n'
-		print '\n\n\n[COMO REFERENCIAR ESTE TRABALHO]'
-		print '    Jesus P. Mena-Chalco e Roberto M. Cesar-Jr.'
+		print '\n\n\n[PARA REFERENCIAR/CITAR ESTE SOFTWARE USE]'
+		print '    Jesus P. Mena-Chalco & Roberto M. Cesar-Jr.'
 		print '    scriptLattes: An open-source knowledge extraction system from the Lattes Platform.'
 		print '    Journal of the Brazilian Computer Society, vol.15, n.4, páginas 31-39, 2009.'
-
+		print '    http://dx.doi.org/10.1007/BF03194511'
 		print '\n\nscriptLattes executado!'
+
+# ---------------------------------------------------------------------------- #
+def compararCadeias(str1, str2, qualis=False):
+	str1 = str1.strip().lower()
+	str2 = str2.strip().lower()
+
+	if len(str1)==0 or len(str2)==0:
+		return 0
+	
+	if len(str1)>=20 and len(str2)>=20 and (str1 in str2 or str2 in str1):
+		return 1
+
+	if qualis:
+		dist = Levenshtein.ratio(str1, str2)
+		if len(str1)>=10 and len(str2)>=10 and dist>=0.90:
+			#return 1
+			return dist
+
+	else:
+		if len(str1)>=10 and len(str2)>=10 and Levenshtein.distance(str1, str2)<=5:
+			return 1
+	return 0
+
+def criarDiretorio(dir):
+	if not os.path.exists(dir):
+		try:
+			os.makedirs(dir)
+		### except OSError as exc:
+		except:
+			print "\n[ERRO] Não foi possível criar ou atualizar o diretório: "+dir.encode('utf8')
+			print "[ERRO] Você conta com as permissões de escrita? \n"
+			return 0
+	return 1
+
+def copiarArquivos(dir):
+	shutil.copy2(sys.path[0]+'/css/scriptLattes.css', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint0.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint1.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint2.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint3.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/lattesPoint_shadow.png', dir)
+	shutil.copy2(sys.path[0]+'/imagens/doi.png', dir)
+	shutil.copy2(sys.path[0]+'/js/highcharts.js', dir)
+	shutil.copy2(sys.path[0]+'/js/exporting.js', dir)
+	shutil.copy2(sys.path[0]+'/js/jquery.min.js', dir)

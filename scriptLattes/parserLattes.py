@@ -229,6 +229,8 @@ class ParserLattes(HTMLParser):
 	relevante = 0
 	umaUnidade = 0
 	idOrientando = None
+	citado = 0
+	complemento = ''
 
 	# ------------------------------------------------------------------------ #
 	def __init__(self, idMembro, cvLattesHTML):
@@ -240,6 +242,7 @@ class ParserLattes(HTMLParser):
 		self.nomeCompleto = u'[Nome-nao-identificado]'
 
 		self.item = ''
+		self.issn = ''
 		self.listaIDLattesColaboradores = []
 		self.listaFormacaoAcademica = []
 		self.listaProjetoDePesquisa = []
@@ -299,6 +302,7 @@ class ParserLattes(HTMLParser):
 		self.doi = ''
 		self.relevante = 0
 		self.idOrientando = ''
+		self.complemento = ''
 
 		# contornamos alguns erros do HTML da Plataforma Lattes
 		cvLattesHTML = cvLattesHTML.replace("<![CDATA[","")
@@ -318,6 +322,21 @@ class ParserLattes(HTMLParser):
 		self.feed(cvLattesHTML)
 
 	# ------------------------------------------------------------------------ #
+	
+	def parse_issn(self,url):
+	    s = url.find('issn=')
+	    if s == -1:
+	        return None
+	    e = url.find('&',s)
+	    if e == -1:
+	        return None
+	    
+	    issnvalue = url[s:e].split('=')
+	    issn = issnvalue[1]
+	    if len(issn) < 8: return
+	    issn = issn[:8]
+	    self.issn = issn[0:4]+'-'+issn[4:8]
+	
 	def handle_starttag(self, tag, attributes):
 
 		if tag=='h2':
@@ -347,6 +366,13 @@ class ParserLattes(HTMLParser):
 			self.item = ''
 
 		if tag=='div':
+			self.citado = 0
+			
+			for name, value in attributes:
+			    if name == 'cvuri':
+			        self.parse_issn(value)
+			        
+			
 			for name, value in attributes:
 				if name=='class' and value=='title-wrapper':
 					self.umaUnidade = 1	
@@ -377,6 +403,13 @@ class ParserLattes(HTMLParser):
 						self.salvarParte2 = 0
 						if not self.salvarParte3:
 							self.partesDoItem = []
+
+				if name=='class' and (value=='citacoes' or value=='citado'):
+					self.citado = 1
+
+				if name=='cvuri' and self.citado:
+					self.citado = 0
+					self.complemento = value.replace("/buscatextual/servletcitacoes?","")
 
 
 		if tag=='h1' and self.umaUnidade: 
@@ -416,6 +449,16 @@ class ParserLattes(HTMLParser):
 					if name=='src' and u'ico_relevante' in value:
 						self.relevante = 1
 						break
+			    
+				"""for name,value in attributes:
+					if name=='data-issn':
+						if len(value) == 8:
+						    self.issn = value[0:4]+'-'+value[4:8]
+						break
+			    """ 
+			
+			
+			
 
 		if tag=='br':
 			self.item = self.item + ' '
@@ -531,102 +574,104 @@ class ParserLattes(HTMLParser):
 						self.listaPremioOuTitulo.append(iessimoPremio) # acrescentamos o objeto de PremioOuTitulo
 
 
-					if self.achouPatenteRegistro:
-						#print "===>>>> PROCESSANDO PATENTE e REGISTRO"
-						if self.achouPatente:
- 							iessimoItem = Patente(self.idMembro, self.partesDoItem, self.relevante)
-							self.listaPatente.append(iessimoItem)    
-						if self.achouProgramaComputador:
- 							iessimoItem = ProgramaComputador(self.idMembro, self.partesDoItem, self.relevante)
-							self.listaProgramaComputador.append(iessimoItem)
-						if self.achouDesenhoIndustrial:
- 							iessimoItem = DesenhoIndustrial(self.idMembro, self.partesDoItem, self.relevante)
-							self.listaDesenhoIndustrial.append(iessimoItem)
+					#if self.achouPatenteRegistro:
+					#	#print "===>>>> PROCESSANDO PATENTE e REGISTRO"
+					#	if self.achouPatente:
+ 					#		iessimoItem = Patente(self.idMembro, self.partesDoItem, self.relevante)
+					#		self.listaPatente.append(iessimoItem)    
+					#	if self.achouProgramaComputador:
+ 					#		iessimoItem = ProgramaComputador(self.idMembro, self.partesDoItem, self.relevante)
+					#		self.listaProgramaComputador.append(iessimoItem)
+					#	if self.achouDesenhoIndustrial:
+ 					#		iessimoItem = DesenhoIndustrial(self.idMembro, self.partesDoItem, self.relevante)
+					#		self.listaDesenhoIndustrial.append(iessimoItem)
 
 					if self.achouProducoes:
 						if self.achouProducaoEmCTA:
 							if self.achouArtigoEmPeriodico:
- 	 							iessimoItem = ArtigoEmPeriodico(self.idMembro, self.partesDoItem, self.doi, self.relevante)
+								iessimoItem = ArtigoEmPeriodico(self.idMembro, self.partesDoItem, self.doi, self.relevante, self.complemento)
 								self.listaArtigoEmPeriodico.append(iessimoItem)
 								self.doi = ''
+								self.issn = ''
 								self.relevante = 0
+								self.complemento = ''
     
 							if self.achouLivroPublicado:
-	 	 						iessimoItem = LivroPublicado(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = LivroPublicado(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaLivroPublicado.append(iessimoItem)
 								self.relevante = 0
     
 							if self.achouCapituloDeLivroPublicado:
-		 						iessimoItem = CapituloDeLivroPublicado(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = CapituloDeLivroPublicado(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaCapituloDeLivroPublicado.append(iessimoItem)
 								self.relevante = 0
 					
 							if self.achouTextoEmJornalDeNoticia:
- 		 						iessimoItem = TextoEmJornalDeNoticia(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = TextoEmJornalDeNoticia(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaTextoEmJornalDeNoticia.append(iessimoItem)
 								self.relevante = 0
 					
 							if self.achouTrabalhoCompletoEmCongresso:
- 	 							iessimoItem = TrabalhoCompletoEmCongresso(self.idMembro, self.partesDoItem, self.doi, self.relevante)
+								iessimoItem = TrabalhoCompletoEmCongresso(self.idMembro, self.partesDoItem, self.doi, self.relevante)
 								self.listaTrabalhoCompletoEmCongresso.append(iessimoItem)
 								self.doi = ''
 								self.relevante = 0
 						
 							if self.achouResumoExpandidoEmCongresso:
- 	 							iessimoItem = ResumoExpandidoEmCongresso(self.idMembro, self.partesDoItem, self.doi, self.relevante)
+								iessimoItem = ResumoExpandidoEmCongresso(self.idMembro, self.partesDoItem, self.doi, self.relevante)
 								self.listaResumoExpandidoEmCongresso.append(iessimoItem)
 								self.doi = ''
 								self.relevante = 0
 					
 							if self.achouResumoEmCongresso:
- 		 						iessimoItem = ResumoEmCongresso(self.idMembro, self.partesDoItem, self.doi, self.relevante)
+								iessimoItem = ResumoEmCongresso(self.idMembro, self.partesDoItem, self.doi, self.relevante)
 								self.listaResumoEmCongresso.append(iessimoItem)
 								self.doi = ''
 								self.relevante = 0
     
 							if self.achouArtigoAceito:
- 		 						iessimoItem =  ArtigoAceito(self.idMembro, self.partesDoItem, self.doi, self.relevante)
+								iessimoItem =  ArtigoAceito(self.idMembro, self.partesDoItem, self.doi, self.relevante)
 								self.listaArtigoAceito.append(iessimoItem)
 								self.doi = ''
 								self.relevante = 0
 					
 							if self.achouApresentacaoDeTrabalho:
- 		 						iessimoItem =  ApresentacaoDeTrabalho(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem =  ApresentacaoDeTrabalho(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaApresentacaoDeTrabalho.append(iessimoItem)
     
 							if self.achouOutroTipoDeProducaoBibliografica:
- 		 						iessimoItem = OutroTipoDeProducaoBibliografica(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = OutroTipoDeProducaoBibliografica(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaOutroTipoDeProducaoBibliografica.append(iessimoItem)
 
 
 						if self.achouProducaoTecnica:
 							if self.achouSoftwareComPatente:
- 	 							iessimoItem = SoftwareComPatente(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = SoftwareComPatente(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaSoftwareComPatente.append(iessimoItem)
     
 							if self.achouSoftwareSemPatente:
- 	 							iessimoItem = SoftwareSemPatente(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = SoftwareSemPatente(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaSoftwareSemPatente.append(iessimoItem)
 						
 							if self.achouProdutoTecnologico:
- 	 							iessimoItem = ProdutoTecnologico(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = ProdutoTecnologico(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaProdutoTecnologico.append(iessimoItem)
     
 							if self.achouProcessoOuTecnica:
- 	 							iessimoItem = ProcessoOuTecnica(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = ProcessoOuTecnica(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaProcessoOuTecnica.append(iessimoItem)
     
 							if self.achouTrabalhoTecnico:
- 	 							iessimoItem = TrabalhoTecnico(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = TrabalhoTecnico(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaTrabalhoTecnico.append(iessimoItem)
     
 							if self.achouOutroTipoDeProducaoTecnica:
- 	 							iessimoItem = OutroTipoDeProducaoTecnica(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = OutroTipoDeProducaoTecnica(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaOutroTipoDeProducaoTecnica.append(iessimoItem)
 
 						if self.achouProducaoArtisticaCultural:
 							if self.achouOutraProducaoArtisticaCultural:
- 								iessimoItem = ProducaoArtistica(self.idMembro, self.partesDoItem, self.relevante)
+								iessimoItem = ProducaoArtistica(self.idMembro, self.partesDoItem, self.relevante)
 								self.listaProducaoArtistica.append(iessimoItem)
 
 
