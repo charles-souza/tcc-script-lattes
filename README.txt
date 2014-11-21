@@ -62,6 +62,10 @@ URL DO PROJETO
 =========================================================================================
 LOG
 
+Dom Nov 21 17:30:00 BRT 2014
+-- Integração do ScriptLattesGUI -> interface gráfica e mudanças para permitir
+  que o ScriptLattes funcione no Windows
+
 Dom Set 21 13:42:30 BRT 2014
 -- Melhora nos procedimento de identificação de anos para os projetos de pesquisa.
 -- Melhora da função de geração das informações em formato XML.
