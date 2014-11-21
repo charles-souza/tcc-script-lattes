@@ -28,7 +28,7 @@ import re
 import math
 from membro import *
 from grupo import *
-from formacaoAcademica import *
+from producoesUnitarias.formacaoAcademica import *
 
 class GeradorDeXML:
 	grupo = None

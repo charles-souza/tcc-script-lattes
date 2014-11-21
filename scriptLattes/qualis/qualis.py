@@ -26,6 +26,8 @@ import re
 import sys
 
 from scriptLattes import *
+import fileinput
+from scriptLattes.util import compararCadeias, buscarArquivo
 from qualis_extractor import *
 
 class Qualis:
@@ -239,6 +241,8 @@ class Qualis:
 	def carregarQualis(self, arquivo):
 		lista = {}
 		if (not arquivo==''):
+			arquivo = buscarArquivo(arquivo)
+			
 			for linha in fileinput.input(arquivo):
 				linha = linha.replace("\r","")
 				linha = linha.replace("\n","")
