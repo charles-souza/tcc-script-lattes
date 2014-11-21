@@ -39,10 +39,8 @@ class Qualis:
 
 	def __init__(self, grupo):
 		if grupo.obterParametro('global-identificar_publicacoes_com_qualis'):
-			self.periodicos = self.carregarQualis(
-					buscarArquivo(grupo.obterParametro('global-arquivo_qualis_de_periodicos')))
-			self.congressos = self.carregarQualis(
-					buscarArquivo(grupo.obterParametro('global-arquivo_qualis_de_congressos')))
+			self.periodicos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_periodicos'))
+			self.congressos = self.carregarQualis(grupo.obterParametro('global-arquivo_qualis_de_congressos'))
 	
 	def calcularTotaisDosQualis(self, grupo):
 		if (not grupo.obterParametro('global-arquivo_qualis_de_periodicos')==''):
@@ -138,6 +136,8 @@ class Qualis:
 	def carregarQualis(self, arquivo):
 		lista = {}
 		if (not arquivo==''):
+			arquivo = buscarArquivo(arquivo)
+			
 			for linha in fileinput.input(arquivo):
 				linha = linha.replace("\r","")
 				linha = linha.replace("\n","")

@@ -39,8 +39,11 @@ def buscarArquivo(filepath, arquivoConfiguracao=None):
         #vamos tentar mudar o diretorio pro atual do arquivo
         os.chdir( os.path.abspath(os.path.join(arquivoConfiguracao, os.pardir)))
     if not os.path.isfile(filepath):
-        # se ainda nao existe, tentemos ver se o list não está junto com o config
+        # se ainda nao existe, tentemos ver se o arquivo não está junto com o config
         filepath = os.path.abspath(os.path.basename(filepath))
+    else:
+        # se encontramos, definimos então caminho absoluto
+        filepath = os.path.abspath(filepath)
     os.chdir( curdir )
     return filepath
 
