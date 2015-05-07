@@ -13,9 +13,9 @@ class OutputStream:
         self.encoding = encoding
         self.output = output
     def write(self, text):
-        if self.encoding:
+        try:
             text = text.decode(self.encoding)
-        else:
+        except:
             try:
                 text = text.decode('utf8').encode('iso-8859-1')
             except:

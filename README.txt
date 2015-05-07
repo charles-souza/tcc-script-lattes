@@ -8,13 +8,13 @@ SINOPSIS
 REQUISITOS
 	Para a compilação precisam-se de alguns módulos Python. Para instalar esses
     módulos execute como root (admin):
-	# apt-get install python-all python-setuptools python-utidylib python-matplotlib python-levenshtein python-pygraphviz python-numpy tidy python-scipy python-imaging
+	# apt-get install python-all python-setuptools python-utidylib python-matplotlib python-levenshtein python-pygraphviz python-numpy tidy python-scipy python-imaging python-mechanize
 	# easy_install pytidylib
 	# pip install beautifulsoup
 	
 
 	Em Ubuntu pode executar as seguintes instruções no terminal (linha de comandos):
-	sudo apt-get install python-all python-setuptools python-utidylib python-matplotlib python-levenshtein python-pygraphviz python-numpy tidy python-scipy python-imaging
+	sudo apt-get install python-all python-setuptools python-utidylib python-matplotlib python-levenshtein python-pygraphviz python-numpy tidy python-scipy python-imaging python-mechanize
 	sudo easy_install pytidylib
 	sudo pip install beautifulsoup
 
@@ -61,6 +61,10 @@ URL DO PROJETO
 
 =========================================================================================
 LOG
+
+Qui Mai  7 11:10:00 BRT 2015
+-- Criação de novo extrator do lattes, baixaLattes, e exigência de nova dependência
+  para executar o scriptLattes: mechanize (python-mechanize)
 
 Dom Nov 21 17:30:00 BRT 2014
 -- Integração do ScriptLattesGUI -> interface gráfica e mudanças para permitir
