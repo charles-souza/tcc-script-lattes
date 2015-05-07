@@ -79,4 +79,8 @@ def baixaCVLattes(id_lattes, debug=True):
 			if debug:
 				print e
 			tries -= 1
+	if debug:
+		print '[AVISO] Nao é possível obter o CV Lattes: ', id_lattes
+		print '[AVISO] Certifique-se que o CV existe.'
+	
 	raise Exception("Nao foi possivel baixar o CV Lattes em 5 tentativas")
