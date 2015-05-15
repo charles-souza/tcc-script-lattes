@@ -28,12 +28,13 @@ import re
 import sets
 import datetime
 import time
-
+import os
 
 from parserLattes import *
 from parserLattesXML import *
 from htmlentitydefs import name2codepoint
-from geolocalizador import *
+from charts.geolocalizador import *
+from baixaLattes import *
 
 class Membro:
 	idLattes = None # ID Lattes
@@ -119,29 +120,43 @@ class Membro:
 	listaOCIniciacaoCientifica = []
 	listaOCOutroTipoDeOrientacao = []
 
+	# Qualis
+	tabelaQualisDosAnos = [{}]
+	tabelaQualisDosTipos = {}
+	tabelaQualisDasCategorias = [{}]
+
 	# Eventos
 	listaParticipacaoEmEvento = []
 	listaOrganizacaoDeEvento = []
+
+	rotuloCorFG = ''
+	rotuloCorBG = ''
 
 	###def __init__(self, idMembro, identificador, nome, periodo, rotulo, itemsDesdeOAno, itemsAteOAno, xml=''):
 	def __init__(self, idMembro, identificador, nome, periodo, rotulo, itemsDesdeOAno, itemsAteOAno, diretorioCache):
 		self.idMembro = idMembro
 		self.idLattes = identificador
 		self.nomeInicial = nome
+		self.nomeCompleto = nome.split(";")[0].strip().decode('utf8', 'replace')
 		self.periodo = periodo
 		self.rotulo = rotulo
+		self.rotuloCorFG = '#000000'
+		self.rotuloCorBG = '#FFFFFF'
 	
 		p = re.compile('[a-zA-Z]+')
 		
 		if p.match(identificador):
-		    self.url = 'http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id='+identificador
+			self.url = 'http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id='+identificador
 		else:
-		    self.url = 'http://lattes.cnpq.br/'+identificador
+			self.url = 'http://lattes.cnpq.br/'+identificador
 		
 		self.itemsDesdeOAno = itemsDesdeOAno
 		self.itemsAteOAno = itemsAteOAno
 		self.criarListaDePeriodos(self.periodo)
 		self.diretorioCache = diretorioCache
+
+
+	
 
 
 	def criarListaDePeriodos(self, periodoDoMembro):
@@ -186,6 +201,12 @@ class Membro:
 			self.url      = parser.url
 			print "(*) Utilizando CV armazenado no cache: "+cvPath
 
+		elif '0000000000000000'==self.idLattes:
+			# se o codigo for '0000000000000000' então serao considerados dados de pessoa estrangeira - sem Lattes. 
+			# sera procurada a coautoria endogena com os outros membro.
+			# para isso é necessario indicar o nome abreviado no arquivo .list
+			return 
+
 		else:
 			if os.path.exists(cvPath):
 				arquivoH = open(cvPath)
@@ -193,51 +214,12 @@ class Membro:
 				if self.idMembro!='':
 					print "(*) Utilizando CV armazenado no cache: "+cvPath
 			else:
-				cvLattesHTML = ''
-				tentativa = 0
-				while tentativa<5:
-				#while True:
-					try:
-						txdata = None
-						txheaders = {   
-						'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:2.0) Gecko/20100101 Firefox/4.0',
-						'Accept-Language': 'en-us,en;q=0.5',
-						'Accept-Encoding': 'deflate',
-						'Keep-Alive': '115',
-						'Connection': 'keep-alive',
-						'Cache-Control': 'max-age=0',
-						'Cookie': 'style=standard; __utma=140185953.294397416.1313390179.1313390179.1317145115.2; __utmz=140185953.1317145115.2.2.utmccn=(referral)|utmcsr=emailinstitucional.cnpq.br|utmcct=/ei/emailInstitucional.do|utmcmd=referral; JSESSIONID=1B98ABF9642E01597AABA0F7A8807FD1.node2',
-						}
-		
-						print "Baixando CV :"+self.url
-
-						req = urllib2.Request(self.url, txdata, txheaders) # Young folks by P,B&J!
-						arquivoH = urllib2.urlopen(req) 
-						cvLattesHTML = arquivoH.read()
-						arquivoH.close()
-						time.sleep(1)
-
-						if len(cvLattesHTML)<=2000:
-							print '[AVISO] O scriptLattes tentará baixar novamente o seguinte CV Lattes: ', self.url
-							time.sleep(30)
-							tentativa+=1
-							continue
-
-						if not self.diretorioCache=='':
-							file = open(cvPath, 'w')
-							file.write(cvLattesHTML)
-							file.close()
-							print " (*) O CV está sendo armazenado no Cache"
-						break
-
-					### except urllib2.URLError: ###, e:
-					except:
-						print '[AVISO] Nao é possível obter o CV Lattes: ', self.url
-						print '[AVISO] Certifique-se que o CV existe. O scriptLattes tentará baixar o CV em 30 segundos...'
-						###print '[ERRO] Código de erro: ', e.code
-						time.sleep(30)
-						tentativa+=1
-						continue
+				cvLattesHTML = baixaCVLattes(self.idLattes)
+				if not self.diretorioCache=='':
+					file = open(cvPath, 'w')
+					file.write(cvLattesHTML)
+					file.close()
+					print " (*) O CV está sendo armazenado no Cache"
 
 			extended_chars= u''.join(unichr(c) for c in xrange(127, 65536, 1)) # srange(r"[\0x80-\0x7FF]")
 			special_chars = ' -'''
@@ -291,9 +273,9 @@ class Membro:
 		self.listaOutroTipoDeProducaoTecnica  = parser.listaOutroTipoDeProducaoTecnica
 
 		# Patentes e registros	
-		self.listaPatente          = parser.listaPatente
-		self.listaProgramaComputador = parser.listaProgramaComputador
-		self.listaDesenhoIndustrial = parser.listaDesenhoIndustrial
+		self.listaPatente          			  = parser.listaPatente
+		self.listaProgramaComputador          = parser.listaProgramaComputador
+		self.listaDesenhoIndustrial           = parser.listaDesenhoIndustrial
 				
 		# Produção artística
 		self.listaProducaoArtistica = parser.listaProducaoArtistica

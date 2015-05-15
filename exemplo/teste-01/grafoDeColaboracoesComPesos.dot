@@ -1,5 +1,0 @@
-strict graph grafo2 {
-	graph [bb="0,0,154,18", id=grafo2, overlap=False];
-	node [label="\N", fontsize=8, shape=rectangle, style=filled];
-	0 [label="Genival Fernandes de Freitas [0]", URL="http://lattes.cnpq.br/1304928249329716", color="#003399", fontcolor="#FFFFFF", height="0.25", pos="77,9", width="2.1389"];
-}
