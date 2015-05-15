@@ -756,7 +756,7 @@ class GeradorDePaginasWeb:
 				multirotulos = rotulo.split("::")
 				rotulo = ""
 				for r in multirotulos:
-					grupoURL = "http://dgp.cnpq.br/buscaoperacional/detalhegrupo.jsp?grupo="+ re.search('\[(.*)\]', r.strip()).group(1) 
+					grupoURL = "http://dgp.cnpq.br/dgp/espelhogrupo/"+ re.search('\[(.*)\]', r.strip()).group(1)
 					rotulo = rotulo + "<a href=" + grupoURL + ">" + r.strip() + "</a><br>"
 			
 
