@@ -2,7 +2,7 @@
 
 Prezados,
 
-Nesta semana, conjuntamente com vários pesquisadores, criamos uma petição com alguns argumentos que discutem o porque a adoção dos captchas não é uma boa estrategia para o Brasil.
+Nesta semana, conjuntamente com vários pesquisadores, criamos uma petição com alguns argumentos que discutem o porquê a adoção dos captchas não é uma boa estratégia para o Brasil.
 
 A adoção de captcha nos currículos Lattes:
 - Gera um custo elevado, oneroso e desnecessário para a coleta de dados;
