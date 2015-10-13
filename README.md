@@ -5,13 +5,12 @@ Prezados,
 Nesta semana, conjuntamente com vários pesquisadores, criamos uma petição com alguns argumentos que discutem o porquê a adoção dos captchas não é uma boa estratégia para o Brasil.
 
 A adoção de captcha nos currículos Lattes:
+
 - Gera um custo elevado, oneroso e desnecessário para a coleta de dados;
 - Constitui um freio à promoção da Ciência Brasileira;
 - Desencoraja a consulta de dados da Plataforma Lattes;
 - Diminui a visibilidade e o impacto da produção científica brasileira nos âmbitos nacional e internacional; e
 - Impossibilita estudos acadêmicos envolvendo mais de uma instituição, gerando prejuízo à Ciência Brasileira.
-
-Em anexo está o documento com maiores informações.
 
 Por favor, se concordar, **[assine a petição online e a divulgue](https://www.change.org/p/presid%C3%AAncia-do-cnpq-conselho-nacional-de-desenvolvimento-cient%C3%ADfico-e-tecnol%C3%B3gico-cnpq-peti%C3%A7%C3%A3o-para-a-retirada-dos-captchas-dos-curr%C3%ADculos-da-plataforma-lattes)**.
 
