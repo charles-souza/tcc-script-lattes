@@ -187,6 +187,9 @@ class Membro:
 	def carregarDadosCVLattes(self):
 		cvPath = self.diretorioCache+'/'+self.idLattes
 
+		print "******************" + cvPath
+
+
 		if 'xml' in cvPath:
 			arquivoX = open(cvPath)
 			cvLattesXML = arquivoX.read()
@@ -232,7 +235,8 @@ class Membro:
 			  self.identificador10 = self.idLattes
 			  self.idLattes = parser.identificador16
 			  self.url = 'http://lattes.cnpq.br/'+self.idLattes
-			
+		print "Ponto 2"
+		charles
 		# -----------------------------------------------------------------------------------------
 		# Obtemos todos os dados do CV Lattes
 		self.nomeCompleto                 = parser.nomeCompleto
